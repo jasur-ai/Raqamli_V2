@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Raqamli Tadqiqot V2 — AI dalillarini o‘lchaymiz</title>
+<meta name="description" content="V2 ko‘rib chiqish nusxasi: ochiq manbalardagi AI dalillarini o‘lchaydigan talabalar tashabbusi. Jonli pilot indeks, metodika, qizil sinov va hujjatlar.">
+<meta name="theme-color" content="#0b1220">
+<style>
+:root{
+  --bg:#f4f6fb; --bg2:#e9edf6; --card:#ffffff; --ink:#101828; --muted:#5b6b84;
+  --line:#d9e1ef; --brand:#2456e6; --brand2:#7c3aed; --ok:#0e9f6e; --warn:#d97706; --bad:#dc2626;
+  --chip:#eef2ff; --shadow:0 10px 30px rgba(16,24,40,.08); --r:18px;
+}
+[data-theme="dark"]{
+  --bg:#0b1220; --bg2:#0e1628; --card:#121c33; --ink:#e8eefc; --muted:#93a5c4;
+  --line:#22304f; --brand:#5b83ff; --brand2:#a78bfa; --chip:#1a2745;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+a{color:var(--brand);text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+/* NAV */
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:18px;padding:12px 0}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+.logo .dot{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:#fff;font-size:18px}
+.v2badge{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;letter-spacing:.6px}
+nav.menu{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap}
+nav.menu a{color:var(--ink);font-weight:600;font-size:14px;opacity:.85}
+nav.menu a:hover{opacity:1;color:var(--brand)}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 14px;font-weight:700;cursor:pointer}
+.btn.primary{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff;border:none}
+/* HERO */
+.hero{position:relative;overflow:hidden;background:radial-gradient(900px 400px at 15% -10%,rgba(36,86,230,.25),transparent 60%),radial-gradient(800px 380px at 85% 0%,rgba(124,58,237,.22),transparent 60%),var(--bg2);border-bottom:1px solid var(--line)}
+.hero .wrap{padding:64px 20px 56px;position:relative}
+.blob{position:absolute;border-radius:50%;filter:blur(40px);opacity:.5;animation:float 9s ease-in-out infinite}
+.blob.b1{width:220px;height:220px;background:#2456e6;top:-60px;right:8%}
+.blob.b2{width:160px;height:160px;background:#7c3aed;bottom:-50px;left:4%;animation-delay:-4s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+h1{font-size:clamp(30px,5.2vw,52px);line-height:1.08;margin:10px 0 12px;font-weight:900;letter-spacing:-.5px}
+.lead{font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:720px;margin:0 0 22px}
+/* cube rotator */
+.cube-line{font-size:clamp(22px,3.6vw,36px);font-weight:900;display:flex;gap:.35em;align-items:center;flex-wrap:wrap}
+.cube{--h:1.25em;display:inline-block;height:var(--h);overflow:hidden;perspective:600px;vertical-align:bottom}
+.cube-inner{transform-style:preserve-3d;animation:cuberot 10s cubic-bezier(.7,0,.2,1) infinite}
+.cube-inner span{display:block;height:var(--h);line-height:var(--h);backface-visibility:hidden;background:linear-gradient(90deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes cuberot{
+ 0%,18%{transform:rotateX(0deg)} 25%,43%{transform:rotateX(-90deg)}
+ 50%,68%{transform:rotateX(-180deg)} 75%,93%{transform:rotateX(-270deg)} 100%{transform:rotateX(-360deg)}
+}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:34px 0 6px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow)}
+.stat b{font-size:28px;display:block}
+.stat span{color:var(--muted);font-size:13px}
+/* sections */
+section{padding:56px 0}
+h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 8px;font-weight:900}
+.sub{color:var(--muted);margin:0 0 26px;max-width:760px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.on{opacity:1;transform:none}
+/* table */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+input[type="search"],select{padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.bar{height:8px;border-radius:99px;background:var(--bg2);overflow:hidden;min-width:90px}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--brand),var(--brand2));transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:700;background:var(--chip)}
+.pill.l3{background:#d1fae5;color:#065f46}.pill.l2{background:#dbeafe;color:#1e40af}
+.pill.l1{background:#fef3c7;color:#92400e}.pill.l0{background:#fee2e2;color:#991b1b}
+[data-theme="dark"] .pill.l3{background:#064e3b;color:#a7f3d0}[data-theme="dark"] .pill.l2{background:#1e3a8a;color:#bfdbfe}
+[data-theme="dark"] .pill.l1{background:#78350f;color:#fde68a}[data-theme="dark"] .pill.l0{background:#7f1d1d;color:#fecaca}
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;position:relative;overflow:hidden}
+.step::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--brand),var(--brand2))}
+.step b{display:block;margin:6px 0 4px}
+.step p{margin:0;color:var(--muted);font-size:13.5px}
+/* red team */
+.xgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.xcard{border-radius:var(--r);padding:16px;border:1px solid var(--line);background:var(--card)}
+.xcard b{font-size:20px}
+.x1{box-shadow:inset 0 4px 0 var(--bad)} .x2{box-shadow:inset 0 4px 0 var(--warn)}
+.x3{box-shadow:inset 0 4px 0 var(--brand)} .x4{box-shadow:inset 0 4px 0 var(--muted)}
+/* docs */
+.docs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.doc{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--card);display:flex;gap:10px;align-items:flex-start;transition:transform .25s ease,box-shadow .25s ease}
+.doc:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.doc .ic{font-size:20px}
+.doc b{font-size:14px;display:block}
+.doc span{font-size:12px;color:var(--muted)}
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.road .card h3{margin:4px 0 8px}
+.road li{margin:5px 0;color:var(--muted);font-size:14px}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:13.5px;background:var(--bg2)}
+.note{background:color-mix(in srgb,var(--brand) 8%,var(--card));border:1px dashed var(--brand);border-radius:14px;padding:14px 16px;font-size:14px}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}.pipe{grid-template-columns:1fr 1fr}.xgrid{grid-template-columns:1fr 1fr}.docs{grid-template-columns:1fr 1fr}.road{grid-template-columns:1fr}}
+@media(max-width:560px){.docs{grid-template-columns:1fr}nav.menu{display:none}table{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.cube-inner,.blob{animation:none}.reveal{opacity:1;transform:none}.bar i{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="logo"><span class="dot">◉</span> Raqamli Tadqiqot <span class="v2badge">V2</span></div>
+    <nav class="menu">
+      <a href="#indeks">Jonli indeks</a><a href="#metodika">Metodika</a>
+      <a href="#qizil">Qizil sinov</a><a href="#hujjatlar">Hujjatlar</a><a href="#reja">Reja</a>
+    </nav>
+    <button class="btn" id="themeBtn" aria-label="Mavzu">🌙 / ☀️</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div class="cube-line">Sun’iy intellekt qayerda ishlayapti? Biz
+      <span class="cube"><span class="cube-inner">
+        <span>o‘lchaymiz.</span><span>tekshiramiz.</span><span>hujjatlaymiz.</span><span>taqqoslaymiz.</span>
+      </span></span>
+    </div>
+    <h1>Dalil bor joyda — ishonch bor.</h1>
+    <p class="lead">Raqamli Tadqiqot V2 — ochiq manbalardagi AI da’volarini tekshiriladigan dalilga aylantiradigan talabalar tashabbusi. Har bir ball ortida manba, sana va qayta hisoblash yo‘li turadi.</p>
+    <div class="cta">
+      <a class="btn primary" href="#indeks">Jonli indeksni ko‘rish</a>
+      <a class="btn" href="https://t.me/raqamli_v2_bot" target="_blank" rel="noopener">Telegram bot (V2)</a>
+      <a class="btn" href="#hujjatlar">Hujjatlar to‘plami</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b data-count="32.6" data-dec="1">0</b><span>Sektor qismiy indeksi (pilot, 10 bank)</span></div>
+      <div class="stat"><b><span data-count="13.8" data-dec="1">0</span>–<span data-count="53.8" data-dec="1">0</span></b><span>95% ishonch oralig‘i (bootstrap)</span></div>
+      <div class="stat"><b data-count="10">0</b><span>Pilotdagi tashkilotlar (banklar)</span></div>
+      <div class="stat"><b data-count="33">0</b><span>Hujjatlar to‘plami (indekslangan)</span></div>
+    </div>
+    <p class="note" style="margin-top:18px">⚠️ <b>Bu — V2 ko‘rib chiqish nusxasi.</b> Asosiy (v1) sayt o‘zgarishsiz qoladi. 32,6 — «kuzatilgan 10 tashkilot bo‘yicha qismiy indeks»; bo‘sh katak — baholanmagan, nol emas.</p>
+  </div>
+</div>
+
+<section id="indeks">
+  <div class="wrap">
+    <h2 class="reveal">Jonli indeks — pilot natijalari</h2>
+    <p class="sub reveal">Kesim: 29.09.2026 · 10 bank · Har bir qatorda qismiy indeks, qamrov va daraja. Saralash va filtrlash ishlaydi — bu statik rasm emas, ishchi jadval.</p>
+    <div class="card reveal">
+      <div class="toolbar">
+        <input type="search" id="q" placeholder="Bank qidirish… (masalan: TBC)">
+        <select id="lvl"><option value="">Barcha darajalar</option><option>L3</option><option>L2</option><option>L1</option><option>L0</option></select>
+        <select id="sort"><option value="idx-desc">Indeks ↓</option><option value="idx-asc">Indeks ↑</option><option value="name">Nomi A–Z</option></select>
+      </div>
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>Bank</th><th>Qismiy indeks</th><th></th><th>Qamrov</th><th>Daraja</th><th>Ishonch</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      </div>
+      <p style="color:var(--muted);font-size:13px;margin:12px 0 0">Manba: 12_PILOT_NATIJALARI_REAL (kesim 29.09.2026). Hisob: tekshirilgan yadro (selftest). Namuna maqsadli — sektor bahosi emas; batafsil talqin hujjatlar bo‘limida.</p>
+    </div>
+  </div>
+</section>
+
+<section id="metodika" style="background:var(--bg2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <h2 class="reveal">Metodika — 5 qatlam</h2>
+    <p class="sub reveal">Har bir nashr shu zanjirdan o‘tadi. Biror qatlam uzilsa — ball chiqmaydi.</p>
+    <div class="pipe">
+      <div class="step reveal"><b>1 · MANBA</b><p>Mustaqil ikkinchi manba, toifa va sana tekshiruvi. Echo (qayta nashr) mustaqil hisoblanmaydi.</p></div>
+      <div class="step reveal"><b>2 · DALIL</b><p>Snapshot + SHA-256 + vaqt muhri. «Topilmadi» ham qayd etiladi — bo‘sh katak nol emas.</p></div>
+      <div class="step reveal"><b>3 · HISOB</b><p>Yagona hisob yadrosi, kelishuv o‘lchovi (κ) va ishonch oraliqlari bilan.</p></div>
+      <div class="step reveal"><b>4 · NAZORAT</b><p>Qizil sinov: har da’vo hujumdan o‘tadi; X-sinf va tuzatish muddati belgilanadi.</p></div>
+      <div class="step reveal"><b>5 · NASHR</b><p>«Qizil xulosa» ilovasi bilan: ko‘rilgan bandlar, ochiq bandlar, javoblar — ochiq.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="qizil">
+  <div class="wrap">
+    <h2 class="reveal">Qizil sinov — o‘zimizni ham tekshiramiz</h2>
+    <p class="sub reveal">Tanqidiy guruh har nashrni «buzishga» harakat qiladi: manba mustaqilligi, metodika, raqamlar. Topilmalar sinfga bo‘linadi va muddat bilan yopiladi.</p>
+    <div class="xgrid">
+      <div class="xcard x1 reveal"><b>X1 · Halokatli</b><p>72 soat: muzlatish → tekshiruv → erratum. Yopilmaguncha nashr to‘xtaydi.</p></div>
+      <div class="xcard x2 reveal"><b>X2 · Moddiy</b><p>Ball/manba tuzatiladi; nashr ochiq izoh bilan chiqadi.</p></div>
+      <div class="xcard x3 reveal"><b>X3 · Kichik</b><p>Sana, havola, jadval kabi aniqliklar keyingi yangilanishda.</p></div>
+      <div class="xcard x4 reveal"><b>X4 · Redaksion</b><p>Uslub takliflari — mazmunga ta’sirsiz.</p></div>
+    </div>
+    <div class="card reveal" style="margin-top:14px">
+      <b>Trenajyor rejimi:</b> <span style="color:var(--muted)">jamoa haqiqiy sinovdan oldin uchta o‘quv keysida mashq qiladi (bayroq → dosye → hakamlik → xulosa). Baholash: rubrika ≥80 ball, kelishuv ≥80%.</span>
+    </div>
+  </div>
+</section>
+
+<section id="hujjatlar" style="background:var(--bg2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <h2 class="reveal">Hujjatlar to‘plami</h2>
+    <p class="sub reveal">Indekslangan 33 ta hujjat — klub nizomidan pilot ishchi kitobigacha. Qidiruv ishlaydi; fayllar V2 arxivida alohida saqlanadi.</p>
+    <div class="toolbar reveal"><input type="search" id="dq" placeholder="Hujjat qidirish… (masalan: NIZOM)" style="min-width:260px"></div>
+    <div class="docs" id="docs"></div>
+  </div>
+</section>
+
+<section id="reja">
+  <div class="wrap">
+    <h2 class="reveal">Yo‘l xaritasi</h2>
+    <p class="sub reveal">V2 — bosqichma-bosqich: avval tartib, keyin kengayish.</p>
+    <div class="road">
+      <div class="card reveal"><h3>30 kun — Tartib</h3><ul><li>Nizom va tanqid normalari qabul</li><li>Qizil jamoa (≥3 a’zo, ≥1 tashqi)</li><li>Trenajyor mashg‘ulotlari</li><li>COI reyestri va etika seminari</li></ul></div>
+      <div class="card reveal"><h3>60 kun — Birinchi sinov</h3><ul><li>Do‘stona qizil sinov sikli</li><li>«Qizil xulosa» bilan birinchi nashr</li><li>Hakamlik mashqi</li><li>Dalil paketlari arxivi</li></ul></div>
+      <div class="card reveal"><h3>90+ kun — Kengayish</h3><ul><li>Namunani 35 tashkilotga yetkazish</li><li>Sektorlar kesimida nashrlar</li><li>Ochiq ma’lumot va DOI depoziti</li><li>Hamkorliklar va bellashuvlar</li></ul></div>
+    </div>
+    <div class="cta" style="margin-top:22px">
+      <a class="btn primary" href="https://t.me/raqamli_v2_bot" target="_blank" rel="noopener">Botda davom etish (V2)</a>
+      <a class="btn" href="#indeks">Indeksga qaytish ↑</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Raqamli Tadqiqot · <b>V2 ko‘rib chiqish nusxasi</b> (2026-10-15). Asosiy (v1) mahsulot alohida va o‘zgarishsiz.
+    Ma’lumotlar: ochiq manbalar, kesim sanalari hujjatlarda. Savol/tuzatish — bot orqali.
+  </div>
+</footer>
+
+<script>
+const BANKS=[
+ {n:"TBC Bank",i:100,c:"100%",l:"L3",t:"yetarli"},
+ {n:"SQB",i:70,c:"100%",l:"L2",t:"yetarli"},
+ {n:"NBU",i:59.5,c:"70%",l:"L2",t:"yetarli"},
+ {n:"Anor Bank",i:33.3,c:"60%",l:"L1",t:"yetarli emas"},
+ {n:"Uzum Bank",i:33.3,c:"30%",l:"L1",t:"yetarli emas"},
+ {n:"Agrobank",i:15.2,c:"55%",l:"L0",t:"yetarli emas"},
+ {n:"Kapitalbank",i:15.2,c:"55%",l:"L0",t:"yetarli emas"},
+ {n:"Xalq banki",i:0,c:"10%",l:"L0",t:"yetarli emas"},
+ {n:"Ipak Yo‘li",i:0,c:"10%",l:"L0",t:"yetarli emas"},
+ {n:"Ziraat",i:0,c:"10%",l:"L0",t:"yetarli emas"}
+];
+const rows=document.getElementById('rows');
+function render(){
+  const q=document.getElementById('q').value.toLowerCase();
+  const lv=document.getElementById('lvl').value;
+  const s=document.getElementById('sort').value;
+  let a=BANKS.filter(b=>(!q||b.n.toLowerCase().includes(q))&&(!lv||b.l===lv));
+  if(s==='idx-desc')a.sort((x,y)=>y.i-x.i); if(s==='idx-asc')a.sort((x,y)=>x.i-y.i);
+  if(s==='name')a.sort((x,y)=>x.n.localeCompare(y.n,'uz'));
+  rows.innerHTML=a.map(b=>`<tr>
+    <td><b>${b.n}</b></td><td>${b.i.toString().replace('.',',')}</td>
+    <td><div class="bar"><i data-w="${b.i}"></i></div></td>
+    <td>${b.c}</td><td><span class="pill ${b.l.toLowerCase()}">${b.l}</span></td><td>${b.t}</td></tr>`).join('')
+    ||'<tr><td colspan="6">Mos bank topilmadi.</td></tr>';
+  requestAnimationFrame(()=>document.querySelectorAll('.bar i').forEach(el=>el.style.width=el.dataset.w+'%'));
+}
+['q','lvl','sort'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+render();
+
+const DOCS=["00_README","02_PITCH_1_SAHIFA","03_SEKTOR_BRIEF_SHABLONI","04_TAQDIMOT","04_INDEKS_YIGISH_FORMASI","06_NIZOM","07_ETIKA_VA_MALUMOT_SIYOSATI","08_PILOT_BANK_ISHCHI_TOPLAM","09_PILOT_BANK_ISHCHI_KITOB","10_PITCH","11_PILOT_BRIEF_BANK_REAL","12_PILOT_NATIJALARI_REAL","13_METOD_QANDAY_VA_NEGA","14_10_QISM_SODDA_TILDA","15_LUGAT_VA_ETIROZLAR","16_BREND_QOLLANMASI","18_TALABA_JALB_QILISH_VA_MARKETING","21_TALABA_FOYDALARI_KATTA_XARITA","22_KANAL_KONTENT_REJA","23_ROLLAR_VA_BOSHQARUV","24_XAVFLAR_VA_FAVQULODDA_REJA","25_TARQATISH_VA_PRINT_REJASI","26_YILLIK_ISH_REJASI","27_MARKETING_GOYALAR","28_TADQIQOT_GOYALAR_BANKI","29_TADQIQOT_QANDAY_QILINADI","30_KELAJAK_REJALARI_VA_QILINADIGAN_ISHLAR","31_ROL_YORIQNOMALARI_VA_QABUL_TALABLARI","32_TADQIQOT_STANDARTI_VA_RASMIY_SOROV","33_TADBIRLAR_DASTURI","+ tadqiqot jildlari I–IV (v2)"];
+const docsEl=document.getElementById('docs');
+function renderDocs(){
+  const q=document.getElementById('dq').value.toLowerCase();
+  const a=DOCS.filter(d=>!q||d.toLowerCase().includes(q));
+  docsEl.innerHTML=a.map(d=>`<div class="doc"><span class="ic">📄</span><div><b>${d}</b><span>V2 arxiv · indekslangan</span></div></div>`).join('')
+    ||'<div class="doc">Mos hujjat topilmadi.</div>';
+}
+document.getElementById('dq').addEventListener('input',renderDocs);
+renderDocs();
+
+/* counters */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return; io.unobserve(e.target);
+  e.target.classList&&e.target.classList.add('on');
+  e.target.querySelectorAll&&e.target.querySelectorAll('[data-count]').forEach(el=>{
+    const end=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),t0=performance.now();
+    (function tick(t){const p=Math.min(1,(t-t0)/1200);el.textContent=(end*(0.2+0.8*p)).toFixed(dec).replace('.',',');if(p<1)requestAnimationFrame(tick);else el.textContent=end.toFixed(dec).replace('.',',');})(t0);
+  });
+}),{threshold:.15});
+document.querySelectorAll('.reveal,.stats').forEach(el=>io.observe(el));
+
+/* theme */
+const tb=document.getElementById('themeBtn');
+tb.addEventListener('click',()=>{
+  const h=document.documentElement;
+  h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';
+  try{localStorage.setItem('rt-v2-theme',h.dataset.theme)}catch(e){}
+});
+try{const s=localStorage.getItem('rt-v2-theme');if(s)document.documentElement.dataset.theme=s}catch(e){}
+</script>
+</body>
+</html>

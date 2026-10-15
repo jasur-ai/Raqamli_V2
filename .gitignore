@@ -1,0 +1,6 @@
+# V2 repo — maxfiy narsalar hech qachon kirmaydi
+_private_vault_v2/
+credentials*.env
+*.env
+.DS_Store
+__pycache__/
