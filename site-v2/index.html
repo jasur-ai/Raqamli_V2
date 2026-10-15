@@ -483,28 +483,25 @@ li.v2rv, .chip.v2rv{transform:translateY(14px)}
 
 
 
+
 <style id="v2pro">
-/* ===== V2 PRO: aylanma zina (spiral) reveal + professional harakat ===== */
-/* Sarlavha: pastdan yengil burilib chiqadi (masksiz — bo'shliq hissi yo'q) */
 .sh.rv{transform:translateY(16px) rotate(1.2deg);transform-origin:0 100%;
  transition:opacity .7s ease,transform .85s cubic-bezier(.16,1,.3,1)}
 .sh.rv.on{transform:none}
-/* AYLANMA ZINA: kartochkalar spiral zinadan buralib ko'tarilgandek chiqadi */
-.v2stair{opacity:0;transform:perspective(1100px) rotateX(50deg) rotateY(-15deg) rotateZ(4deg) translateY(52px);
- transform-origin:50% 115%;transition:opacity .75s ease,transform .95s cubic-bezier(.16,1,.3,1);
- transition-delay:calc(var(--si,0)*115ms);will-change:transform,opacity}
-.v2stair.on{opacity:1;transform:perspective(1100px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0)}
-/* Matritsa kataklari: sokin ketma-ket chiqish */
 #hg>.v2cell{animation:v2fade .6s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--ci,0)*20ms)}
 @keyframes v2fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-/* Panellar soyasi ochilishda chuqurlashadi */
 .panel.rv.on{box-shadow:0 18px 44px -18px rgba(15,35,90,.25)}
 .ix{will-change:transform}
-@media (prefers-reduced-motion:reduce){
- .v2stair{opacity:1;transform:none;transition:none}
- #hg>.v2cell{animation:none}
- .sh.rv{transform:none;transition:none}
-}
+@media (prefers-reduced-motion:reduce){#hg>.v2cell{animation:none}.sh.rv{transform:none;transition:none}}
+</style>
+
+<style id="v2helix">
+.ix{position:relative}
+.v2helix{position:absolute;inset:-22px -26px;pointer-events:none;overflow:visible;z-index:3}
+.v2helix path{fill:none;stroke:var(--acc,#7c3aed);stroke-width:1.6;opacity:.5;stroke-linecap:round;stroke-dasharray:6 7}
+.v2helix .front{stroke:var(--blue,#2456e6);opacity:.85;stroke-dasharray:none}
+#v2hdot{filter:drop-shadow(0 0 6px rgba(124,58,237,.85))}
+@media (prefers-reduced-motion:reduce){.v2helix{display:none}}
 </style>
 </head>
 <body>
@@ -541,7 +538,7 @@ li.v2rv, .chip.v2rv{transform:translateY(14px)}
     <div>
       <a class="pill rv" href="#pilot" style="--i:0"><b>YANGI</b>Bank sektori pilot natijasi<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
       <h1 class="rv" style="--i:1">Sun'iy intellekt<br><span class="rot" id="rot"><span class="on">banklarda</span><span>ta'limda</span><span>tibbiyotda</span><span>davlat xizmatida</span><span>telekomda</span></span><br>qanchalik ishlayapti?</h1>
-      <p class="lead rv" style="--i:2"><b>Biz ochiq dalillarni tahlil qilamiz.</b> Ochiq manbalardagi qaydlar asosida pilot natijalari va ularning cheklovlarini ko'rsatamiz. Bu ichki tizimlar sinovi yoki mustaqil audit emas.</p>
+      <p class="lead rv" style="--i:2"><b>Biz ochiq dalillarni tahlil qilamiz.</b> Pilot — cheklovlari bilan, ochiq manbalardan.</p>
       <div class="cta rv" style="--i:3">
         <a class="btn p" href="https://t.me/aiindeksi_bot?start=site" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5z"/></svg>Qo'shilish — 40 soniya</a>
         <a class="btn s" href="#hisobla">Indeksni sinab ko'r</a>
@@ -581,7 +578,7 @@ li.v2rv, .chip.v2rv{transform:translateY(14px)}
 
 <!-- PILOT EXPLORER -->
 <section id="pilot" class="alt"><div class="w">
-  <div class="sh rv"><div class="kick">Pilot natijasi · ichki ishchi hisob</div><h2>30/60 katakka <span class="g">ball qo'yilgan.</span></h2><p class="sub">O'lchovni tanlang — ball qo'yilgan va hali baholanmagan kataklarni ko'ring. Ma'lumotlar 29.09.2026 sanali ishchi jadvaldan; manba havolalari va metodika to'liq mustaqil tekshirilmagan.</p></div>
+  <div class="sh rv"><div class="kick">Pilot natijasi · ichki ishchi hisob</div><h2>30/60 katakka <span class="g">ball qo'yilgan.</span></h2><p class="sub">Ball qo'yilgan va ochiq kataklar. Kesim: 29.09.2026.</p></div>
   <div class="exp">
     <div class="panel rv">
       <div class="seg" role="tablist" id="seg"></div>
@@ -606,7 +603,7 @@ li.v2rv, .chip.v2rv{transform:translateY(14px)}
 
 <!-- CALCULATOR -->
 <section id="hisobla"><div class="w">
-  <div class="sh rv"><div class="kick">Metod</div><h2>Indeksni <span class="g">o'zing hisobla.</span></h2><p class="sub">Har o'lchovga ball qo'y. «—» — baholanmagan yoki tekshiruv yetarli emas (bu 0 degani emas).</p></div>
+  <div class="sh rv"><div class="kick">Metod</div><h2>Indeksni <span class="g">o'zing hisobla.</span></h2><p class="sub">Har o'lchovga ball qo'y. «—» — hali baholanmagan (0 emas).</p></div>
   <div class="calc">
     <div class="panel rv" id="crows"></div>
     <div class="panel res rv" style="--i:1">
@@ -977,46 +974,50 @@ if(sessionMessage){
 
 
 
+
 <script id="v2pro-js">
 (function(){
  "use strict";
  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
- /* matritsa kataklari */
- function seq(){
-   document.querySelectorAll("#hg > *").forEach(function(c,i){
-     c.style.setProperty("--ci",String(i)); c.classList.add("v2cell");
-   });
- }
+ function seq(){document.querySelectorAll("#hg > *").forEach(function(c,i){c.style.setProperty("--ci",String(i));c.classList.add("v2cell");});}
  if(document.querySelector("#hg")) setTimeout(seq,250);
- /* AYLANMA ZINA: guruh ichida zina tartibi */
- var groups={};
- document.querySelectorAll("#qanday .tile, #qanday .st, #qanday li, #klub .tile, #klub .st, #yol .tile, #yol .st, main .bx").forEach(function(el){
-   if(el.classList.contains("rv")||el.classList.contains("v2rv")) return;
-   var par=el.parentElement, key=par?par.className+"|"+par.id:"x";
-   groups[key]=(groups[key]||0);
-   el.style.setProperty("--si",String(groups[key]%7)); groups[key]++;
-   el.classList.add("v2stair");
- });
- var io=("IntersectionObserver" in window)?new IntersectionObserver(function(es){
-   es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("on"); io.unobserve(e.target);} });
- },{threshold:0.08,rootMargin:"0px 0px -4% 0px"}):null;
- document.querySelectorAll(".v2stair").forEach(function(el){ if(io)io.observe(el); else el.classList.add("on"); });
- /* xavfsizlik: 2 soniyada hammasi ko'rinadigan bo'ladi (bo'shliq qolmaydi) */
- setTimeout(function(){
-   document.querySelectorAll(".v2stair:not(.on), .v2rv:not(.on)").forEach(function(el){el.classList.add("on");});
- },2000);
- /* hero panel chuqurligi */
- var ix=document.querySelector(".hero .ix"), tick=false;
- if(ix && !reduce){
-   window.addEventListener("scroll",function(){
-     if(tick) return; tick=true;
-     requestAnimationFrame(function(){
-       var y=window.scrollY||0;
-       if(y<window.innerHeight) ix.style.transform="translateY("+(y*0.035)+"px)";
-       tick=false;
-     });
-   },{passive:true});
+ setTimeout(function(){document.querySelectorAll(".v2rv:not(.on)").forEach(function(el){el.classList.add("on");});},2000);
+ var ix=document.querySelector(".hero .ix"),tick=false;
+ if(ix&&!reduce){window.addEventListener("scroll",function(){if(tick)return;tick=true;requestAnimationFrame(function(){var y=window.scrollY||0;if(y<window.innerHeight)ix.style.transform="translateY("+(y*0.035)+"px)";tick=false;});},{passive:true});}
+})();
+</script>
+
+<script id="v2helix-js">
+(function(){
+ "use strict";
+ var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+ var ix=document.querySelector(".hero .ix");
+ if(!ix||reduce) return;
+ var NS="http://www.w3.org/2000/svg";
+ var svg=document.createElementNS(NS,"svg");
+ svg.setAttribute("class","v2helix"); svg.setAttribute("viewBox","0 0 680 600"); svg.setAttribute("aria-hidden","true");
+ function helix(back){
+   var pts=[],turns=3,steps=180;
+   for(var i=0;i<=steps;i++){
+     var t=i/steps,a=t*turns*Math.PI*2;
+     if((Math.sin(a)>0)===back) continue;
+     var x=340+318*Math.cos(a), y=52+t*496+30*Math.sin(a);
+     pts.push((pts.length?"L":"M")+x.toFixed(1)+" "+y.toFixed(1));
+   }
+   return pts.join(" ");
  }
+ var pB=document.createElementNS(NS,"path"); pB.setAttribute("d",helix(true));
+ var pF=document.createElementNS(NS,"path"); pF.setAttribute("d",helix(false)); pF.setAttribute("class","front");
+ var dot=document.createElementNS(NS,"circle");
+ dot.setAttribute("id","v2hdot"); dot.setAttribute("r","5.5"); dot.setAttribute("fill","#7c3aed");
+ svg.appendChild(pB); svg.appendChild(pF); svg.appendChild(dot);
+ ix.appendChild(svg);
+ var len=0; try{len=pF.getTotalLength();}catch(e){}
+ var t0=performance.now();
+ (function run(t){
+   if(len){var f=((t-t0)/16000)%1,pt=pF.getPointAtLength(f*len);dot.setAttribute("cx",pt.x);dot.setAttribute("cy",pt.y);}
+   requestAnimationFrame(run);
+ })(t0);
 })();
 </script>
 </body>
