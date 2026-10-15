@@ -1,0 +1,4 @@
+HOLAT: RAD ETILDI (foydalanuvchi, 2026-10-15) — v1 dan ancha zaif, yupqa landing.
+Deploy o'chirildi (Cloudflare loyiha deleted), Drive papka korzinkada.
+Bu papka faqat tarixiy qoralama; asos qilib OLINMAYDI.
+Yangi sayt ishi: avval mukammal konsepsiya (qog'ozda), foydalanuvchi "qil" degandan keyingina kod.
