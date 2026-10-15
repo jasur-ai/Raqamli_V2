@@ -495,13 +495,17 @@ li.v2rv, .chip.v2rv{transform:translateY(14px)}
 @media (prefers-reduced-motion:reduce){#hg>.v2cell{animation:none}.sh.rv{transform:none;transition:none}}
 </style>
 
-<style id="v2helix">
-.ix{position:relative}
-.v2helix{position:absolute;inset:-22px -26px;pointer-events:none;overflow:visible;z-index:3}
-.v2helix path{fill:none;stroke:var(--acc,#7c3aed);stroke-width:1.6;opacity:.5;stroke-linecap:round;stroke-dasharray:6 7}
-.v2helix .front{stroke:var(--blue,#2456e6);opacity:.85;stroke-dasharray:none}
-#v2hdot{filter:drop-shadow(0 0 6px rgba(124,58,237,.85))}
-@media (prefers-reduced-motion:reduce){.v2helix{display:none}}
+
+<style id="v2fold">
+/* Elementlarning O'ZI spiral bukilib ochiladi (ustidan shakl emas) */
+.v2fold{opacity:0;transform:perspective(1150px) rotateY(-44deg) rotateX(10deg) rotate(-5deg) translate(-28px,20px) scale(.93);
+ transform-origin:0 50%;transition:transform 1.05s cubic-bezier(.16,1.25,.3,1),opacity .55s ease;will-change:transform,opacity}
+.v2fold.alt{transform:perspective(1150px) rotateY(44deg) rotateX(10deg) rotate(5deg) translate(28px,20px) scale(.93);transform-origin:100% 50%}
+.v2fold.on{opacity:1;transform:perspective(1150px) rotateY(0) rotateX(0) rotate(0) translate(0,0) scale(1)}
+/* Hero panel: yuklanganda bukilgan holatdan ochiladi */
+.hero .ix{animation:v2unfold 1.25s cubic-bezier(.16,1.2,.3,1) .25s both}
+@keyframes v2unfold{from{opacity:0;transform:perspective(1200px) rotateY(34deg) rotateX(6deg) translateX(34px);transform-origin:100% 50%}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.v2fold{opacity:1;transform:none;transition:none}.hero .ix{animation:none}}
 </style>
 </head>
 <body>
@@ -987,37 +991,25 @@ if(sessionMessage){
 })();
 </script>
 
-<script id="v2helix-js">
+
+<script id="v2fold-js">
 (function(){
  "use strict";
  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
- var ix=document.querySelector(".hero .ix");
- if(!ix||reduce) return;
- var NS="http://www.w3.org/2000/svg";
- var svg=document.createElementNS(NS,"svg");
- svg.setAttribute("class","v2helix"); svg.setAttribute("viewBox","0 0 680 600"); svg.setAttribute("aria-hidden","true");
- function helix(back){
-   var pts=[],turns=3,steps=180;
-   for(var i=0;i<=steps;i++){
-     var t=i/steps,a=t*turns*Math.PI*2;
-     if((Math.sin(a)>0)===back) continue;
-     var x=340+318*Math.cos(a), y=52+t*496+30*Math.sin(a);
-     pts.push((pts.length?"L":"M")+x.toFixed(1)+" "+y.toFixed(1));
-   }
-   return pts.join(" ");
- }
- var pB=document.createElementNS(NS,"path"); pB.setAttribute("d",helix(true));
- var pF=document.createElementNS(NS,"path"); pF.setAttribute("d",helix(false)); pF.setAttribute("class","front");
- var dot=document.createElementNS(NS,"circle");
- dot.setAttribute("id","v2hdot"); dot.setAttribute("r","5.5"); dot.setAttribute("fill","#7c3aed");
- svg.appendChild(pB); svg.appendChild(pF); svg.appendChild(dot);
- ix.appendChild(svg);
- var len=0; try{len=pF.getTotalLength();}catch(e){}
- var t0=performance.now();
- (function run(t){
-   if(len){var f=((t-t0)/16000)%1,pt=pF.getPointAtLength(f*len);dot.setAttribute("cx",pt.x);dot.setAttribute("cy",pt.y);}
-   requestAnimationFrame(run);
- })(t0);
+ var targets=document.querySelectorAll("main .tile, main .bx, .flow .st, #klub .tile, #yol .tile, #yol .st, .vs > div");
+ var list=[];
+ targets.forEach(function(el){
+   if(el.closest(".hero")) return;
+   el.classList.add("v2fold");
+   if(list.length%2) el.classList.add("alt");
+   list.push(el);
+ });
+ if(reduce){list.forEach(function(el){el.classList.add("on");});return;}
+ var io=("IntersectionObserver" in window)?new IntersectionObserver(function(es){
+   es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target);}});
+ },{threshold:0.01,rootMargin:"0px 0px 30% 0px"}):null;
+ list.forEach(function(el){ if(io)io.observe(el); else el.classList.add("on"); });
+ setTimeout(function(){list.forEach(function(el){el.classList.add("on");});},3500);
 })();
 </script>
 </body>
