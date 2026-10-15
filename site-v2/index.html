@@ -429,87 +429,11 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 .mm .btn{margin-top:auto}
 </style>
 
-<style id="v2adv">
-/* ===== V2 ADVANCED QATLAM (v1 ustiga qo'shimcha; v1 kodi o'zgartirilmagan) ===== */
-:root{--v2ease:cubic-bezier(.22,1.25,.36,1);--v2ease2:cubic-bezier(.16,1,.3,1)}
-html{scroll-padding-top:84px}
-body{overflow-x:hidden}
-/* yuqori progress chizig'i */
-#v2prog{position:fixed;top:0;left:0;height:3px;width:100%;z-index:999;transform-origin:0 50%;transform:scaleX(0);
- background:linear-gradient(90deg,var(--blue,#2456e6),var(--acc,#7c3aed));box-shadow:0 0 12px rgba(80,110,255,.55)}
-/* HERO: so'z almashinuvi — 3D flip (v1 .on/.out sinflarini qayta talqin qiladi) */
-.hero .rot{perspective:720px;overflow:visible}
-.hero .rot span{transform:rotateX(94deg) translateY(6px);transform-origin:50% 100%;opacity:0;filter:blur(3px);
- transition:transform .8s var(--v2ease),opacity .45s ease,filter .5s ease}
-.hero .rot span.on{transform:rotateX(0) translateY(0);opacity:1;filter:blur(0)}
-.hero .rot span.out{transform:rotateX(-94deg) translateY(-6px);transform-origin:50% 0;opacity:0;filter:blur(3px)}
-/* reveal kuchaytirilgan: yengil masshtab + fokus */
-.rv{transform:translateY(26px) scale(.985);filter:blur(2px);transition:opacity .9s var(--v2ease2),transform .9s var(--v2ease2),filter .7s ease}
-.rv.on{transform:none;filter:blur(0)}
-/* avtomatik qo'shiladigan reveal (JS .v2rv beradi) */
-.v2rv{opacity:0;transform:translateY(24px) scale(.98);transition:opacity .8s var(--v2ease2),transform .8s var(--v2ease2);transition-delay:calc(var(--i,0)*70ms)}
-.v2rv.on{opacity:1;transform:none}
-/* kartochka/tile hover: ko'tarilish + soya + chegara yoritilishi */
-.tile,.bx,.panel{transition:transform .45s var(--v2ease),box-shadow .45s ease,border-color .45s ease;will-change:transform}
-.tile:hover,.bx:hover{transform:translateY(-5px)}
-.tilt{transform-style:preserve-3d}
-/* tugmalar: bosilish fizikasi va nur */
-.btn{transition:transform .25s var(--v2ease),box-shadow .3s ease,filter .3s ease}
-.btn:hover{transform:translateY(-2px)}
-.btn:active{transform:translateY(0) scale(.97)}
-/* bo'lim sarlavhasi ostki chizig'i o'sishi */
-.sh h2{position:relative;display:inline-block}
-.sh h2::after{content:"";position:absolute;left:0;bottom:-8px;height:4px;width:0;border-radius:99px;
- background:linear-gradient(90deg,var(--blue,#2456e6),var(--acc,#7c3aed));transition:width 1s var(--v2ease2) .15s}
-.sh.on h2::after,.sh.rv.on h2::after{width:64px}
-/* hero fon: qatlamlar harakati (JS transform beradi) */
-.bgfx .dots,.bgfx .blob{will-change:transform}
-/* FAQ va ro'yxat elementlariga yumshoq kirish */
-li.v2rv, .chip.v2rv{transform:translateY(14px)}
-/* yuqoriga tugmasi */
-#v2top{position:fixed;right:18px;bottom:18px;z-index:998;width:46px;height:46px;border-radius:50%;border:1px solid rgba(120,140,190,.35);
- background:linear-gradient(135deg,var(--blue,#2456e6),var(--acc,#7c3aed));color:#fff;font-size:20px;cursor:pointer;
- opacity:0;pointer-events:none;transform:translateY(12px);transition:all .4s var(--v2ease);box-shadow:0 10px 24px rgba(30,50,120,.35)}
-#v2top.show{opacity:1;pointer-events:auto;transform:none}
-#v2top:active{transform:scale(.92)}
-/* hisoblagichlar (data-count) — v1 dagi sonlar uchun silliq o'sish belgisi */
-[data-count]{font-variant-numeric:tabular-nums}
-/* harakatni kamaytirish rejimi — hurmat qilinadi */
-@media (prefers-reduced-motion:reduce){
- .rv,.v2rv,.hero .rot span{transition:none!important;transform:none!important;filter:none!important;opacity:1!important}
- #v2prog{display:none}
-}
-</style>
-
-
-
-
-<style id="v2pro">
-.sh.rv{transform:translateY(16px) rotate(1.2deg);transform-origin:0 100%;
- transition:opacity .7s ease,transform .85s cubic-bezier(.16,1,.3,1)}
-.sh.rv.on{transform:none}
-#hg>.v2cell{animation:v2fade .6s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--ci,0)*20ms)}
-@keyframes v2fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.panel.rv.on{box-shadow:0 18px 44px -18px rgba(15,35,90,.25)}
-.ix{will-change:transform}
-@media (prefers-reduced-motion:reduce){#hg>.v2cell{animation:none}.sh.rv{transform:none;transition:none}}
-</style>
-
-
-<style id="v2fold">
-/* Elementlarning O'ZI spiral bukilib ochiladi (ustidan shakl emas) */
-.v2fold{opacity:0;transform:perspective(1150px) rotateY(-54deg) rotateX(12deg) rotate(-7deg) translate(-28px,20px) scale(.93);
- transform-origin:0 50%;transition:transform 1.05s cubic-bezier(.16,1.25,.3,1),opacity .55s ease;will-change:transform,opacity}
-.v2fold.alt{transform:perspective(1150px) rotateY(54deg) rotateX(12deg) rotate(7deg) translate(28px,20px) scale(.93);transform-origin:100% 50%}
-.v2fold.on{opacity:1;transform:perspective(1150px) rotateY(0) rotateX(0) rotate(0) translate(0,0) scale(1)}
-to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.v2fold{opacity:1;transform:none;transition:none}.hero .ix{animation:none}}
-</style>
-
-<style id="v2land">
-.hero .w>*{animation:v2land 1.6s cubic-bezier(.16,1.2,.3,1) both}
-.hero .w>*:last-child{animation-delay:.28s}
-@keyframes v2land{from{opacity:0;transform:perspective(1200px) rotate(7deg) rotateY(-27deg) translate(64px,36px) scale(.94);transform-origin:20% 80%}to{opacity:1;transform:none}}
+<style>
+/* v2: landing spiral qo'nishi (faqat shu qo'shimcha) */
+.hero .w>*{animation:v2spiral 1.7s cubic-bezier(.16,1.15,.3,1) both}
+.hero .w>*:last-child{animation-delay:.25s}
+@keyframes v2spiral{from{opacity:0;transform:perspective(1200px) rotate(6deg) rotateY(-25deg) translate(56px,32px) scale(.95);transform-origin:20% 80%}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.hero .w>*{animation:none}}
 </style>
 </head>
@@ -547,7 +471,7 @@ to{opacity:1;transform:none}}
     <div>
       <a class="pill rv" href="#pilot" style="--i:0"><b>YANGI</b>Bank sektori pilot natijasi<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
       <h1 class="rv" style="--i:1">Sun'iy intellekt<br><span class="rot" id="rot"><span class="on">banklarda</span><span>ta'limda</span><span>tibbiyotda</span><span>davlat xizmatida</span><span>telekomda</span></span><br>qanchalik ishlayapti?</h1>
-      <p class="lead rv" style="--i:2"><b>Biz ochiq dalillarni tahlil qilamiz.</b> Pilot — cheklovlari bilan, ochiq manbalardan.</p>
+      <p class="lead rv" style="--i:2"><b>Biz ochiq dalillarni tahlil qilamiz.</b> Ochiq manbalardagi qaydlar asosida pilot natijalari va ularning cheklovlarini ko'rsatamiz. Bu ichki tizimlar sinovi yoki mustaqil audit emas.</p>
       <div class="cta rv" style="--i:3">
         <a class="btn p" href="https://t.me/aiindeksi_bot?start=site" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5z"/></svg>Qo'shilish — 40 soniya</a>
         <a class="btn s" href="#hisobla">Indeksni sinab ko'r</a>
@@ -587,7 +511,7 @@ to{opacity:1;transform:none}}
 
 <!-- PILOT EXPLORER -->
 <section id="pilot" class="alt"><div class="w">
-  <div class="sh rv"><div class="kick">Pilot natijasi · ichki ishchi hisob</div><h2>30/60 katakka <span class="g">ball qo'yilgan.</span></h2><p class="sub">Ball qo'yilgan va ochiq kataklar. Kesim: 29.09.2026.</p></div>
+  <div class="sh rv"><div class="kick">Pilot natijasi · ichki ishchi hisob</div><h2>30/60 katakka <span class="g">ball qo'yilgan.</span></h2><p class="sub">O'lchovni tanlang — ball qo'yilgan va hali baholanmagan kataklarni ko'ring. Ma'lumotlar 29.09.2026 sanali ishchi jadvaldan; manba havolalari va metodika to'liq mustaqil tekshirilmagan.</p></div>
   <div class="exp">
     <div class="panel rv">
       <div class="seg" role="tablist" id="seg"></div>
@@ -605,14 +529,14 @@ to{opacity:1;transform:none}}
       </div>
       <div class="k rv" style="--i:3"><b data-count="32">32</b><span>manba ID ishchi reestrida; har bir URL va mazmun mustaqil qayta tekshirilishi kerak</span></div>
       <div class="eth rv" style="--i:4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><div><b>32,6/100 — dastlabki hisob</b><p>10 bank, 30/60 katak. Bo‘sh katak — 0 emas.</p></div></div>
-      <a class="pcta rv" style="--i:5" href="#qoshil"><div class="n">30</div><div><b>katak hali baholanmagan</b><span>Bo‘sh katak — 0 emas.</span></div><i>→</i></a>
+      <a class="pcta rv" style="--i:5" href="#qoshil"><div class="n">30</div><div><b>katak hali baholanmagan</b><span>Bo'sh katak 0 degani emas; uni manba va qo'shimcha tekshiruv bilan to'ldirish kerak.</span></div><i>→</i></a>
     </div>
   </div>
 </div></section>
 
 <!-- CALCULATOR -->
 <section id="hisobla"><div class="w">
-  <div class="sh rv"><div class="kick">Metod</div><h2>Indeksni <span class="g">o'zing hisobla.</span></h2><p class="sub">Har o'lchovga ball qo'y. «—» — hali baholanmagan (0 emas).</p></div>
+  <div class="sh rv"><div class="kick">Metod</div><h2>Indeksni <span class="g">o'zing hisobla.</span></h2><p class="sub">Har o'lchovga ball qo'y. «—» — baholanmagan yoki tekshiruv yetarli emas (bu 0 degani emas).</p></div>
   <div class="calc">
     <div class="panel rv" id="crows"></div>
     <div class="panel res rv" style="--i:1">
@@ -627,7 +551,7 @@ to{opacity:1;transform:none}}
 
 <!-- CLUB BENTO -->
 <section id="klub" class="alt"><div class="w">
-  <div class="sh ctr rv"><div class="kick">Talabalar tashabbusi · klub maqomi jarayonda</div><h2>Talaba <span class="g">natija</span> uchun keladi.</h2><p class="sub">Klub maqomi — jarayonda.</p></div>
+  <div class="sh ctr rv"><div class="kick">Talabalar tashabbusi · klub maqomi jarayonda</div><h2>Talaba <span class="g">natija</span> uchun keladi.</h2><p class="sub">TDIUda klubni rasmiylashtirish va ishtirok shartlarini shakllantirish jarayoni davom etmoqda.</p></div>
   <div class="bento">
     <div class="tile t1 rv" style="--i:0"><span class="ti" style="--c:var(--blue)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
       <div class="mini" id="mini"></div>
@@ -653,7 +577,7 @@ to{opacity:1;transform:none}}
 
 <!-- JOIN -->
 <section id="qoshil"><div class="w">
-  <div class="sh rv"><div class="kick">Qo'shilish · botda a'zolik ro'yxati ochiq</div><h2>Birinchi qadam — <span class="g">40 soniya.</span></h2><p class="sub">Uchrashuv va tartib — botda e’lon qilinadi.</p></div>
+  <div class="sh rv"><div class="kick">Qo'shilish · botda a'zolik ro'yxati ochiq</div><h2>Birinchi qadam — <span class="g">40 soniya.</span></h2><p class="sub">Keyingi uchrashuv, vaqt va hissa tartibi shakllantirilmoqda; yangiliklar bot va saytda beriladi.</p></div>
   <div class="join">
     <ol class="steps">
       <li class="rv" style="--i:0"><div><b>Botda ro'yxat</b><span>ism, fakultet, kurs, ta'lim yo'nalishi</span></div></li>
@@ -702,7 +626,7 @@ to{opacity:1;transform:none}}
 <div class="toast" id="toast" role="status"></div>
 
 <script>
-var DATA = {"nb": 10, "rows": [[true, true, true, true, true, true], [true, true, true, true, true, true], [true, false, true, false, true, true], [false, false, true, false, true, true], [false, false, true, false, true, true], [true, false, true, true, false, false], [false, true, false, true, false, false], [false, false, false, false, false, true], [false, false, false, false, false, true], [false, false, false, false, false, true]], "flat": [true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, false, true, true, false, false, true, false, true, true, false, false, true, false, true, true, true, false, true, true, false, false, false, true, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, true, false, false, false, false, false, true], "dims": [{"k": "D1", "n": "Strategik tayyorgarlik", "w": 15, "c": 4, "ins": "Ishchi jadvalda strategiya va yo‘l xaritasi bo‘yicha ochiq qaydlar bor; manbalar va sanalar qayta tekshirilishi kerak.", "hint": "strategiya, yo'l xaritasi"}, {"k": "D2", "n": "Ma'lumot infratuzilmasi", "w": 15, "c": 3, "ins": "Ochiq dalillar qamrovi cheklangan; ochiq manbada topilmagani infratuzilma mavjud emasligini isbotlamaydi.", "hint": "ma'lumot ombori, hisoblash"}, {"k": "D3", "n": "Amaliy joriy etish", "w": 30, "c": 6, "ins": "Jadvalda xizmat/pilot dalillari qayd etilgan; tizimning hozir ishlayotgani va natijasi mustaqil sinovdan o'tkazilmagan.", "hint": "ishlayotgan AI xizmatlari"}, {"k": "D4", "n": "HR jarayonlarida AI va avtomatlashtirish", "w": 15, "c": 4, "ins": "Qisqa dalil bilan tekshiriladi.", "hint": "HRIS/HRMS, ATS; AI alohida dalil"}, {"k": "D5", "n": "Regulyatorik dalillar", "w": 15, "c": 5, "ins": "Bu huquqiy muvofiqlik xulosasi emas; ishchi jadvaldagi ochiq boshqaruv/regulyatorik dalillar yuridik ko'rikdan o'tmagan.", "hint": "ochiq boshqaruv dalillari"}, {"k": "D6", "n": "Oshkoralik", "w": 10, "c": 8, "ins": "Manba reestri va banklardan javoblar to'liq mustaqil qayta tekshirilmagan; oshkoralik bahosi dastlabki.", "hint": "ochiq hisobot, javob berish"}], "road": [["Hozir", "Pilot tekshiruvi", "30/60 katak tekshirildi; hisob qayta qilindi."], ["Keyingi bosqich", "Manba validatsiyasi", "Manba URL, sana, da'vo va tashkilot bog‘lanishini birma-bir tekshirish."], ["Keyingi bosqich", "Ikki baholovchi", "Rubrika bo‘yicha mustaqil qayta kodlash va farqlar jurnalini yuritish."], ["Keyingi bosqich", "Maydon tekshiruvi", "Zarur sinovlar faqat ruxsat va kelishilgan protokol bilan; hali bajarilgan deb ko‘rsatilmaydi."], ["Jarayonda", "Klub maqomi", "TDIUda klubni rasmiylashtirish jarayoni davom etmoqda; yangiliklar bot va saytda beriladi."], ["Keyingi bosqich", "Metodika v0.2", "NIST/ISO/OECD/UNESCO mezonlarini xaritalash; pilot v0.1 ballari orqaga qarab almashtirilmaydi."], ["Keyingi bosqich", "Qayta hisoblash", "Missing-data qoidasi, vazn sezgirligi va qamrov oldindan belgilangan holda hisoblanadi."], ["Kelajak", "Hisobot", "Muddat va nashr vakolati tasdiqlangandan keyingina yakuniy natija e'lon qilinadi."]], "faq": [["32,6/100 nimani anglatadi?", "10 bank bo‘yicha qisman natija. Bo‘sh katak — 0 emas."], ["Saytning yopiq ishchi qismiga kim kira oladi?", "Kirishni faqat bot administratori beradi."], ["Pul to'laymanmi?", "A’zolik ochiq — bot orqali yoziling."], ["IT bilmasam-chi?", "Kod shart emas: manba qidirish va jadval ishlari bor."], ["Vaqtim kam.", "Ishchi rejada oyiga taxminan 3 soat ko'rsatilgan; vaqt va topshiriqlar bo'yicha tafsilotlar jarayonda aniqlashtirilmoqda."], ["Qaysi fakultetdan?", "Tashabbus sahifasida turli fakultet va kurslar nazarda tutilgan. Ishtirok qamrovi va tartibi shakllantirilmoqda."], ["Natija kafolatlanadimi?", "Kafolat yo‘q — hissangiz qayd etiladi."], ["RIAT Tech Lab yoki AI laboratoriyadan farqi nima?", "Raqamli Tadqiqot — tashkilotlarda AI faoliyatiga oid ochiq dalillarni tahlil qilishga qaratilgan talabalar tashabbusi."], ["Rasmiy klubmi?", "Klub maqomi jarayonda; hozir — talabalar tashabbusi."]], "fx": [{"k": "F1", "n": "Mijozlarga xizmat", "mk": "ha", "ai": "Chatbot, ovozli yordamchi, call-markazda nutqni tanish.", "q": ["Bot erkin savolni tushunadimi yoki faqat tugmali menyumi?", "O'zbek (lotin, kirill) va rus tilida javob beradimi?", "Kerak bo'lsa operatorga uzatadimi?", "Natija raqam bilan e'lon qilinganmi?"], "m": "Bank sayti, press-reliz, ilova tavsifi, yillik hisobot, OAV + 10 savollik bot sinovi.", "b3": "Bir nechta kanalda AI ishlaydi va natija raqam bilan e'lon qilingan.", "et": "Shaxsiy ma'lumot yozilmaydi."}, {"k": "F2", "n": "Kredit qarori — beradi yoki bermaydi", "mk": "qisman", "ai": "Skoring, avtomatik qaror, limit va foiz, muqobil skoring.", "q": ["Qaror avtomatikmi («5 daqiqada», «onlayn tasdiq»)?", "Skoring yoki ML modeli haqida ochiq yozilganmi?", "1-dekabr 2026 dan kichik biznes uchun muqobil skoringga qo'shilganmi?", "Rad etilsa sabab tushuntiriladimi, inson ko'rib chiqadimi?"], "m": "Kredit shartlari, ilova oqimi (ariza yuborishdan oldingi ekrangacha), yillik hisobot, Markaziy bank hujjatlari, vakansiyalar.", "b3": "Bir nechta mahsulotda avto-qaror, muqobil skoring va tushuntirish bor; ko'rsatkichlar e'lon qilingan.", "et": "Real kredit arizasi yuborilmaydi."}, {"k": "F3", "n": "Firibgarlikka qarshi kurash", "mk": "yo'q", "ai": "Shubhali operatsiyani real vaqtda to'xtatish.", "q": ["Real vaqt antifrod tizimi haqida ochiq ma'lumot bormi?", "ML yoki xulq-atvor tahlili tilga olinganmi?", "Oldi olingan firibgarlik raqami bormi?"], "m": "Press-reliz, yillik hisobot, tenderlar, vendor keyslari.", "b3": "Tizim ishlaydi va natija raqam bilan e'lon qilingan.", "et": "Xavfsizlik tizimini sinashga urinish yo'q."}, {"k": "F4", "n": "Mijozni tanish (KYC, Face-ID)", "mk": "ha", "ai": "Masofaviy identifikatsiya, yuzni tanish, hujjatni o'qish.", "q": ["Ilovada masofaviy identifikatsiya bormi?", "Hujjat avtomatik o'qiladimi?", "Biometrik ma'lumot qoidalari yozilganmi?"], "m": "Ilova onboarding ekranlari, bank sayti, Markaziy bank talablari.", "b3": "To'liq masofaviy onboarding: hujjat va yuz avtomatik tekshiriladi.", "et": "Yuz tasviri va pasport kiritilmaydi."}, {"k": "F5", "n": "Sotuv voronkasi", "mk": "qisman", "ai": "Shaxsiy taklif, keyingi mahsulot, ketish xavfini bashorat.", "q": ["Ilovada «siz uchun taklif» bormi?", "CRM yoki analitika haqida yozilganmi?", "Konversiya natijasi e'lon qilinganmi?"], "m": "Ilova, yillik hisobot (strategiya), vakansiyalar, tenderlar.", "b3": "Shaxsiy takliflar ishlaydi va konversiya natijasi e'lon qilingan.", "et": "Mahsulot sotib olinmaydi."}, {"k": "F6", "n": "Undiruv", "mk": "qisman", "ai": "Kechikishni bashorat, avtomatik eslatma, ovozli robot.", "q": ["Kechikishni bashorat qiluvchi model e'lon qilinganmi?", "Ovozli robot yoki chatbot eslatmasi bormi?", "Mijozga hurmat qoidasi yozilganmi?"], "m": "Press-reliz, yillik hisobot (muammoli kreditlar), tenderlar.", "b3": "Ishlaydi va qaytarilgan qarz ulushi e'lon qilingan.", "et": "Qarzdor sifatida qo'ng'iroq qilinmaydi."}, {"k": "F7", "n": "Risk va AML", "mk": "yo'q", "ai": "Pul yuvishga qarshi monitoring, portfel riski.", "q": ["AML monitoringida ML tilga olinganmi?", "Kredit riskida modellar ishlatiladimi?", "Model nazorati haqida yozilganmi?"], "m": "Yillik hisobot (risk va komplayens), Markaziy bank hujjatlari, vakansiyalar.", "b3": "ML asosidagi monitoring ishlaydi va natija e'lon qilingan.", "et": "Mijoz ma'lumotlari so'ralmaydi."}, {"k": "F8", "n": "Ichki jarayonlar", "mk": "yo'q", "ai": "Hujjatni o'qish (OCR), RPA, HR, xodimlar uchun GenAI.", "q": ["OCR yoki RPA haqida ochiq ma'lumot bormi?", "Xodimlar uchun AI yordamchi yoki o'qitish bormi?", "Ichki AI jamoasi bormi?"], "m": "Press-reliz, vakansiyalar, LinkedIn, konferensiya chiqishlari.", "b3": "Bir nechta yo'nalishda ishlaydi, AI jamoasi va natija raqami bor.", "et": "Xodimlardan ichki ma'lumot so'ralmaydi."}]};
+var DATA = {"nb": 10, "rows": [[true, true, true, true, true, true], [true, true, true, true, true, true], [true, false, true, false, true, true], [false, false, true, false, true, true], [false, false, true, false, true, true], [true, false, true, true, false, false], [false, true, false, true, false, false], [false, false, false, false, false, true], [false, false, false, false, false, true], [false, false, false, false, false, true]], "flat": [true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, false, true, true, false, false, true, false, true, true, false, false, true, false, true, true, true, false, true, true, false, false, false, true, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, true, false, false, false, false, false, true], "dims": [{"k": "D1", "n": "Strategik tayyorgarlik", "w": 15, "c": 4, "ins": "Ishchi jadvalda strategiya va yo‘l xaritasi bo‘yicha ochiq qaydlar bor; manbalar va sanalar qayta tekshirilishi kerak.", "hint": "strategiya, yo'l xaritasi"}, {"k": "D2", "n": "Ma'lumot infratuzilmasi", "w": 15, "c": 3, "ins": "Ochiq dalillar qamrovi cheklangan; ochiq manbada topilmagani infratuzilma mavjud emasligini isbotlamaydi.", "hint": "ma'lumot ombori, hisoblash"}, {"k": "D3", "n": "Amaliy joriy etish", "w": 30, "c": 6, "ins": "Jadvalda xizmat/pilot dalillari qayd etilgan; tizimning hozir ishlayotgani va natijasi mustaqil sinovdan o'tkazilmagan.", "hint": "ishlayotgan AI xizmatlari"}, {"k": "D4", "n": "HR jarayonlarida AI va avtomatlashtirish", "w": 15, "c": 4, "ins": "Qisqa dalil bilan tekshiriladi.", "hint": "HRIS/HRMS, ATS; AI alohida dalil"}, {"k": "D5", "n": "Regulyatorik dalillar", "w": 15, "c": 5, "ins": "Bu huquqiy muvofiqlik xulosasi emas; ishchi jadvaldagi ochiq boshqaruv/regulyatorik dalillar yuridik ko'rikdan o'tmagan.", "hint": "ochiq boshqaruv dalillari"}, {"k": "D6", "n": "Oshkoralik", "w": 10, "c": 8, "ins": "Manba reestri va banklardan javoblar to'liq mustaqil qayta tekshirilmagan; oshkoralik bahosi dastlabki.", "hint": "ochiq hisobot, javob berish"}], "road": [["Hozir", "Pilot hisobini va formula xatosini qayd etish", "30/60 katak tekshirildi."], ["Keyingi bosqich", "Manba validatsiyasi", "Manbalar birma-bir tekshiriladi."], ["Keyingi bosqich", "Ikki baholovchi", "Ikki baholovchi mustaqil tekshiradi."], ["Keyingi bosqich", "Maydon tekshiruvi", "Faqat ruxsat bilan, protokol bo‘yicha."], ["Jarayonda", "Klub maqomi", "Rasmiylashtirish davom etmoqda."], ["Keyingi bosqich", "Metodika v0.2", "Xalqaro mezonlar xaritalanadi."], ["Keyingi bosqich", "Qayta hisoblash", "Qoidalar oldindan belgilanadi."], ["Kelajak", "Hisobot", "Tasdiqdan keyin e’lon qilinadi."]], "faq": [["32,6/100 nimani anglatadi?", "10 bank bo‘yicha qisman natija. Bo‘sh katak — 0 emas."], ["Saytning yopiq ishchi qismiga kim kira oladi?", "Kirishni faqat bot administratori beradi."], ["Pul to'laymanmi?", "A’zolik ochiq — bot orqali yoziling."], ["IT bilmasam-chi?", "Kod shart emas: manba qidirish va jadval ishlari bor."], ["Vaqtim kam.", "Ishchi rejada oyiga taxminan 3 soat ko'rsatilgan; vaqt va topshiriqlar bo'yicha tafsilotlar jarayonda aniqlashtirilmoqda."], ["Qaysi fakultetdan?", "Tashabbus sahifasida turli fakultet va kurslar nazarda tutilgan. Ishtirok qamrovi va tartibi shakllantirilmoqda."], ["Natija kafolatlanadimi?", "Kafolat yo‘q — hissangiz qayd etiladi."], ["RIAT Tech Lab yoki AI laboratoriyadan farqi nima?", "Raqamli Tadqiqot — tashkilotlarda AI faoliyatiga oid ochiq dalillarni tahlil qilishga qaratilgan talabalar tashabbusi. Hozirgi sahifa tavsifida turli fakultetlar va kod talab qilmaydigan ishlar ko'rsatilgan; ishtirok tafsilotlari shakllantirilmoqda. Hamkorlikka ochiqmiz."], ["Rasmiy klubmi?", "Klub maqomi jarayonda; hozir — talabalar tashabbusi."]], "fx": [{"k": "F1", "n": "Mijozlarga xizmat", "mk": "ha", "ai": "Chatbot, ovozli yordamchi, call-markazda nutqni tanish.", "q": ["Bot erkin savolni tushunadimi yoki faqat tugmali menyumi?", "O'zbek (lotin, kirill) va rus tilida javob beradimi?", "Kerak bo'lsa operatorga uzatadimi?", "Natija raqam bilan e'lon qilinganmi?"], "m": "Bank sayti, press-reliz, ilova tavsifi, yillik hisobot, OAV + 10 savollik bot sinovi.", "b3": "Bir nechta kanalda AI ishlaydi va natija raqam bilan e'lon qilingan.", "et": "Shaxsiy ma'lumot yozilmaydi."}, {"k": "F2", "n": "Kredit qarori — beradi yoki bermaydi", "mk": "qisman", "ai": "Skoring, avtomatik qaror, limit va foiz, muqobil skoring.", "q": ["Qaror avtomatikmi («5 daqiqada», «onlayn tasdiq»)?", "Skoring yoki ML modeli haqida ochiq yozilganmi?", "1-dekabr 2026 dan kichik biznes uchun muqobil skoringga qo'shilganmi?", "Rad etilsa sabab tushuntiriladimi, inson ko'rib chiqadimi?"], "m": "Kredit shartlari, ilova oqimi (ariza yuborishdan oldingi ekrangacha), yillik hisobot, Markaziy bank hujjatlari, vakansiyalar.", "b3": "Bir nechta mahsulotda avto-qaror, muqobil skoring va tushuntirish bor; ko'rsatkichlar e'lon qilingan.", "et": "Real kredit arizasi yuborilmaydi."}, {"k": "F3", "n": "Firibgarlikka qarshi kurash", "mk": "yo'q", "ai": "Shubhali operatsiyani real vaqtda to'xtatish.", "q": ["Real vaqt antifrod tizimi haqida ochiq ma'lumot bormi?", "ML yoki xulq-atvor tahlili tilga olinganmi?", "Oldi olingan firibgarlik raqami bormi?"], "m": "Press-reliz, yillik hisobot, tenderlar, vendor keyslari.", "b3": "Tizim ishlaydi va natija raqam bilan e'lon qilingan.", "et": "Xavfsizlik tizimini sinashga urinish yo'q."}, {"k": "F4", "n": "Mijozni tanish (KYC, Face-ID)", "mk": "ha", "ai": "Masofaviy identifikatsiya, yuzni tanish, hujjatni o'qish.", "q": ["Ilovada masofaviy identifikatsiya bormi?", "Hujjat avtomatik o'qiladimi?", "Biometrik ma'lumot qoidalari yozilganmi?"], "m": "Ilova onboarding ekranlari, bank sayti, Markaziy bank talablari.", "b3": "To'liq masofaviy onboarding: hujjat va yuz avtomatik tekshiriladi.", "et": "Yuz tasviri va pasport kiritilmaydi."}, {"k": "F5", "n": "Sotuv voronkasi", "mk": "qisman", "ai": "Shaxsiy taklif, keyingi mahsulot, ketish xavfini bashorat.", "q": ["Ilovada «siz uchun taklif» bormi?", "CRM yoki analitika haqida yozilganmi?", "Konversiya natijasi e'lon qilinganmi?"], "m": "Ilova, yillik hisobot (strategiya), vakansiyalar, tenderlar.", "b3": "Shaxsiy takliflar ishlaydi va konversiya natijasi e'lon qilingan.", "et": "Mahsulot sotib olinmaydi."}, {"k": "F6", "n": "Undiruv", "mk": "qisman", "ai": "Kechikishni bashorat, avtomatik eslatma, ovozli robot.", "q": ["Kechikishni bashorat qiluvchi model e'lon qilinganmi?", "Ovozli robot yoki chatbot eslatmasi bormi?", "Mijozga hurmat qoidasi yozilganmi?"], "m": "Press-reliz, yillik hisobot (muammoli kreditlar), tenderlar.", "b3": "Ishlaydi va qaytarilgan qarz ulushi e'lon qilingan.", "et": "Qarzdor sifatida qo'ng'iroq qilinmaydi."}, {"k": "F7", "n": "Risk va AML", "mk": "yo'q", "ai": "Pul yuvishga qarshi monitoring, portfel riski.", "q": ["AML monitoringida ML tilga olinganmi?", "Kredit riskida modellar ishlatiladimi?", "Model nazorati haqida yozilganmi?"], "m": "Yillik hisobot (risk va komplayens), Markaziy bank hujjatlari, vakansiyalar.", "b3": "ML asosidagi monitoring ishlaydi va natija e'lon qilingan.", "et": "Mijoz ma'lumotlari so'ralmaydi."}, {"k": "F8", "n": "Ichki jarayonlar", "mk": "yo'q", "ai": "Hujjatni o'qish (OCR), RPA, HR, xodimlar uchun GenAI.", "q": ["OCR yoki RPA haqida ochiq ma'lumot bormi?", "Xodimlar uchun AI yordamchi yoki o'qitish bormi?", "Ichki AI jamoasi bormi?"], "m": "Press-reliz, vakansiyalar, LinkedIn, konferensiya chiqishlari.", "b3": "Bir nechta yo'nalishda ishlaydi, AI jamoasi va natija raqami bor.", "et": "Xodimlardan ichki ma'lumot so'ralmaydi."}]};
 var BOT = "https://t.me/aiindeksi_bot?start=site";
 (function(){
 var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
@@ -916,106 +840,6 @@ if(sessionMessage){
   openKirish(sessionMessage==="expired"?"Sessiya tugagan. Hujjatlar va boshqaruvga kirish uchun qayta kiring.":"Davom etish uchun qayta kiring.");
   history.replaceState(null,"",location.pathname+location.hash);
 }
-</script>
-
-<script id="v2adv-js">
-/* ===== V2 ADVANCED JS (qo'shimcha; v1 funksiyalariga tegmaydi) ===== */
-(function(){
- "use strict";
- var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
- /* --- progress chizig'i --- */
- var bar=document.createElement("div");bar.id="v2prog";document.body.appendChild(bar);
- /* --- yuqoriga tugmasi --- */
- var top=document.createElement("button");top.id="v2top";top.type="button";top.setAttribute("aria-label","Yuqoriga");top.textContent="\u2191";
- top.addEventListener("click",function(){window.scrollTo({top:0,behavior:reduce?"auto":"smooth"});});
- document.body.appendChild(top);
- /* --- scroll holati: progress + parallax + tugma (rAF bilan) --- */
- var dots=document.querySelector(".bgfx .dots"),b1=document.querySelector(".bgfx .b1"),b2=document.querySelector(".bgfx .b2"),tick=false;
- function onScroll(){
-   var h=document.documentElement,max=h.scrollHeight-h.clientHeight,y=h.scrollTop||window.scrollY||0;
-   bar.style.transform="scaleX("+(max>0?y/max:0)+")";
-   top.classList.toggle("show",y>600);
-   if(!reduce){
-     if(dots)dots.style.transform="translateY("+(y*0.06)+"px)";
-     if(b1)b1.style.transform="translate("+(y*0.03)+"px,"+(y*0.05)+"px)";
-     if(b2)b2.style.transform="translate("+(-y*0.02)+"px,"+(y*0.04)+"px)";
-   }
-   tick=false;
- }
- window.addEventListener("scroll",function(){if(!tick){tick=true;requestAnimationFrame(onScroll);}},{passive:true});
- onScroll();
- /* --- reveal: v1 .rv lardan tashqari bloklarga ham --- */
- var extra=document.querySelectorAll("main .tile, main .bx, main .st, main .chip, #faq li, #yol li");
- extra.forEach(function(el,i){ if(!el.classList.contains("rv")){ el.classList.add("v2rv"); el.style.setProperty("--i",String(i%6)); }});
- var io=("IntersectionObserver" in window)?new IntersectionObserver(function(es){
-   es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("on"); io.unobserve(e.target);} });
- },{threshold:0.12,rootMargin:"0px 0px -6% 0px"}):null;
- document.querySelectorAll(".v2rv, .sh").forEach(function(el){ if(io)io.observe(el); else el.classList.add("on"); });
- /* --- sarlavha chizig'i uchun .sh kuzatuvi v1 IO bilan to'qnashmaydi: qo'shimcha --- */
- /* --- kartochka tilt (faqat sichqoncha, yengil) --- */
- if(!reduce && window.matchMedia && matchMedia("(pointer: fine)").matches){
-   document.querySelectorAll("main .tile").forEach(function(card){
-     card.classList.add("tilt");
-     card.addEventListener("mousemove",function(e){
-       var r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-0.5,y=(e.clientY-r.top)/r.height-0.5;
-       card.style.transform="translateY(-5px) rotateX("+(-y*4)+"deg) rotateY("+(x*4)+"deg)";
-     });
-     card.addEventListener("mouseleave",function(){card.style.transform="";});
-   });
- }
- /* --- hisoblagichlar: ko'ringanda 0 dan o'sadi (v1 data-count) --- */
- var counters=document.querySelectorAll("[data-count]");
- if(counters.length && "IntersectionObserver" in window && !reduce){
-   var cio=new IntersectionObserver(function(es){
-     es.forEach(function(e){
-       if(!e.isIntersecting)return; cio.unobserve(e.target);
-       var el=e.target,end=parseFloat(el.getAttribute("data-count")); if(isNaN(end))return;
-       var dec=(el.getAttribute("data-count").split(".")[1]||"").length,t0=performance.now(),dur=1300;
-       (function step(t){var p=Math.min(1,(t-t0)/dur),ease=1-Math.pow(1-p,3);
-         el.textContent=(end*ease).toFixed(dec).replace(".",",");
-         if(p<1)requestAnimationFrame(step);})(t0);
-     });
-   },{threshold:0.4});
-   counters.forEach(function(el){cio.observe(el);});
- }
-})();
-</script>
-
-
-
-
-<script id="v2pro-js">
-(function(){
- "use strict";
- var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
- function seq(){document.querySelectorAll("#hg > *").forEach(function(c,i){c.style.setProperty("--ci",String(i));c.classList.add("v2cell");});}
- if(document.querySelector("#hg")) setTimeout(seq,250);
- setTimeout(function(){document.querySelectorAll(".v2rv:not(.on)").forEach(function(el){el.classList.add("on");});},2000);
- var ix=document.querySelector(".hero .ix"),tick=false;
- if(ix&&!reduce){window.addEventListener("scroll",function(){if(tick)return;tick=true;requestAnimationFrame(function(){var y=window.scrollY||0;if(y<window.innerHeight)ix.style.transform="translateY("+(y*0.035)+"px)";tick=false;});},{passive:true});}
-})();
-</script>
-
-
-<script id="v2fold-js">
-(function(){
- "use strict";
- var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
- var targets=document.querySelectorAll("main .tile, main .bx, .flow .st, #klub .tile, #yol .tile, #yol .st, .vs > div");
- var list=[];
- targets.forEach(function(el){
-   if(el.closest(".hero")) return;
-   el.classList.add("v2fold");
-   if(list.length%2) el.classList.add("alt");
-   list.push(el);
- });
- if(reduce){list.forEach(function(el){el.classList.add("on");});return;}
- var io=("IntersectionObserver" in window)?new IntersectionObserver(function(es){
-   es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target);}});
- },{threshold:0.01,rootMargin:"0px 0px 30% 0px"}):null;
- list.forEach(function(el){ if(io)io.observe(el); else el.classList.add("on"); });
- setTimeout(function(){list.forEach(function(el){el.classList.add("on");});},3500);
-})();
 </script>
 </body>
 </html>
