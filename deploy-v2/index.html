@@ -437,15 +437,15 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 .faq{align-items:start}
 
 .mini i{border-radius:5px;box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
-.mini i.f{background:linear-gradient(115deg,#eaf3fe 0%,#a9ccf7 26%,#5b97ec 48%,#cfe4fd 62%,#3d78de 82%,#b9d6fa 100%);background-size:240% 240%;border:1px solid rgba(60,110,210,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 2px 6px -2px rgba(60,120,220,.5);animation:platshine 7s ease-in-out infinite}
+.mini i.f{background:linear-gradient(115deg,#dcecfd 0%,#8abcf5 26%,#2f6bd8 48%,#bcd8fb 62%,#1f56c4 82%,#7fb0f2 100%);background-size:240% 240%;border:1px solid rgba(60,110,210,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 2px 6px -2px rgba(60,120,220,.5);animation:platshine 7s ease-in-out infinite}
 
 
 /* Pilot kataklari: premium polish (yaltiroq, sokin) */
 .hg .c{border-radius:9px;overflow:hidden}
-.hg .c.f{background:linear-gradient(115deg,#eaf3fe 0%,#a9ccf7 26%,#5b97ec 48%,#cfe4fd 62%,#3d78de 82%,#b9d6fa 100%);background-size:240% 240%;border:1px solid rgba(96,138,196,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -6px 10px rgba(70,110,170,.28),0 4px 12px -4px rgba(70,120,200,.5);animation:platshine 7s ease-in-out infinite}
+.hg .c.f{background:linear-gradient(115deg,#dcecfd 0%,#8abcf5 26%,#2f6bd8 48%,#bcd8fb 62%,#1f56c4 82%,#7fb0f2 100%);background-size:240% 240%;border:1px solid rgba(96,138,196,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -6px 10px rgba(70,110,170,.28),0 4px 12px -4px rgba(70,120,200,.5);animation:platshine 7s ease-in-out infinite}
 .hg .c.f::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(255,255,255,.55),rgba(255,255,255,.08) 40%,transparent 60%);pointer-events:none}
 @keyframes platshine{0%,100%{background-position:0% 40%}50%{background-position:100% 60%}}
-.leg .lf{background:linear-gradient(115deg,#eaf3fe 0%,#a9ccf7 26%,#5b97ec 48%,#cfe4fd 62%,#3d78de 82%,#b9d6fa 100%);border:1px solid rgba(60,110,210,.5)}
+.leg .lf{background:linear-gradient(115deg,#dcecfd 0%,#8abcf5 26%,#2f6bd8 48%,#bcd8fb 62%,#1f56c4 82%,#7fb0f2 100%);border:1px solid rgba(60,110,210,.5)}
 .hg .c.e{background:linear-gradient(150deg,rgba(255,255,255,.35),transparent 55%),var(--cellE);border:1px dashed rgba(110,140,190,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -4px 8px rgba(10,25,60,.07)}
 .hg .c::after{content:"";position:absolute;inset:-2px;background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.5) 50%,transparent 66%);transform:translateX(-140%);transition:transform .8s ease;pointer-events:none}
 .hg .c:hover{z-index:2;transform:translateY(-2px) scale(1.06);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -8px 12px rgba(5,20,60,.22),0 10px 20px -8px rgba(20,50,140,.55)}
@@ -874,5 +874,27 @@ if(sessionMessage){
 </script>
 
 
+
+<script>
+/* Kirish tugmasi: sessiya holatiga qarab Kirish/Chiqish ikonkasi */
+(function(){
+ var b=document.getElementById('kirBtn'); if(!b) return;
+ var svgIn=b.innerHTML;
+ var svgOut='<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>';
+ function has(){ try{return !!sessionStorage.getItem('rt.session')}catch(_){return false} }
+ function paint(){
+   if(has()){ b.innerHTML=svgOut; b.title='Chiqish'; b.setAttribute('aria-label','Chiqish'); }
+   else{ b.innerHTML=svgIn; b.title='Kirish'; b.setAttribute('aria-label','Kirish'); }
+ }
+ b.addEventListener('click',function(e){
+   if(has()){
+     e.stopPropagation();
+     try{sessionStorage.removeItem('rt.session');sessionStorage.removeItem('rt.passwordUpgrade');}catch(_){}
+     paint();
+   }
+ },true);
+ paint();
+})();
+</script>
 </body>
 </html>
