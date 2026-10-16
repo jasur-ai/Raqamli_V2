@@ -440,25 +440,22 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 .hero .rot span.out{transform:rotateX(-90deg);opacity:0}
 .faq{align-items:start}
 
-/* Hero: bank ballari 3D spirali */
-.hsp{position:relative;height:322px;perspective:1050px;margin-top:4px}
-.hsp-rot{position:absolute;inset:0;transform-style:preserve-3d;animation:hspin 30s linear infinite}
-.hsp:hover .hsp-rot{animation-play-state:paused}
+/* Reja: kichik spiral karusel */
+.rsp{position:relative;height:248px;perspective:1000px;max-width:860px;margin:0 auto 26px}
+.rsp-rot{position:absolute;inset:0;transform-style:preserve-3d;animation:hspin 40s linear infinite}
+.rsp:hover .rsp-rot{animation-play-state:paused}
 @keyframes hspin{from{transform:rotateX(-8deg) rotateY(0deg)}to{transform:rotateX(-8deg) rotateY(360deg)}}
-.hsp-card{position:absolute;left:50%;top:50%;width:198px;height:106px;margin:-53px 0 0 -99px;background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:0 16px 34px -16px rgba(15,35,90,.35);backface-visibility:hidden}
-.hsp-card b{font-size:14px;display:block}
-.hsp-card strong{font-size:26px;font-weight:800;letter-spacing:-.5px;line-height:1.15}
-.hsp-card strong small{font-size:12px;color:var(--muted);font-weight:600}
-.hsp-card .bar{display:block;height:6px;border-radius:99px;background:var(--line);margin-top:8px;overflow:hidden}
-.hsp-card .bar em{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--acc))}
-.hsp-cap{text-align:center;font-size:12.5px;color:var(--muted);margin-top:14px}
-.ix .hg,.ix .leg,.ix .tip{display:none!important}
-@media(max-width:640px){.hsp{height:262px}.hsp-card{width:172px;margin-left:-86px}}
+.rsp-card{position:absolute;left:50%;top:50%;width:192px;height:80px;margin:-40px 0 0 -96px;background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:12px 14px;box-shadow:0 12px 26px -14px rgba(15,35,90,.32);backface-visibility:hidden}
+.rsp-card i{display:inline-block;font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
+.rsp-card b{display:block;font-size:13.5px;line-height:1.3}
+@media(max-width:640px){.rsp{height:218px}.rsp-card{width:162px;margin-left:-81px}}
 @media (prefers-reduced-motion:reduce){
- .hsp{height:auto;perspective:none}
- .hsp-rot{position:static;animation:none;transform:none!important;display:grid;grid-template-columns:1fr 1fr;gap:8px}
- .hsp-card{position:relative;left:auto;top:auto;margin:0;transform:none!important;width:auto}
+ .rsp{height:auto;perspective:none}
+ .rsp-rot{position:static;animation:none;transform:none!important;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+ .rsp-card{position:relative;left:auto;top:auto;margin:0;transform:none!important;width:auto}
 }
+
+
 
 
 @media (prefers-reduced-motion:reduce){
@@ -515,7 +512,7 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
     <div class="ix rv" style="--i:2" aria-label="Pilot natijasi: 10 bank, 6 o'lchov">
       <div class="ixt"><b><i class="live"></i>Pilot · bank sektori</b><span>29.09.2026</span></div>
       <div class="ixn"><b><span data-count="30">30</span>/60</b><span>katakka ball qo'yilgan</span></div>
-      <div class="hsp" aria-label="Banklar pilot ballari spirali"><div class="hsp-rot"><div class="hsp-card" style="transform:rotateY(0deg) translateZ(172px) translateY(-75px)"><b>TBC Bank</b><strong>100<small> / 100</small></strong><span class="bar"><em style="width:100%"></em></span></div><div class="hsp-card" style="transform:rotateY(60deg) translateZ(172px) translateY(-45px)"><b>SQB</b><strong>70,0<small> / 100</small></strong><span class="bar"><em style="width:70%"></em></span></div><div class="hsp-card" style="transform:rotateY(120deg) translateZ(172px) translateY(-15px)"><b>NBU</b><strong>59,5<small> / 100</small></strong><span class="bar"><em style="width:59%"></em></span></div><div class="hsp-card" style="transform:rotateY(180deg) translateZ(172px) translateY(15px)"><b>Anor Bank</b><strong>33,3<small> / 100</small></strong><span class="bar"><em style="width:33%"></em></span></div><div class="hsp-card" style="transform:rotateY(240deg) translateZ(172px) translateY(45px)"><b>Uzum Bank</b><strong>33,3<small> / 100</small></strong><span class="bar"><em style="width:33%"></em></span></div><div class="hsp-card" style="transform:rotateY(300deg) translateZ(172px) translateY(75px)"><b>Agrobank</b><strong>15,2<small> / 100</small></strong><span class="bar"><em style="width:15%"></em></span></div></div></div><div class="hsp-cap">Banklar · pilot ballari (tekshiruv davom etmoqda)</div><div class="hg" id="hg"><div class="scan"></div></div>
+      <div class="hg" id="hg"><div class="scan"></div></div>
       <div class="leg"><div><span><i class="lf"></i>ball qo'yilgan</span><span><i class="le"></i>ball yo'q · tekshiruv ochiq</span></div><span>katak ustiga bos</span></div>
       <div class="tip" id="tip"></div>
     </div>
@@ -613,7 +610,7 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 <!-- ROADMAP -->
 <section id="yol" class="alt"><div class="w">
   <div class="sh rv"><div class="kick">Yo'l xaritasi</div><h2>Keyingi bosqichlar <span class="g">— ishchi reja.</span></h2></div>
-  <div class="road rv" id="road"></div>
+  <div class="rsp rv" aria-label="Yillik reja bosqichlari spirali"><div class="rsp-rot"><div class="rsp-card" style="transform:rotateY(0.0deg) translateZ(158px) translateY(-57px)"><i>Hozir</i><b>Klub tuzilmasi</b></div><div class="rsp-card" style="transform:rotateY(51.4deg) translateZ(158px) translateY(-38px)"><i>Keyingi bosqich</i><b>Ikki baholovchi</b></div><div class="rsp-card" style="transform:rotateY(102.9deg) translateZ(158px) translateY(-19px)"><i>Keyingi bosqich</i><b>Maydon tekshiruvi</b></div><div class="rsp-card" style="transform:rotateY(154.3deg) translateZ(158px) translateY(0px)"><i>Jarayonda</i><b>Klub maqomi</b></div><div class="rsp-card" style="transform:rotateY(205.7deg) translateZ(158px) translateY(19px)"><i>Keyingi bosqich</i><b>Metodika v0.2</b></div><div class="rsp-card" style="transform:rotateY(257.1deg) translateZ(158px) translateY(38px)"><i>Keyingi bosqich</i><b>Qayta hisoblash</b></div><div class="rsp-card" style="transform:rotateY(308.6deg) translateZ(158px) translateY(57px)"><i>Kelajak</i><b>Hisobot</b></div></div></div><div class="road rv" id="road"></div>
 </div></section>
 
 <!-- JOIN -->
