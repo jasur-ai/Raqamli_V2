@@ -434,10 +434,11 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 .hero .w>*{animation:v2spiral 1.7s cubic-bezier(.16,1.15,.3,1) both}
 .hero .w>*:last-child{animation-delay:.25s}
 @keyframes v2spiral{from{opacity:0;transform:perspective(1200px) rotate(6deg) rotateY(-25deg) translate(56px,32px) scale(.95);transform-origin:20% 80%}to{opacity:1;transform:none}}
-.hero .rot{perspective:700px;overflow:visible}
-.hero .rot span{transform:rotateX(93deg);transform-origin:50% 100%;opacity:0;transition:transform .75s cubic-bezier(.22,1.2,.36,1),opacity .4s ease}
+.hero .rot{perspective:750px;overflow:visible}
+.hero .rot span{transform:rotateX(90deg);transform-origin:50% 50% -0.56em;opacity:0;backface-visibility:hidden;transition:transform 1.1s cubic-bezier(.65,0,.25,1),opacity .3s ease}
 .hero .rot span.on{transform:rotateX(0deg);opacity:1}
-.hero .rot span.out{transform:rotateX(-93deg);transform-origin:50% 0;opacity:0}
+.hero .rot span.out{transform:rotateX(-90deg);opacity:0}
+.faq{align-items:start}
 @media (prefers-reduced-motion:reduce){.hero .w>*{animation:none}.hero .rot span{transition:none}}
 </style>
 </head>
@@ -711,7 +712,7 @@ $$('.rv').forEach(function(el){io.observe(el)});
 
 /* rotating word */
 var rw=$$('#rot span'), ri=0;
-if(!RM) setInterval(function(){var a=rw[ri];a.classList.remove('on');a.classList.add('out');ri=(ri+1)%rw.length;var b=rw[ri];b.classList.remove('out');void b.offsetWidth;b.classList.add('on');setTimeout(function(){a.classList.remove('out')},700)},2400);
+if(!RM) setInterval(function(){var a=rw[ri];a.classList.remove('on');a.classList.add('out');ri=(ri+1)%rw.length;var b=rw[ri];b.classList.remove('out');void b.offsetWidth;b.classList.add('on');setTimeout(function(){a.classList.remove('out')},1150)},3000);
 
 /* hero grid */
 var hg=$('#hg'), tip=$('#tip'), D=DATA.dims;
