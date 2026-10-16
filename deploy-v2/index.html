@@ -440,26 +440,28 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 .hero .rot span.out{transform:rotateX(-90deg);opacity:0}
 .faq{align-items:start}
 
-/* 3D spiral karusel (scroll bilan aylanadi) */
-.sp-scene{height:230vh;position:relative}
-.sp-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
-.sp-sticky .sh{text-align:center;margin-bottom:8px}
-.spiral{position:relative;width:280px;height:280px;perspective:1300px;margin-top:26px}
-.sp-rot{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
-.sp-item{position:absolute;left:50%;top:50%;width:250px;height:148px;margin:-74px 0 0 -125px;
- background:var(--surf,#fff);border:1px solid var(--line2,#d9e1ef);border-radius:18px;padding:18px 20px;
- box-shadow:0 18px 40px -18px rgba(15,35,90,.35);backface-visibility:hidden;opacity:.92}
-.sp-item b{font-size:15px;display:block;margin-bottom:4px}
-.sp-item span{font-size:13px;color:var(--muted,#5b6b84);display:block;line-height:1.45}
-.sp-item .no{position:absolute;top:12px;right:16px;font-weight:800;font-size:13px;color:var(--acc,#7c3aed)}
-.sp-item.act{opacity:1;border-color:var(--blue,#2456e6)}
-.sp-hint{margin-top:92px;font-size:13px;color:var(--muted,#5b6b84)}
-@media(max-width:640px){.sp-item{width:210px;height:132px;margin:-66px 0 0 -105px;padding:14px 16px}}
+/* Hero: bank ballari 3D spirali */
+.hsp{position:relative;height:322px;perspective:1050px;margin-top:4px}
+.hsp-rot{position:absolute;inset:0;transform-style:preserve-3d;animation:hspin 30s linear infinite}
+.hsp:hover .hsp-rot{animation-play-state:paused}
+@keyframes hspin{from{transform:rotateX(-8deg) rotateY(0deg)}to{transform:rotateX(-8deg) rotateY(360deg)}}
+.hsp-card{position:absolute;left:50%;top:50%;width:198px;height:106px;margin:-53px 0 0 -99px;background:var(--surf);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:0 16px 34px -16px rgba(15,35,90,.35);backface-visibility:hidden}
+.hsp-card b{font-size:14px;display:block}
+.hsp-card strong{font-size:26px;font-weight:800;letter-spacing:-.5px;line-height:1.15}
+.hsp-card strong small{font-size:12px;color:var(--muted);font-weight:600}
+.hsp-card .bar{display:block;height:6px;border-radius:99px;background:var(--line);margin-top:8px;overflow:hidden}
+.hsp-card .bar em{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--acc))}
+.hsp-cap{text-align:center;font-size:12.5px;color:var(--muted);margin-top:14px}
+.ix .hg,.ix .leg,.ix .tip{display:none!important}
+@media(max-width:640px){.hsp{height:262px}.hsp-card{width:172px;margin-left:-86px}}
 @media (prefers-reduced-motion:reduce){
- .sp-scene{height:auto}.sp-sticky{position:static;height:auto;padding:40px 0}
- .spiral{width:auto;height:auto;perspective:none}
- .sp-rot{position:static;transform:none!important;display:grid;grid-template-columns:1fr 1fr;gap:12px}
- .sp-item{position:relative;left:auto;top:auto;margin:0;transform:none!important;width:auto;height:auto}
+ .hsp{height:auto;perspective:none}
+ .hsp-rot{position:static;animation:none;transform:none!important;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+ .hsp-card{position:relative;left:auto;top:auto;margin:0;transform:none!important;width:auto}
+}
+
+
+@media (prefers-reduced-motion:reduce){
 }
 
 @media (prefers-reduced-motion:reduce){.hero .w>*{animation:none}.hero .rot span{transition:none}}
@@ -513,7 +515,7 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
     <div class="ix rv" style="--i:2" aria-label="Pilot natijasi: 10 bank, 6 o'lchov">
       <div class="ixt"><b><i class="live"></i>Pilot · bank sektori</b><span>29.09.2026</span></div>
       <div class="ixn"><b><span data-count="30">30</span>/60</b><span>katakka ball qo'yilgan</span></div>
-      <div class="hg" id="hg"><div class="scan"></div></div>
+      <div class="hsp" aria-label="Banklar pilot ballari spirali"><div class="hsp-rot"><div class="hsp-card" style="transform:rotateY(0deg) translateZ(172px) translateY(-75px)"><b>TBC Bank</b><strong>100<small> / 100</small></strong><span class="bar"><em style="width:100%"></em></span></div><div class="hsp-card" style="transform:rotateY(60deg) translateZ(172px) translateY(-45px)"><b>SQB</b><strong>70,0<small> / 100</small></strong><span class="bar"><em style="width:70%"></em></span></div><div class="hsp-card" style="transform:rotateY(120deg) translateZ(172px) translateY(-15px)"><b>NBU</b><strong>59,5<small> / 100</small></strong><span class="bar"><em style="width:59%"></em></span></div><div class="hsp-card" style="transform:rotateY(180deg) translateZ(172px) translateY(15px)"><b>Anor Bank</b><strong>33,3<small> / 100</small></strong><span class="bar"><em style="width:33%"></em></span></div><div class="hsp-card" style="transform:rotateY(240deg) translateZ(172px) translateY(45px)"><b>Uzum Bank</b><strong>33,3<small> / 100</small></strong><span class="bar"><em style="width:33%"></em></span></div><div class="hsp-card" style="transform:rotateY(300deg) translateZ(172px) translateY(75px)"><b>Agrobank</b><strong>15,2<small> / 100</small></strong><span class="bar"><em style="width:15%"></em></span></div></div></div><div class="hsp-cap">Banklar · pilot ballari (tekshiruv davom etmoqda)</div><div class="hg" id="hg"><div class="scan"></div></div>
       <div class="leg"><div><span><i class="lf"></i>ball qo'yilgan</span><span><i class="le"></i>ball yo'q · tekshiruv ochiq</span></div><span>katak ustiga bos</span></div>
       <div class="tip" id="tip"></div>
     </div>
@@ -574,12 +576,6 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 
 <!-- CALCULATOR -->
 
-<!-- SPIRAL: 6 O'LCHOV -->
-<section id="spiral"><div class="sp-scene" id="spScene"><div class="sp-sticky">
- <div class="sh"><div class="kick">Olti o‘lchov</div><h2>Indeks <span class="g">nimadan yig‘iladi?</span></h2></div>
- <div class="spiral"><div class="sp-rot" id="spRot"><div class="sp-item" style="--a:0deg;--y:-110.0px"><span class="no">D1</span><b>D1 · Strategik tayyorgarlik</b><span>Strategiya va yo‘l xaritasi · vazn 15%</span></div><div class="sp-item" style="--a:60deg;--y:-66.0px"><span class="no">D2</span><b>D2 · Ma’lumot infratuzilmasi</b><span>Ma’lumot ombori va hisoblash · vazn 15%</span></div><div class="sp-item" style="--a:120deg;--y:-22.0px"><span class="no">D3</span><b>D3 · Amaliy joriy etish</b><span>Ishlayotgan AI xizmatlar · vazn 30%</span></div><div class="sp-item" style="--a:180deg;--y:22.0px"><span class="no">D4</span><b>D4 · HR jarayonlarida AI</b><span>HRIS/ATS va avtomatlashtirish · vazn 15%</span></div><div class="sp-item" style="--a:240deg;--y:66.0px"><span class="no">D5</span><b>D5 · Regulyatorik dalillar</b><span>Ochiq boshqaruv dalillari · vazn 15%</span></div><div class="sp-item" style="--a:300deg;--y:110.0px"><span class="no">D6</span><b>D6 · Oshkoralik</b><span>Ochiq hisobot va javob · vazn 10%</span></div></div></div>
- <div class="sp-hint">Aylantirish uchun pastga scroll qiling</div>
-</div></div></section>
 <section id="hisobla"><div class="w">
   <div class="sh rv"><div class="kick">Metod</div><h2>Indeksni <span class="g">o'zing hisobla.</span></h2><p class="sub">Har o'lchovga ball qo'y. «—» — hali baholanmagan (0 emas).</p></div>
   <div class="calc">
@@ -887,33 +883,6 @@ if(sessionMessage){
 }
 </script>
 
-<script>
-/* 3D spiral: scroll bilan aylanish */
-(function(){
- var scene=document.getElementById('spScene'), rot=document.getElementById('spRot');
- if(!scene||!rot) return;
- var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
- if(reduce) return;
- var items=rot.children, R=window.innerWidth<640?200:330, tick=false;
- function place(){
-   for(var i=0;i<items.length;i++){
-     var a=i*60, y=(i-2.5)*44;
-     items[i].style.transform='rotateY('+a+'deg) translateZ('+R+'px) translateY('+y+'px)';
-   }
- }
- place();
- window.addEventListener('resize',function(){R=window.innerWidth<640?200:305;place();});
- function upd(){
-   var r=scene.getBoundingClientRect(), total=scene.offsetHeight-window.innerHeight;
-   var pr=total>0?Math.min(1,Math.max(0,-r.top/total)):0;
-   rot.style.transform='rotateX(-7deg) rotateY('+(pr*360)+'deg)';
-   var act=Math.round((pr*360)/60)%6;
-   for(var i=0;i<items.length;i++) items[i].classList.toggle('act', i===((6-act)%6));
-   tick=false;
- }
- window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd);}},{passive:true});
- upd();
-})();
-</script>
+
 </body>
 </html>
