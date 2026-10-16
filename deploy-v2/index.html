@@ -430,38 +430,25 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 </style>
 
 <style>
-/* v2: landing spiral qo'nishi (faqat shu qo'shimcha) */
-.hero .w>*{animation:v2spiral 1.7s cubic-bezier(.16,1.15,.3,1) both}
-.hero .w>*:last-child{animation-delay:.25s}
-@keyframes v2spiral{from{opacity:0;transform:perspective(1200px) rotate(6deg) rotateY(-25deg) translate(56px,32px) scale(.95);transform-origin:20% 80%}to{opacity:1;transform:none}}
 .hero .rot{perspective:750px;overflow:visible}
 .hero .rot span{transform:rotateX(90deg);transform-origin:50% 50% -0.56em;opacity:0;backface-visibility:hidden;transition:transform 1.1s cubic-bezier(.65,0,.25,1),opacity .3s ease}
 .hero .rot span.on{transform:rotateX(0deg);opacity:1}
 .hero .rot span.out{transform:rotateX(-90deg);opacity:0}
 .faq{align-items:start}
 
-/* Reja: kichik spiral karusel */
-.rsp{position:relative;height:248px;perspective:1000px;max-width:860px;margin:0 auto 26px}
-.rsp-rot{position:absolute;inset:0;transform-style:preserve-3d;animation:hspin 40s linear infinite}
-.rsp:hover .rsp-rot{animation-play-state:paused}
-@keyframes hspin{from{transform:rotateX(-8deg) rotateY(0deg)}to{transform:rotateX(-8deg) rotateY(360deg)}}
-.rsp-card{position:absolute;left:50%;top:50%;width:192px;height:80px;margin:-40px 0 0 -96px;background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:12px 14px;box-shadow:0 12px 26px -14px rgba(15,35,90,.32);backface-visibility:hidden}
-.rsp-card i{display:inline-block;font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--acc);margin-bottom:4px}
-.rsp-card b{display:block;font-size:13.5px;line-height:1.3}
-@media(max-width:640px){.rsp{height:218px}.rsp-card{width:162px;margin-left:-81px}}
-@media (prefers-reduced-motion:reduce){
- .rsp{height:auto;perspective:none}
- .rsp-rot{position:static;animation:none;transform:none!important;display:grid;grid-template-columns:1fr 1fr;gap:8px}
- .rsp-card{position:relative;left:auto;top:auto;margin:0;transform:none!important;width:auto}
-}
+/* Pilot kataklari: premium polish (yaltiroq, sokin) */
+.hg .c{border-radius:9px;overflow:hidden}
+.hg .c.f{box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -8px 12px rgba(5,20,60,.25),0 4px 10px -4px rgba(20,50,140,.5)}
+.hg .c.f::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(255,255,255,.38),rgba(255,255,255,.05) 42%,transparent 62%);pointer-events:none}
+.hg .c.e{background:linear-gradient(150deg,rgba(255,255,255,.32),transparent 55%),var(--cellE);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -4px 8px rgba(10,25,60,.07)}
+.hg .c::after{content:"";position:absolute;inset:-2px;background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.5) 50%,transparent 66%);transform:translateX(-140%);transition:transform .8s ease;pointer-events:none}
+.hg .c:hover{z-index:2;transform:translateY(-2px) scale(1.06);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -8px 12px rgba(5,20,60,.22),0 10px 20px -8px rgba(20,50,140,.55)}
+.hg .c:hover::after{transform:translateX(140%)}
+.hg::after{content:"";position:absolute;left:30px;right:0;top:0;bottom:0;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.09) 50%,transparent 58%);background-size:280% 100%;animation:cellgloss 9s ease-in-out infinite;pointer-events:none}
+@keyframes cellgloss{0%,55%{background-position:125% 0}90%,100%{background-position:-45% 0}}
+@media (prefers-reduced-motion:reduce){.hg::after{animation:none}.hg .c::after{transition:none}.hero .rot span{transition:none}}
 
 
-
-
-@media (prefers-reduced-motion:reduce){
-}
-
-@media (prefers-reduced-motion:reduce){.hero .w>*{animation:none}.hero .rot span{transition:none}}
 </style>
 </head>
 <body>
@@ -610,7 +597,7 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 <!-- ROADMAP -->
 <section id="yol" class="alt"><div class="w">
   <div class="sh rv"><div class="kick">Yo'l xaritasi</div><h2>Keyingi bosqichlar <span class="g">— ishchi reja.</span></h2></div>
-  <div class="rsp rv" aria-label="Yillik reja bosqichlari spirali"><div class="rsp-rot"><div class="rsp-card" style="transform:rotateY(0.0deg) translateZ(158px) translateY(-57px)"><i>Hozir</i><b>Klub tuzilmasi</b></div><div class="rsp-card" style="transform:rotateY(51.4deg) translateZ(158px) translateY(-38px)"><i>Keyingi bosqich</i><b>Ikki baholovchi</b></div><div class="rsp-card" style="transform:rotateY(102.9deg) translateZ(158px) translateY(-19px)"><i>Keyingi bosqich</i><b>Maydon tekshiruvi</b></div><div class="rsp-card" style="transform:rotateY(154.3deg) translateZ(158px) translateY(0px)"><i>Jarayonda</i><b>Klub maqomi</b></div><div class="rsp-card" style="transform:rotateY(205.7deg) translateZ(158px) translateY(19px)"><i>Keyingi bosqich</i><b>Metodika v0.2</b></div><div class="rsp-card" style="transform:rotateY(257.1deg) translateZ(158px) translateY(38px)"><i>Keyingi bosqich</i><b>Qayta hisoblash</b></div><div class="rsp-card" style="transform:rotateY(308.6deg) translateZ(158px) translateY(57px)"><i>Kelajak</i><b>Hisobot</b></div></div></div><div class="road rv" id="road"></div>
+  <div class="road rv" id="road"></div>
 </div></section>
 
 <!-- JOIN -->
