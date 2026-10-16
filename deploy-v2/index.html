@@ -434,7 +434,11 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 .hero .w>*{animation:v2spiral 1.7s cubic-bezier(.16,1.15,.3,1) both}
 .hero .w>*:last-child{animation-delay:.25s}
 @keyframes v2spiral{from{opacity:0;transform:perspective(1200px) rotate(6deg) rotateY(-25deg) translate(56px,32px) scale(.95);transform-origin:20% 80%}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.hero .w>*{animation:none}}
+.hero .rot{perspective:700px;overflow:visible}
+.hero .rot span{transform:rotateX(93deg);transform-origin:50% 100%;opacity:0;transition:transform .75s cubic-bezier(.22,1.2,.36,1),opacity .4s ease}
+.hero .rot span.on{transform:rotateX(0deg);opacity:1}
+.hero .rot span.out{transform:rotateX(-93deg);transform-origin:50% 0;opacity:0}
+@media (prefers-reduced-motion:reduce){.hero .w>*{animation:none}.hero .rot span{transition:none}}
 </style>
 </head>
 <body>
@@ -509,9 +513,19 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
     <div class="panel fxp" id="fxp"></div></div>
 </div></section>
 
+
+<!-- QIZIL JAMOA -->
+<section id="qizil" class="alt"><div class="w">
+ <div class="sh rv"><div class="kick">Sifat</div><h2>Qizil jamoa — <span class="g">o‘zimizni ham tekshiramiz.</span></h2></div>
+ <div class="flow rv"><div class="ln"></div>
+  <div class="st"><div class="o"><em>1</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>Avval tekshiruv</h3><p>Har material chiqishidan oldin alohida jamoa xato qidirib o‘qiydi.</p></div>
+  <div class="st"><div class="o"><em>2</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/></svg></div><h3>Xato — ochiq tuzatiladi</h3><p>Topilgan xato yashirilmaydi: tuzatiladi va bu haqda aytiladi.</p></div>
+  <div class="st"><div class="o"><em>3</em><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>Tanqid — da’voga</h3><p>Shaxsga emas, da’voga. Har kim javob berishi mumkin.</p></div>
+ </div>
+</div></section>
 <!-- PILOT EXPLORER -->
 <section id="pilot" class="alt"><div class="w">
-  <div class="sh rv"><div class="kick">Pilot natijasi · ichki ishchi hisob</div><h2>30/60 katakka <span class="g">ball qo'yilgan.</span></h2><p class="sub">O'lchovni tanlang — ball qo'yilgan va hali baholanmagan kataklarni ko'ring. Ma'lumotlar 29.09.2026 sanali ishchi jadvaldan; manba havolalari va metodika to'liq mustaqil tekshirilmagan.</p></div>
+  <div class="sh rv"><div class="kick">Pilot natijasi · ichki ishchi hisob</div><h2>30/60 katakka <span class="g">ball qo'yilgan.</span></h2><p class="sub">Ball qo'yilgan va ochiq kataklar. Kesim: 29.09.2026.</p></div>
   <div class="exp">
     <div class="panel rv">
       <div class="seg" role="tablist" id="seg"></div>
@@ -536,7 +550,7 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 
 <!-- CALCULATOR -->
 <section id="hisobla"><div class="w">
-  <div class="sh rv"><div class="kick">Metod</div><h2>Indeksni <span class="g">o'zing hisobla.</span></h2><p class="sub">Har o'lchovga ball qo'y. «—» — baholanmagan yoki tekshiruv yetarli emas (bu 0 degani emas).</p></div>
+  <div class="sh rv"><div class="kick">Metod</div><h2>Indeksni <span class="g">o'zing hisobla.</span></h2><p class="sub">Har o'lchovga ball qo'y. «—» — hali baholanmagan (0 emas).</p></div>
   <div class="calc">
     <div class="panel rv" id="crows"></div>
     <div class="panel res rv" style="--i:1">
