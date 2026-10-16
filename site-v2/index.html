@@ -400,6 +400,11 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 }
 @media (max-width:680px){
   body{font-size:15.5px}
+  /* mobil header: bitta qatorli brend, ixcham balandlik, o'qish uchun zichroq fon */
+  .brand{font-size:16px;gap:8px;white-space:nowrap}
+  .brand svg{width:30px;height:30px}
+  .nav .w{height:60px}
+  .nav.sc{background:color-mix(in srgb,var(--bg) 94%,transparent)}
   .w{padding:0 18px}
   section{padding:80px 0}
   .nav .btn{display:none}
@@ -432,8 +437,12 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 <style>
 .hero .rot{display:inline-grid;height:1.08em;perspective:900px;overflow:visible;vertical-align:bottom;text-align:left}
 .hero .rot .sz{grid-area:1/1;visibility:hidden;white-space:nowrap;padding-right:6px}
-.hero .rot .cube{display:block;position:relative;width:100%;height:1.08em;transform:rotateX(0deg);transform-style:preserve-3d;transition:transform 1.05s cubic-bezier(.72,0,.22,1);grid-area:1/1;background:none;color:inherit;opacity:1;padding:0}
-.hero .rot .face{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;grid-area:auto;opacity:1;padding-right:4px;white-space:nowrap;backface-visibility:hidden;background:linear-gradient(95deg,var(--blue),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .rot .cube{display:block;position:relative;width:100%;height:1.08em;transform:rotateX(0deg);transform-style:preserve-3d;grid-area:1/1;background:none;color:inherit;opacity:1;padding:0}
+.hero .rot .face{transition:opacity .16s linear;position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;grid-area:auto;opacity:1;padding-right:4px;white-space:nowrap;backface-visibility:hidden;background:linear-gradient(95deg,var(--blue),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent}
+/* fade rejimi (WebKit/Gecko): 3D kontekst o'chiriladi — gradient matn barqaror chiziladi */
+.hero .rot.flat{perspective:none}
+.hero .rot.flat .cube{transform:none!important}
+.hero .rot.flat .face{transform:none;transition:none}
 .hero .rot .f0{transform:rotateX(0deg) translateZ(.54em)}
 .hero .rot .f1{transform:rotateX(90deg) translateZ(.54em)}
 .hero .rot .f2{transform:rotateX(180deg) translateZ(.54em)}
@@ -499,8 +508,8 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 .gmc-card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px;max-width:420px;width:100%;box-shadow:var(--shadowL)}
 .gmc-card-t{font-weight:800;margin-bottom:6px}
 .gmc-card p{color:var(--muted);font-size:15px;margin:0}
-.gmc-pad{display:none;grid-template-columns:52px 52px 52px;gap:6px;justify-content:center;margin:14px auto 4px;width:max-content}
-.gmc-pad button{height:48px;border-radius:12px;border:1.5px solid var(--line2);background:var(--bg);color:var(--ink);font-size:17px;cursor:pointer}
+.gmc-pad{display:none;touch-action:manipulation;grid-template-columns:52px 52px 52px;gap:6px;justify-content:center;margin:14px auto 4px;width:max-content}
+.gmc-pad button{height:48px;border-radius:12px;border:1.5px solid var(--line2);background:var(--bg);color:var(--ink);font-size:17px;cursor:pointer;touch-action:manipulation;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
 .gmc-pad button:active{background:var(--pri);color:#fff}
 @media(pointer:coarse){.gmc-pad{display:grid}}
 .gmc-hint{color:var(--muted);font-size:13.5px;text-align:center;margin:10px 0 0}
@@ -514,7 +523,7 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 .gm-tabs button{flex:1;border:1px solid var(--line2);background:var(--surf);color:var(--ink);border-radius:10px;padding:9px;font:inherit;font-weight:700;cursor:pointer}
 .gm-tabs button.on{background:var(--pri);color:#fff;border-color:transparent}
 .gm-box label{display:block;font-size:13px;font-weight:700;margin:10px 0 5px}
-.gm-box input{width:100%;box-sizing:border-box;border:1.5px solid var(--line2);border-radius:10px;padding:11px 12px;font:inherit;background:var(--surf);color:var(--ink)}
+.gm-box input{width:100%;box-sizing:border-box;border:1.5px solid var(--line2);border-radius:10px;padding:11px 12px;font:inherit;font-size:16px;background:var(--surf);color:var(--ink)}
 .gm-box .full{width:100%;margin-top:16px;height:46px}
 .gm-x{float:right;border:0;background:var(--surf2);width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer;color:var(--ink)}
 @media(max-width:640px){.gm{padding:16px}.gm-bot{flex-basis:70px}.gm-bot svg{width:66px;height:66px}}
@@ -873,7 +882,42 @@ $$('.rv').forEach(function(el){io.observe(el)});
 /* rotating word — haqiqiy 3D kub: 4 yuz, har qadam -90deg */
 var words=['banklarda',"ta'limda",'tibbiyotda','davlat xizmatida','telekomda'];
 var cube=$('#cube'), faces=$$('#cube .face'), cf=0, crot=0;
-if(!RM && cube) setInterval(function(){cf=(cf+1)%words.length;crot-=90;cube.style.transform='rotateX('+crot+'deg)';setTimeout(function(){faces.forEach(function(f,i){var e=((i*90+crot)%360+360)%360;if(e===270)f.textContent=words[(cf+3)%words.length]})},650)},3000);
+/* Blink (Chrome/Edge/Samsung) — haqiqiy 3D kub; WebKit/Gecko — fade rejimi
+   (Safari va Firefox 3D aylanishda gradient matnni qayta chizmaydi) */
+/* Blink (Chrome/Edge/Opera/Brave/Samsung) — haqiqiy 3D kub; WebKit va Gecko (jumladan iOS'dagi barcha brauzerlar) — fade rejimi.
+   iOS'da barcha brauzerlar WebKit ishlatadi, shuning uchun vendor bo'yicha aniqlanadi. */
+var BLINK=/Google Inc/.test(navigator.vendor||''), fadeCur=0, fadeW=0;
+function cubePaint(a){ if(a===undefined)a=crot; if(!cube)return;
+  faces.forEach(function(f,i){ var e=((((i*90+a)%360)+360)%360); if(e>180)e-=360;
+    var o=Math.cos(e*Math.PI/180); f.style.opacity=(o>0?o:0).toFixed(3) }) }
+var rotRAF=null;
+function cubeTurn(){
+  cf=(cf+1)%words.length; var from=crot; crot-=90; var t0=0, dur=RM?0:1000;
+  if(!dur){ cube.style.transform='rotateX('+crot+'deg)'; cubePaint(); faces.forEach(function(f,i){var e=(((i*90+crot)%360)+360)%360;if(e===270)f.textContent=words[(cf+3)%words.length]}); return }
+  cancelAnimationFrame(rotRAF);
+  function step(ts){ if(!t0)t0=ts; var k=Math.min(1,(ts-t0)/dur), e=1-Math.pow(1-k,3);
+    cube.style.transform='rotateX('+(from-90*e)+'deg)'; cubePaint(from-90*e);
+    if(k>=0.5) faces.forEach(function(f,i){ if(((((i*90+crot)%360)+360)%360)===270) f.textContent=words[(cf+3)%words.length] });
+    if(k<1) rotRAF=requestAnimationFrame(step); else cubePaint() }
+  rotRAF=requestAnimationFrame(step);
+}
+if(cube){
+  if(BLINK){ if(!RM) cubePaint(); else faces.forEach(function(f,i){f.style.opacity=i?0:1}); }
+  else { $('#rot').classList.add('flat'); faces.forEach(function(f,i){ f.style.opacity=i?'0':'1' }); }
+}
+function fadeTurn(){
+  fadeW=(fadeW+1)%words.length;
+  var out=faces[fadeCur], inn=faces[1-fadeCur];
+  inn.textContent=words[fadeW];
+  var t0=0, dur=RM?0:900;
+  inn.style.opacity='0';
+  function step(ts){ if(!t0)t0=ts; var k=Math.min(1,(ts-t0)/dur);
+    if(k<0.5){ out.style.opacity=(1-2*k).toFixed(3); inn.style.opacity='0' }
+    else { out.style.opacity='0'; inn.style.opacity=(2*k-1).toFixed(3) }
+    if(k<1) requestAnimationFrame(step); else { fadeCur=1-fadeCur; out.style.opacity='0'; inn.style.opacity='1' } }
+  requestAnimationFrame(step);
+}
+if(!RM && cube) setInterval(BLINK?cubeTurn:fadeTurn,3000);
 
 /* hero grid */
 var hg=$('#hg'), tip=$('#tip'), D=DATA.dims;
@@ -1062,6 +1106,8 @@ var LEVELS=[
 ];
 var G=null; // game state
 var cv, ctx, raf=null, lastT=0, keys={};
+/* sensorli ekran: barmoq bilan o‘ynash uchun yumshoqroq shartlar */
+var TOUCH=!!(window.matchMedia&&window.matchMedia('(pointer:coarse)').matches);
 function lvlWalls(i){var m={}; LEVELS[i].walls.forEach(function(w){m[w[0]+','+w[1]]=1}); return m}
 function freeTiles(i,walls){var t=[]; for(var y=0;y<ROWS;y++)for(var x=0;x<COLS;x++){ if(walls[x+','+y])continue; if(x<2&&y<2)continue; if(x===COLS-1&&y===ROWS-1)continue; t.push([x,y]) } return t}
 function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t} return a}
@@ -1069,8 +1115,8 @@ function newLevel(i){
   var L=LEVELS[i], walls=lvlWalls(i), spots=shuffle(freeTiles(i,walls)).slice(0,L.cards);
   var notes=shuffle(REAL.slice()).slice(0,L.real).map(function(t){return {t:t,real:true}}).concat(shuffle(FAKE.slice()).slice(0,L.cards-L.real).map(function(t){return {t:t,real:false}}));
   notes=shuffle(notes);
-  G={lvl:i, walls:walls, rx:30, ry:30, battery:3, left:L.time, cards:spots.map(function(p,k){return {x:p[0],y:p[1],note:notes[k],taken:false}}), done:0, xp:G?G.xp:0, correct:0, wrong:0, running:true, paused:false, bug:{x:10*TILE+30,y:1*TILE+30,dir:1,axis:'x',range:[2,10]}, tPrev:0};
-  timeEl.textContent='01:30';
+  G={lvl:i, walls:walls, rx:30, ry:30, battery:3, left:L.time+(TOUCH?30:0), pr:TOUCH?50:36, ar:TOUCH?58:40, cards:spots.map(function(p,k){return {x:p[0],y:p[1],note:notes[k],taken:false}}), done:0, xp:G?G.xp:0, correct:0, wrong:0, running:true, paused:false, bug:{x:10*TILE+30,y:1*TILE+30,dir:1,axis:'x',range:[2,10]}, tPrev:0};
+  timeEl.textContent=fmt(L.time+(TOUCH?30:0));
   updateHud(); markNodes();
   sayIt((i+1)+'-daraja: '+L.cards+' ta kartani toping. Har kartada qaror berasiz: dalilmi yoki yo‘qmi. Keyin ARXIVga yeting!'+(L.bug?' ⚠ Qizil xato (bug) aylanib yuribdi — tegmang!':''));
 }
@@ -1091,11 +1137,11 @@ function loop(ts){
     if(dx){var nx=G.rx+dx*sp*dt; if(!blocked(nx,G.ry))G.rx=nx}
     if(dy){var ny=G.ry+dy*sp*dt; if(!blocked(G.rx,ny))G.ry=ny}
     var L=LEVELS[G.lvl];
-    if(L.bug){var b=G.bug, bs=L.bugSpeed; b.x+=b.dir*bs*dt; if(b.x<(b.range[0]*TILE+30)||b.x>(b.range[1]*TILE+30))b.dir*=-1; if(Math.abs(b.x-G.rx)<38&&Math.abs(b.y-G.ry)<38){ hurt('Qizil xato tegdi! Batareya -1'); if(G)resetPos(); }}
+    if(L.bug){var b=G.bug, bs=L.bugSpeed; b.x+=b.dir*bs*dt; if(b.x<(b.range[0]*TILE+30)||b.x>(b.range[1]*TILE+30))b.dir*=-1; if(Math.abs(b.x-G.rx)<(TOUCH?34:38)&&Math.abs(b.y-G.ry)<(TOUCH?34:38)){ hurt('Qizil xato tegdi! Batareya -1'); if(G)resetPos(); }}
     // card pickup
-    for(var i=0;i<G.cards.length;i++){var c=G.cards[i]; if(!c.taken && Math.abs(G.rx-(c.x*TILE+30))<36 && Math.abs(G.ry-(c.y*TILE+30))<36){ c.taken=true; openCard(c); break }}
+    for(var i=0;i<G.cards.length;i++){var c=G.cards[i]; if(!c.taken && Math.abs(G.rx-(c.x*TILE+30))<G.pr && Math.abs(G.ry-(c.y*TILE+30))<G.pr){ c.taken=true; openCard(c); break }}
     // archive
-    if(G && G.done>=G.cards.length && Math.abs(G.rx-((COLS-1)*TILE+30))<40 && Math.abs(G.ry-((ROWS-1)*TILE+30))<40){ levelDone(); }
+    if(G && G.done>=G.cards.length && Math.abs(G.rx-((COLS-1)*TILE+30))<G.ar && Math.abs(G.ry-((ROWS-1)*TILE+30))<G.ar){ levelDone(); }
   }
   draw(); raf=requestAnimationFrame(loop);
 }
@@ -1177,7 +1223,17 @@ function draw(){
 var KEYMAP={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down',a:'left',d:'right',w:'up',s:'down',A:'left',D:'right',W:'up',S:'down'};
 document.addEventListener('keydown',function(e){ if(!G||!G.running||G.paused)return; var k=KEYMAP[e.key]; if(k){keys[k]=true; e.preventDefault()} });
 document.addEventListener('keyup',function(e){ var k=KEYMAP[e.key]; if(k)keys[k]=false });
-function bindPad(){ $$('#gmPad [data-k]').forEach(function(b){ var k=b.getAttribute('data-k'); var on=function(e){e.preventDefault(); keys[k]=true}, off=function(){keys[k]=false}; b.addEventListener('pointerdown',on); b.addEventListener('pointerup',off); b.addEventListener('pointerleave',off); b.addEventListener('pointercancel',off); }) }
+function bindPad(){ $$('#gmPad [data-k]').forEach(function(b){
+  var k=b.getAttribute('data-k'), t0=0;
+  var on=function(e){ e.preventDefault(); t0=performance.now(); keys[k]=true };
+  var off=function(){ if(!t0)return; var el=performance.now()-t0; t0=0;
+    if(el<220){ var rest=220-el; setTimeout(function(){keys[k]=false},rest) } else keys[k]=false };
+  b.addEventListener('pointerdown',on); b.addEventListener('pointerup',off);
+  b.addEventListener('pointerleave',off); b.addEventListener('pointercancel',off);
+  b.addEventListener('touchstart',function(e){e.preventDefault();on(e)},{passive:false});
+  b.addEventListener('touchend',off);
+  b.addEventListener('contextmenu',function(e){e.preventDefault()});
+}) }
 
 function beginGame(){
   startBtn.style.display='none'; stage.style.display='block';
