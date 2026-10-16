@@ -491,6 +491,20 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 .gm-bar .t i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--acc))}
 .gm-chip{display:inline-flex;gap:8px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:6px 8px 6px 14px;font-size:14px;font-weight:700}
 .gm-chip button{border:0;background:var(--surf2);color:var(--ink);border-radius:99px;padding:5px 11px;font:inherit;font-size:12.5px;cursor:pointer}
+
+/* O'yin maydoni */
+.gmc-wrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.gmc-wrap canvas{width:100%;height:auto;display:block;touch-action:none}
+.gmc-pop{position:absolute;inset:0;background:rgba(8,15,28,.45);display:flex;align-items:center;justify-content:center;padding:16px;z-index:5}
+.gmc-card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px;max-width:420px;width:100%;box-shadow:var(--shadowL)}
+.gmc-card-t{font-weight:800;margin-bottom:6px}
+.gmc-card p{color:var(--muted);font-size:15px;margin:0}
+.gmc-pad{display:none;grid-template-columns:52px 52px 52px;gap:6px;justify-content:center;margin:14px auto 4px;width:max-content}
+.gmc-pad button{height:48px;border-radius:12px;border:1.5px solid var(--line2);background:var(--bg);color:var(--ink);font-size:17px;cursor:pointer}
+.gmc-pad button:active{background:var(--pri);color:#fff}
+@media(pointer:coarse){.gmc-pad{display:grid}}
+.gmc-hint{color:var(--muted);font-size:13.5px;text-align:center;margin:10px 0 0}
+
 .gm-modal{position:fixed;inset:0;z-index:120;background:rgba(8,15,28,.55);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:18px}
 .gm-modal.on{display:flex}
 .gm-box{background:var(--bg);border:1px solid var(--line);border-radius:18px;max-width:400px;width:100%;padding:24px;box-shadow:var(--shadowL)}
@@ -541,7 +555,7 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
   </button>
   <a class="btn p sm" href="https://t.me/aiindeksi_bot?start=site" target="_blank" rel="noopener" style="margin-left:8px">Qo'shilish</a>
   <button class="iconbtn" id="kirBtn" aria-label="Kirish" title="Kirish" style="margin-left:4px" onclick="document.getElementById('kirModal').style.display='flex'">
-    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-3.9 3.6-6 8-6s8 2.1 8 6"/></svg>
   </button>
   <button class="iconbtn burger" id="burger" aria-label="Menyu" aria-expanded="false" style="margin-left:8px">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
@@ -681,25 +695,41 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 <section id="sinov"><div class="w">
   <span class="tag rv">Sinov o‘yini</span>
   <h2 class="rv" style="--i:1">Mini-loyihani tekshirib ko‘ring</h2>
-  <p class="sub rv" style="--i:2">Robi bilan bitta choraklik mini-loyihani tekshirasiz: dalil, ball, soxta xabar va hisob. Natija — sizning darajangiz.</p>
+  <p class="sub rv" style="--i:2">Robotni boshqaring, dalil kartalarini yig‘ing, soxtasini tuting va arxivga yeting. 3 daraja — natijada sizning darajangiz chiqadi.</p>
   <div class="gm rv" style="--i:3">
     <div class="gm-top">
       <div class="gm-bot" id="gmBot" aria-hidden="true">
         <svg viewBox="0 0 100 100"><rect x="22" y="26" width="56" height="46" rx="13" fill="#2F6FDB"/><rect x="29" y="33" width="42" height="32" rx="9" fill="#DCEBFF"/><circle class="eye" cx="42" cy="47" r="4.5" fill="#1F3864"/><circle class="eye" cx="58" cy="47" r="4.5" fill="#1F3864"/><rect x="43" y="57" width="14" height="4" rx="2" fill="#1F3864"/><line x1="50" y1="26" x2="50" y2="14" stroke="#2F6FDB" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="11" r="5" fill="#4DA3FF"/><rect x="14" y="42" width="7" height="16" rx="3.5" fill="#2F6FDB"/><rect x="79" y="42" width="7" height="16" rx="3.5" fill="#2F6FDB"/><rect x="35" y="74" width="30" height="7" rx="3.5" fill="#1F3864"/></svg>
       </div>
-      <div class="gm-say" id="gmSay"><b>Robi:</b> Salom! Men tekshiruv robotiman. 6 ta topshiriq — har biri klubdagi haqiqiy ish. Boshlash uchun avval ro‘yxatdan o‘ting.</div>
+      <div class="gm-say" id="gmSay"><b>Robi:</b> Salom! Men — Robi, dalil yig‘uvchi robot. Maydonda meni boshqarasiz: kartalarni yig‘amiz, dalilni soxtadan ajratamiz va ARXIVga yetkazamiz. Boshlash uchun avval ro‘yxatdan o‘ting.</div>
     </div>
     <div class="gm-hud">
       <span class="gm-chip" id="gmUser" style="display:none"></span>
       <button type="button" class="btn p" id="gmStart">O‘yinni boshlash</button>
       <div class="gm-xp"><i id="gmXpBar"></i></div>
       <span class="gm-num"><span id="gmXp">0</span> XP</span>
-      <span class="gm-num" id="gmTime">00:00</span>
+      <span class="gm-num" id="gmTime">01:30</span>
+      <span class="gm-num" id="gmCards">📄 0/5</span>
+      <span class="gm-num" id="gmBat"></span>
     </div>
     <div class="gm-nodes" id="gmNodes">
-      <i data-n="0">1 · Dalil</i><i data-n="1">2 · Ball</i><i data-n="2">3 · Qizil tutish</i><i data-n="3">4 · Karta</i><i data-n="4">5 · Hisob</i><i data-n="5">6 · Akademik</i>
+      <i data-n="0">1-daraja</i><i data-n="1">2-daraja</i><i data-n="2">3-daraja</i><i data-n="3">Natija</i>
     </div>
-    <div class="gm-stage" id="gmStage" style="display:none"></div>
+    <div class="gm-stage" id="gmStage" style="display:none">
+      <div id="gmPlayWrap" style="display:none">
+        <div class="gmc-wrap">
+          <canvas id="gmCanvas" width="720" height="480"></canvas>
+          <div class="gmc-pop" id="gmPop" style="display:none"><div class="gmc-card"><div class="gmc-card-t">📄 Karta topildi — qaror bering</div><p id="gmCardNote"></p><div class="gm-row" style="margin-top:10px"><button type="button" class="btn p" id="gmBtnReal">✓ Bu dalil</button><button type="button" class="btn" id="gmBtnFake">🚩 Dalil emas</button></div></div></div>
+        </div>
+        <div class="gm-row"><button type="button" class="btn p" id="gmNextLvl" style="display:none">Keyingi daraja →</button></div>
+        <div class="gmc-pad" id="gmPad">
+          <span></span><button type="button" data-k="up" aria-label="Yuqori">▲</button><span></span>
+          <button type="button" data-k="left" aria-label="Chap">◀</button><button type="button" data-k="down" aria-label="Past">▼</button><button type="button" data-k="right" aria-label="O‘ng">▶</button>
+        </div>
+        <p class="gmc-hint">Boshqaruv: strelkalar yoki WASD. Kartani olsangiz — dalilmi, yo‘qmi, qaror berasiz. Hamma kartadan keyin ARXIVga yeting. Qizil xatoga tegmang!</p>
+      </div>
+      <div id="gmFinal" style="display:none"></div>
+    </div>
   </div>
 </div></section>
 
@@ -991,15 +1021,13 @@ if(sessionMessage){
 
 
 <script>
-/* Kirish tugmasi: sessiya holatiga qarab Kirish/Chiqish ikonkasi */
+/* Kirish tugmasi: bitta odam ikonkasi (almashmaydi) */
 (function(){
  var b=document.getElementById('kirBtn'); if(!b) return;
- var svgIn=b.innerHTML;
- var svgOut='<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>';
  function has(){ try{return !!sessionStorage.getItem('rt.session')}catch(_){return false} }
  function paint(){
-   if(has()){ b.innerHTML=svgOut; b.title='Chiqish'; b.setAttribute('aria-label','Chiqish'); }
-   else{ b.innerHTML=svgIn; b.title='Kirish'; b.setAttribute('aria-label','Kirish'); }
+   if(has()){ b.title='Chiqish'; b.setAttribute('aria-label','Chiqish'); }
+   else{ b.title='Kirish'; b.setAttribute('aria-label','Kirish'); }
  }
  b.addEventListener('click',function(e){
    if(has()){
@@ -1013,77 +1041,157 @@ if(sessionMessage){
 </script>
 <script>
 
-/* ===== Sinov o'yini: Robi bilan mini-loyiha tekshiruvi ===== */
+/* ===== Sinov o'yini v2: ROBI — Dalil yig'uvchi (amaliy o'yin) ===== */
 (function(){
 var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 var stage=$('#gmStage'), say=$('#gmSay'), bot=$('#gmBot'), startBtn=$('#gmStart'), xpEl=$('#gmXp'), barEl=$('#gmXpBar'), timeEl=$('#gmTime'), nodes=$$('#gmNodes i'), userChip=$('#gmUser');
 var player=null; try{player=JSON.parse(localStorage.getItem('rt2_player')||'null')}catch(e){}
-var xp=0, cur=-1, t0=null, timer=null, tries=0, scores=[0,0,0,0,0,0], sel={};
-var MAX=[100,100,100,100,100,100], TOTAL=600;
+var TOTAL=1000;
 function sayIt(t,happy){say.innerHTML='<b>Robi:</b> '+t; if(happy){bot.classList.remove('happy'); void bot.offsetWidth; bot.classList.add('happy')}}
-function setXp(){xpEl.textContent=xp; barEl.style.width=Math.round(xp/TOTAL*100)+'%'}
 function refreshUser(){ if(player){userChip.style.display='inline-flex'; userChip.innerHTML='👤 '+player.name+' <button type="button" id="gmOut">Chiqish</button>'; var o=$('#gmOut'); if(o)o.onclick=function(){player=null; localStorage.removeItem('rt2_player'); refreshUser(); sayIt('Chiqdingiz. Qayta o‘ynash uchun yana kiring.')}} else {userChip.style.display='none'; userChip.innerHTML=''} }
 refreshUser();
-function tick(){var s=Math.floor((Date.now()-t0)/1000), m=Math.floor(s/60); timeEl.textContent=(m<10?'0':'')+m+':'+((s%60)<10?'0':'')+(s%60)}
-function startTimer(){t0=Date.now(); clearInterval(timer); timer=setInterval(tick,1000); tick()}
-function award(base){var pts=Math.max(30,base-tries*20); xp+=pts; scores[cur]=pts; setXp()}
-function markNodes(){nodes.forEach(function(n,i){n.classList.toggle('on',i===cur); n.classList.toggle('done',i<cur||(cur===6))})}
-function feed(ok,txt){var f=$('#gmFeed'); if(f){f.className='gm-feed '+(ok?'ok':'bad'); f.textContent=txt}}
-function nextBtn(label){return '<div class="gm-row"><button type="button" class="btn p" id="gmNext">'+label+'</button><span class="gm-feed" id="gmFeed"></span></div>'}
-function bindNext(fn){var b=$('#gmNext'); if(b)b.onclick=fn}
-function checkMulti(containerId,okSet,win,winMsg,retryMsg){
-  var picked=$$('#'+containerId+' .sel').map(function(e){return e.getAttribute('data-v')}).sort().join(',');
-  if(picked===okSet.slice().sort().join(',')){feed(true,winMsg); award(100); sayIt(win,true); bindNext(goNext); $('#gmNext').textContent='Keyingisi →'; $$('#'+containerId+' .gm-cell,#'+containerId+' .gm-opt').forEach(function(e){e.style.pointerEvents='none'})}
-  else{tries++; feed(false,retryMsg); sayIt('Yana o‘ylab ko‘ring. Maslahat: har bir yozuvda manba va sana bormi?')}
+
+/* ---------- o'yin holati ---------- */
+var TILE=60, COLS=12, ROWS=8;
+var REAL=['Rasmiy sayt · bot sahifasi · 12.09','Skrinshot, ilova v3.2 · 14.09','Rasmiy so‘rov javobi · 18.09','Bot dialogi yozuvi · 15.09','Yillik hisobot, 24-bet · 2025','Press-reliz, sana bilan · 02.09'];
+var FAKE=['«Bot 911% tezroq!» — manba yo‘q','Chatdagi xabar, havolasiz','Eski post — sanasi yo‘q','Blog, muallifi noma’lum','«Hamma bankda bor» — dalilsiz'];
+var LEVELS=[
+ {walls:[[2,1],[3,1],[2,2],[3,2],[6,3],[6,3],[9,0],[9,0]], cards:5, real:4, time:90, bug:false, bugSpeed:0},
+ {walls:[[2,1],[2,2],[2,3],[5,0],[5,1],[8,4],[8,5],[8,6],[4,6],[9,2]], cards:5, real:3, time:90, bug:true, bugSpeed:55},
+ {walls:[[2,1],[2,2],[5,3],[5,4],[5,5],[8,1],[8,2],[3,6],[9,5],[9,6],[6,0]], cards:6, real:3, time:100, bug:true, bugSpeed:85}
+];
+var G=null; // game state
+var cv, ctx, raf=null, lastT=0, keys={};
+function lvlWalls(i){var m={}; LEVELS[i].walls.forEach(function(w){m[w[0]+','+w[1]]=1}); return m}
+function freeTiles(i,walls){var t=[]; for(var y=0;y<ROWS;y++)for(var x=0;x<COLS;x++){ if(walls[x+','+y])continue; if(x<2&&y<2)continue; if(x===COLS-1&&y===ROWS-1)continue; t.push([x,y]) } return t}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t} return a}
+function newLevel(i){
+  var L=LEVELS[i], walls=lvlWalls(i), spots=shuffle(freeTiles(i,walls)).slice(0,L.cards);
+  var notes=shuffle(REAL.slice()).slice(0,L.real).map(function(t){return {t:t,real:true}}).concat(shuffle(FAKE.slice()).slice(0,L.cards-L.real).map(function(t){return {t:t,real:false}}));
+  notes=shuffle(notes);
+  G={lvl:i, walls:walls, rx:30, ry:30, battery:3, left:L.time, cards:spots.map(function(p,k){return {x:p[0],y:p[1],note:notes[k],taken:false}}), done:0, xp:G?G.xp:0, correct:0, wrong:0, running:true, paused:false, bug:{x:10*TILE+30,y:1*TILE+30,dir:1,axis:'x',range:[2,10]}, tPrev:0};
+  timeEl.textContent='01:30';
+  updateHud(); markNodes();
+  sayIt((i+1)+'-daraja: '+L.cards+' ta kartani toping. Har kartada qaror berasiz: dalilmi yoki yo‘qmi. Keyin ARXIVga yeting!'+(L.bug?' ⚠ Qizil xato (bug) aylanib yuribdi — tegmang!':''));
 }
-function goNext(){cur++; tries=0; markNodes(); render()}
-function render(){
-  if(cur===0){ stage.innerHTML='<h3>1-topshiriq · Dalil xaritasi</h3><p>Bank boti bo‘yicha 8 yozuv. Qaysilari <b>dalil</b> bo‘la oladi? Manba + sanasi bor yozuvlarni belgilang (4 ta).</p><div class="gm-grid" id="g1">'+
-    [['B-01','Rasmiy sayt, bot sahifasi · 12.09',1],['B-02','Chatdagi xabar, havolasiz',0],['B-03','Skrinshot, ilova v3.2 · 14.09',1],['B-04','«Eshitdim, bot zo‘r ekan»',0],['B-05','Rasmiy so‘rov javobi · 18.09',1],['B-06','Eski xabar, sanasi yo‘q',0],['B-07','Bot dialogi yozuvi · 15.09',1],['B-08','Blog posti, muallifi noma’lum',0]].map(function(c){return '<button type="button" class="gm-cell" data-v="'+c[0]+'" data-ok="'+c[2]+'"><b>'+c[0]+'</b><span>'+c[1]+'</span></button>'}).join('')+'</div>'+nextBtn('Tekshirish');
-    $$('#g1 .gm-cell').forEach(function(c){c.onclick=function(){c.classList.toggle('sel')}});
-    bindNext(function(){checkMulti('g1',['B-01','B-03','B-05','B-07'],'To‘g‘ri! Manba + sana = dalil. Qolgani dalil emas.','4 ta dalil bor. Manba va sanasi to‘liq yozuvlarni tanlang.')});
+function updateHud(){ $('#gmCards').textContent='📄 '+G.done+'/'+G.cards.length; $('#gmBat').textContent='🔋 '+'⚡'.repeat(Math.max(0,G.battery))+'·'.repeat(Math.max(0,3-G.battery)); xpEl.textContent=G.xp; barEl.style.width=Math.min(100,Math.round(G.xp/TOTAL*100))+'%' }
+function markNodes(){nodes.forEach(function(n,i){n.classList.toggle('on',!!G&&i===G.lvl); n.classList.toggle('done',!!G&&(i<G.lvl||i===3&&false))})}
+function fmt(s){s=Math.max(0,Math.ceil(s)); var m=Math.floor(s/60); return (m<10?'0':'')+m+':'+((s%60)<10?'0':'')+(s%60)}
+function tileAt(px,py){return [Math.floor(px/TILE), Math.floor(py/TILE)]}
+function blocked(px,py){ var r=20, pts=[[px-r,py-r],[px+r,py-r],[px-r,py+r],[px+r,py+r]]; for(var i=0;i<4;i++){var t=tileAt(pts[i][0],pts[i][1]); if(t[0]<0||t[1]<0||t[0]>=COLS||t[1]>=ROWS) return true; if(G.walls[t[0]+','+t[1]]) return true} return false }
+function loop(ts){
+  if(!G||!G.running) return;
+  var dt=Math.min(0.05,(ts-lastT)/1000||0.016); lastT=ts;
+  if(!G.paused){
+    G.left-=dt; timeEl.textContent=fmt(G.left);
+    if(G.left<=0){ hurt('Vaqt tugadi! Batareya -1'); if(G){ resetPos(); G.left=45; } }
+    var sp=175, dx=0, dy=0;
+    if(keys.left)dx-=1; if(keys.right)dx+=1; if(keys.up)dy-=1; if(keys.down)dy+=1;
+    if(dx&&dy){dx*=0.707; dy*=0.707}
+    if(dx){var nx=G.rx+dx*sp*dt; if(!blocked(nx,G.ry))G.rx=nx}
+    if(dy){var ny=G.ry+dy*sp*dt; if(!blocked(G.rx,ny))G.ry=ny}
+    var L=LEVELS[G.lvl];
+    if(L.bug){var b=G.bug, bs=L.bugSpeed; b.x+=b.dir*bs*dt; if(b.x<(b.range[0]*TILE+30)||b.x>(b.range[1]*TILE+30))b.dir*=-1; if(Math.abs(b.x-G.rx)<38&&Math.abs(b.y-G.ry)<38){ hurt('Qizil xato tegdi! Batareya -1'); if(G)resetPos(); }}
+    // card pickup
+    for(var i=0;i<G.cards.length;i++){var c=G.cards[i]; if(!c.taken && Math.abs(G.rx-(c.x*TILE+30))<36 && Math.abs(G.ry-(c.y*TILE+30))<36){ c.taken=true; openCard(c); break }}
+    // archive
+    if(G && G.done>=G.cards.length && Math.abs(G.rx-((COLS-1)*TILE+30))<40 && Math.abs(G.ry-((ROWS-1)*TILE+30))<40){ levelDone(); }
   }
-  if(cur===1){ stage.innerHTML='<h3>2-topshiriq · Ankerga ball qo‘ying</h3><p>Bot javobi: «To‘lov uchun: Ilova → To‘lovlar → Kartani tanlang → Summani kiriting» (havola yo‘q, tasdiq qadami aytilmagan). Anker: 0 — yo‘q, 1 — umumiy, 2 — qadamlar bor, 3 — qadam + havola + tekshiruv.</p><div class="gm-opts" id="g2">'+
-    [0,1,2,3].map(function(v){return '<button type="button" class="gm-opt" data-v="'+v+'"><b>'+v+'</b> ball</button>'}).join('')+'</div>'+nextBtn('Tekshirish');
-    $$('#g2 .gm-opt').forEach(function(o){o.onclick=function(){$$('#g2 .gm-opt').forEach(function(x){x.classList.remove('sel')}); o.classList.add('sel')}});
-    bindNext(function(){var p=$('#g2 .sel'); if(p&&p.getAttribute('data-v')==='2'){feed(true,'To‘g‘ri — 2 ball.'); award(100); sayIt('To‘g‘ri! Qadamlar bor, lekin havola va yakuniy tekshiruv yo‘q — 3 emas, 2.',true); bindNext(goNext); $('#gmNext').textContent='Keyingisi →'} else {tries++; feed(false,'Anker so‘zlarini yana o‘qing.'); sayIt('Anker kalit so‘zlari: qadam bormi? havola-chi?')}});
-  }
-  if(cur===2){ stage.innerHTML='<h3>3-topshiriq · Qizil tutish</h3><p>Uchta da’vo. Qaysi biri <b>soxta/shubhali</b> — Qizil jamoa bayrog‘iga (X1) loyiq?</p><div class="gm-opts" id="g3">'+
-    [['a','«Bot 42 ta savolning 38 tasiga to‘g‘ri javob berdi» — dialog yozuvlari ilova qilingan'],['b','«Bot javob tezligi 911% ga oshdi» — manba ko‘rsatilmagan'],['c','«Bot ish kunlari 10:00–18:00 ishlaydi» — rasmiy sayt, 10.09']].map(function(c){return '<button type="button" class="gm-opt" data-v="'+c[0]+'">'+c[1]+'</button>'}).join('')+'</div>'+nextBtn('🚩 X1 bayroq qo‘yish');
-    $$('#g3 .gm-opt').forEach(function(o){o.onclick=function(){$$('#g3 .gm-opt').forEach(function(x){x.classList.remove('sel')}); o.classList.add('sel')}});
-    bindNext(function(){var p=$('#g3 .sel'); if(p&&p.getAttribute('data-v')==='b'){feed(true,'Tutdingiz!'); award(100); sayIt('Aynan shu! «911%» — manbasiz, tekshirib bo‘lmaydigan raqam. X1: nashr muzlatiladi, tekshiruv boshlanadi.',true); bindNext(goNext); $('#gmNext').textContent='Keyingisi →'} else {tries++; feed(false,'Bu da’voning dalili bor.'); sayIt('Dalili ilova qilingan da’vo bayroqqa loyiq emas. Manbasizini qidiring.')}});
-  }
-  if(cur===3){ stage.innerHTML='<h3>4-topshiriq · Dalil kartasini to‘ldiring</h3><p>Karta tayyor deyishdan oldin <b>yetishmayotgan majburiy</b> maydonlarni belgilang (3 ta).</p><div class="gm-card"><table>'+
-    '<tr><td>Tashkilot</td><td>B-01 bank</td></tr><tr><td>Ball</td><td>2</td></tr><tr><td>Manba URL</td><td class="gm-miss">— bo‘sh —</td></tr><tr><td>Sana</td><td>14.09.2026</td></tr><tr><td>Anker ID</td><td class="gm-miss">— bo‘sh —</td></tr><tr><td>SHA-256</td><td class="gm-miss">— bo‘sh —</td></tr></table></div><div class="gm-grid" id="g4" style="margin-top:12px">'+
-    ['Manba URL','Anker ID','SHA-256','Bank telefoni','Muallif imzosi','Bank manzili'].map(function(v){return '<button type="button" class="gm-cell" data-v="'+v+'"><b>'+v+'</b></button>'}).join('')+'</div>'+nextBtn('Tekshirish');
-    $$('#g4 .gm-cell').forEach(function(c){c.onclick=function(){c.classList.toggle('sel')}});
-    bindNext(function(){checkMulti('g4',['Manba URL','Anker ID','SHA-256'],'To‘g‘ri! Bu uchtasiz karta «Tasdiqqa tayyor» bo‘la olmaydi.','Majburiy uchlik: havola, anker, arxiv belgisi (SHA).')});
-  }
-  if(cur===4){ stage.innerHTML='<h3>5-topshiriq · Hisob</h3><p>10 katakdan 6 tasi to‘ldirilgan (3, 2, 3, 1, 2, 3). Qamrov necha foiz va indeks raqami chiqariladimi?</p><div class="gm-opts" id="g5">'+
-    [['a','Qamrov 60% — indeks chiqariladi (≥60%)'],['b','Qamrov 6% — indeks chiqarilmaydi'],['c','Qamrov 60% — baribir chiqarilmaydi'],['d','Qamrov 100% — bo‘sh katak ham 0 bo‘ladi']].map(function(c){return '<button type="button" class="gm-opt" data-v="'+c[0]+'">'+c[1]+'</button>'}).join('')+'</div>'+nextBtn('Tekshirish');
-    $$('#g5 .gm-opt').forEach(function(o){o.onclick=function(){$$('#g5 .gm-opt').forEach(function(x){x.classList.remove('sel')}); o.classList.add('sel')}});
-    bindNext(function(){var p=$('#g5 .sel'); if(p&&p.getAttribute('data-v')==='a'){feed(true,'To‘g‘ri — 60%.'); award(100); sayIt('To‘g‘ri! Bo‘sh katak 0 emas — u hisobga kirmaydi, qamrov alohida yoziladi.',true); bindNext(goNext); $('#gmNext').textContent='Keyingisi →'} else {tries++; feed(false,'Bo‘sh ≠ 0 qoidasini eslang.'); sayIt('Esda tuting: bo‘sh katak — baholanmagan, 0 emas.')}});
-  }
-  if(cur===5){ stage.innerHTML='<h3>6-topshiriq · Akademik final</h3><p>Uchala savolga ham to‘g‘ri javob bering.</p><div class="gm-opts" id="g6">'+
-    [['q1','1) Siz yozgan materialni kim tekshiradi?','Mustaqil verifikator'],['q2','2) Tekshiruvchida manfaat to‘qnashuvi bo‘lsa?','O‘zini chetlashtiradi (recusal)'],['q3','3) Nashrdan keyin xato topilsa?','72 soatda ochiq erratum']].map(function(q){return '<p style="margin:12px 0 6px"><b>'+q[1]+'</b></p><button type="button" class="gm-opt" data-v="'+q[0]+'a">Do‘sti / hamkasbi</button> <button type="button" class="gm-opt" data-v="'+q[0]+'b">'+q[2]+'</button> <button type="button" class="gm-opt" data-v="'+q[0]+'c">Jim tuzatib qo‘yiladi</button>'}).join('')+'</div>'+nextBtn('Yakunlash');
-    $$('#g6 .gm-opt').forEach(function(o){o.onclick=function(){var g=o.getAttribute('data-v').slice(0,2); $$('#g6 .gm-opt').forEach(function(x){if(x.getAttribute('data-v').slice(0,2)===g)x.classList.remove('sel')}); o.classList.add('sel')}});
-    bindNext(function(){var got=$$('#g6 .sel').map(function(e){return e.getAttribute('data-v')}).sort().join(','); if(got==='q1b,q2b,q3b'){feed(true,'Akademik final to‘liq!'); award(100); sayIt('Mukammal! Mustaqillik, recusal va ochiq erratum — klubning uch ustuni.',true); bindNext(finish); $('#gmNext').textContent='Natijani ko‘rish →'} else {tries++; feed(false,'Bitta javob akademik qoidaga zid.'); sayIt('O‘ylab ko‘ring: mustaqillik va ochiqlik qaysi javoblarda?')}});
-  }
+  draw(); raf=requestAnimationFrame(loop);
 }
-function finish(){
-  cur=6; markNodes(); clearInterval(timer);
-  var pct=Math.round(xp/TOTAL*100);
-  var lvl= xp>=520?'Verifikator kalibri': xp>=400?'Tahlilchi': xp>=250?'Yangi tadqiqotchi':'Boshlang‘ich daraja';
-  var skills=['Dalil topish','Ball qo‘yish','Kritik tekshiruv','Hujjat intizomi','Hisob','Akademik etika'];
-  stage.innerHTML='<div class="gm-res"><div style="font-size:40px">🏆</div><div class="lvl">'+lvl+'</div><p style="color:var(--muted);margin:0">'+xp+' / '+TOTAL+' XP · '+pct+'% · vaqt '+timeEl.textContent+'</p>'+
-  '<div class="gm-bars">'+skills.map(function(sk,i){return '<div class="gm-bar"><span>'+sk+'</span><div class="t"><i style="width:'+scores[i]+'%"></i></div><b>'+scores[i]+'</b></div>'}).join('')+'</div>'+
+function resetPos(){ if(!G)return; G.rx=30; G.ry=30; }
+function hurt(msg){ if(!G)return; G.battery--; sayIt(msg); updateHud(); if(G.battery<=0){ gameOver() } }
+function openCard(c){
+  G.paused=true;
+  var pop=$('#gmPop'); $('#gmCardNote').textContent=c.note.t; pop.style.display='flex';
+  $('#gmBtnReal').onclick=function(){ decide(c,true)};
+  $('#gmBtnFake').onclick=function(){ decide(c,false)};
+}
+function decide(c,saidReal){
+  $('#gmPop').style.display='none'; G.paused=false;
+  var ok=(saidReal===c.note.real);
+  if(ok){ G.correct++; G.done++; G.xp+= c.note.real?60:50; sayIt(c.note.real?'To‘g‘ri — dalil arxivga! +60 XP':'To‘g‘ri tutdingiz — bu dalil emas! +50 XP',true); }
+  else { G.wrong++; G.done++; G.xp=Math.max(0,G.xp-20); hurt(c.note.real?'Xato! Bu haqiqiy dalil edi. Batareya -1':'Xato! Bu soxta edi — Qizil bayroq kerak edi. Batareya -1'); if(!G)return; }
+  updateHud();
+  if(G.done>=G.cards.length) sayIt('Hamma kartalar tayyor! Endi ARXIVga (pastki o‘ng burchak) yeting! →');
+}
+function levelDone(){
+  G.xp+=100+Math.ceil(G.left); G.running=false; cancelAnimationFrame(raf);
+  if(G.lvl<LEVELS.length-1){ sayIt('Daraja o‘tdi! +'+(100+Math.ceil(G.left))+' XP. Keyingi daraja qiyinroq.',true); stage.querySelector('#gmNextLvl').style.display='inline-flex'; markNodes(); updateHud(); }
+  else finish();
+}
+function gameOver(){
+  G.running=false; cancelAnimationFrame(raf);
+  sayIt('Batareya tugadi! Lekin tadqiqotchi taslim bo‘lmaydi — qayta urining.');
+  showFinal(false);
+}
+function showFinal(won){
+  var acc=(G.correct+G.wrong)?Math.round(G.correct/(G.correct+G.wrong)*100):0;
+  var xp=G.xp;
+  var lvl= xp>=850?'Verifikator kalibri': xp>=600?'Tahlilchi': xp>=350?'Yangi tadqiqotchi':'Boshlang‘ich daraja';
+  $('#gmPlayWrap').style.display='none';
+  var fin=$('#gmFinal'); fin.style.display='block';
+  fin.innerHTML='<div class="gm-res"><div style="font-size:40px">'+(won?'🏆':'🔋')+'</div><div class="lvl">'+lvl+'</div><p style="color:var(--muted);margin:0">'+xp+' XP · dalil aniqligi '+acc+'% · yetilgan daraja: '+(G.lvl+1)+'/3</p>'+
+  '<div class="gm-bars"><div class="gm-bar"><span>Dalil aniqligi</span><div class="t"><i style="width:'+acc+'%"></i></div><b>'+acc+'%</b></div>'+
+  '<div class="gm-bar"><span>Topilgan kartalar</span><div class="t"><i style="width:'+Math.round(G.done/ (LEVELS[G.lvl].cards) *100)+'%"></i></div><b>'+G.done+'</b></div>'+
+  '<div class="gm-bar"><span>Batareya</span><div class="t"><i style="width:'+Math.round(Math.max(0,G.battery)/3*100)+'%"></i></div><b>'+Math.max(0,G.battery)+'/3</b></div></div>'+
   '<p style="color:var(--muted);font-size:14px">Natija — ko‘rsatkich (indikativ). Klubda daraja haqiqiy mini-loyiha va peer-review bilan tasdiqlanadi.</p>'+
-  '<div class="gm-row" style="justify-content:center"><button type="button" class="btn" id="gmAgain">Qayta o‘ynash</button><a class="btn p" href="#qoshil">Klubga qo‘shilish</a></div></div>';
-  sayIt('Tayyor, '+ (player?player.name:'tadqiqotchi') +'! Natijangiz: '+lvl+' ('+xp+' XP). Bu — boshlang‘ich xarita; haqiqiy daraja mini-loyiha bilan tasdiqlanadi.',true);
-  $('#gmAgain').onclick=function(){xp=0; scores=[0,0,0,0,0,0]; setXp(); cur=-1; goNext(); startTimer()};
-  window.scrollTo({top:$('#sinov').offsetTop-80,behavior:'smooth'});
+  '<div class="gm-row" style="justify-content:center"><button type="button" class="btn p" id="gmAgain">Qayta o‘ynash</button><a class="btn" href="#qoshil">Klubga qo‘shilish</a></div></div>';
+  $('#gmAgain').onclick=function(){ fin.style.display='none'; $('#gmPlayWrap').style.display='block'; beginGame() };
+  fin.scrollIntoView({behavior:'smooth',block:'center'});
 }
-/* --- start & auth (UI) --- */
+function finish(){ sayIt('Mini-loyiha tekshirildi, '+(player?player.name:'tadqiqotchi')+'! Arxivga yetkazdingiz — choraklik ish yopildi.',true); showFinal(true) }
+
+/* ---------- chizish ---------- */
+function rr(x,y,w,h,r){ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath()}
+function draw(){
+  if(!ctx)return;
+  var dark=document.documentElement.getAttribute('data-theme')==='dark';
+  ctx.fillStyle=dark?'#16233C':'#EAF1FB'; ctx.fillRect(0,0,COLS*TILE,ROWS*TILE);
+  ctx.strokeStyle=dark?'rgba(255,255,255,.06)':'rgba(31,56,100,.07)';
+  for(var x=0;x<=COLS;x++){ctx.beginPath();ctx.moveTo(x*TILE,0);ctx.lineTo(x*TILE,ROWS*TILE);ctx.stroke()}
+  for(var y=0;y<=ROWS;y++){ctx.beginPath();ctx.moveTo(0,y*TILE);ctx.lineTo(COLS*TILE,y*TILE);ctx.stroke()}
+  // archive
+  var ax=(COLS-1)*TILE, ay=(ROWS-1)*TILE, ready=G.done>=G.cards.length;
+  ctx.fillStyle=ready?'#2F9E5F':'#2E5490'; rr(ax+6,ay+10,TILE-12,TILE-18,7); ctx.fill();
+  ctx.fillStyle='#fff'; ctx.font='bold 10px Inter,sans-serif'; ctx.textAlign='center'; ctx.fillText('ARXIV',ax+30,ay+36); ctx.font='13px Inter'; ctx.fillText(ready?'✓':'🔒',ax+30,ay+22);
+  // walls
+  ctx.fillStyle=dark?'#31456B':'#B9CBE4';
+  Object.keys(G.walls).forEach(function(k){var p=k.split(','),x=+p[0],y=+p[1]; rr(x*TILE+5,y*TILE+5,TILE-10,TILE-10,8); ctx.fill(); ctx.fillStyle=dark?'#3E5A8C':'#9FB8DC'; rr(x*TILE+12,y*TILE+12,14,8,3); ctx.fill(); ctx.fillStyle=dark?'#31456B':'#B9CBE4';});
+  // cards
+  G.cards.forEach(function(c){ if(c.taken)return; var x=c.x*TILE+15,y=c.y*TILE+10; ctx.fillStyle='#fff'; rr(x,y,30,40,4); ctx.fill(); ctx.strokeStyle='#2F6FDB'; ctx.lineWidth=2; ctx.stroke(); ctx.strokeStyle='#9FB8DC'; ctx.lineWidth=2; [0,1,2].forEach(function(i){ctx.beginPath();ctx.moveTo(x+6,y+14+i*8);ctx.lineTo(x+24,y+14+i*8);ctx.stroke()}); ctx.fillStyle='#2F6FDB'; ctx.font='bold 13px Inter'; ctx.textAlign='center'; ctx.fillText('?',x+15,y+11); });
+  // bug
+  if(LEVELS[G.lvl].bug){var b=G.bug; ctx.fillStyle='#D84B3F'; ctx.beginPath(); ctx.arc(b.x,b.y,15,0,7); ctx.fill(); ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(b.x-5,b.y-3,3,0,7); ctx.arc(b.x+5,b.y-3,3,0,7); ctx.fill(); ctx.strokeStyle='#D84B3F'; ctx.lineWidth=2; [-1,1].forEach(function(s){ctx.beginPath();ctx.moveTo(b.x+s*13,b.y+6);ctx.lineTo(b.x+s*19,b.y+12);ctx.stroke()}); ctx.fillStyle='#D84B3F'; ctx.font='bold 11px Inter'; ctx.textAlign='center'; ctx.fillText('XATO',b.x,b.y-20); }
+  // robot (player)
+  var x=G.rx,y=G.ry;
+  ctx.fillStyle='#1F3864'; rr(x-13,y+14,26,7,3); ctx.fill();
+  ctx.fillStyle='#2F6FDB'; rr(x-17,y-16,34,32,9); ctx.fill();
+  ctx.fillStyle='#DCEBFF'; rr(x-12,y-11,24,20,6); ctx.fill();
+  ctx.fillStyle='#1F3864'; ctx.beginPath(); ctx.arc(x-5,y-2,3,0,7); ctx.arc(x+5,y-2,3,0,7); ctx.fill();
+  ctx.fillRect(x-4,y+4,8,2.6);
+  ctx.strokeStyle='#2F6FDB'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(x,y-16); ctx.lineTo(x,y-24); ctx.stroke();
+  ctx.fillStyle='#4DA3FF'; ctx.beginPath(); ctx.arc(x,y-27,4,0,7); ctx.fill();
+}
+
+/* ---------- boshqaruv ---------- */
+var KEYMAP={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'up',ArrowDown:'down',a:'left',d:'right',w:'up',s:'down',A:'left',D:'right',W:'up',S:'down'};
+document.addEventListener('keydown',function(e){ if(!G||!G.running||G.paused)return; var k=KEYMAP[e.key]; if(k){keys[k]=true; e.preventDefault()} });
+document.addEventListener('keyup',function(e){ var k=KEYMAP[e.key]; if(k)keys[k]=false });
+function bindPad(){ $$('#gmPad [data-k]').forEach(function(b){ var k=b.getAttribute('data-k'); var on=function(e){e.preventDefault(); keys[k]=true}, off=function(){keys[k]=false}; b.addEventListener('pointerdown',on); b.addEventListener('pointerup',off); b.addEventListener('pointerleave',off); b.addEventListener('pointercancel',off); }) }
+
+function beginGame(){
+  startBtn.style.display='none'; stage.style.display='block';
+  $('#gmPlayWrap').style.display='block'; $('#gmFinal').style.display='none';
+  cv=$('#gmCanvas'); ctx=cv.getContext('2d');
+  G=null; newLevel(0); G.xp=0; updateHud();
+  cancelAnimationFrame(raf); lastT=0; raf=requestAnimationFrame(loop);
+  sayIt('Ketdik, '+(player?player.name:'tadqiqotchi')+'! Robini boshqaring: strelkalar yoki WASD. Kartalarni yig‘ing, qaror bering, ARXIVga yeting.');
+  stage.scrollIntoView({behavior:'smooth',block:'center'});
+}
+/* level next button */
+document.addEventListener('click',function(e){ if(e.target&&e.target.id==='gmNextLvl'){ e.target.style.display='none'; var keep=G.xp; newLevel(G.lvl+1); G.xp=keep; updateHud(); G.running=true; lastT=0; raf=requestAnimationFrame(loop);} });
+
+/* ---------- auth (UI only) ---------- */
 var modal=$('#gmModal'), form=$('#gmForm'), mode='reg';
 function openModal(){$('#gmModal').classList.add('on')}
 function closeModal(){$('#gmModal').classList.remove('on')}
@@ -1095,12 +1203,12 @@ form.addEventListener('submit',function(e){e.preventDefault();
   var name= mode==='reg' ? ($('#gmName').value.trim()||email.split('@')[0]) : (player&&player.email===email? player.name : email.split('@')[0]);
   if(email.indexOf('@')<0||pass.length<6){sayIt('Email va kamida 6 belgili parolni tekshiring.'); return}
   player={name:name,email:email}; try{localStorage.setItem('rt2_player',JSON.stringify(player))}catch(err){}
-  closeModal(); refreshUser(); begin();
+  closeModal(); refreshUser(); beginGame();
 });
-function begin(){ stage.style.display='block'; startBtn.style.display='none'; xp=0; scores=[0,0,0,0,0,0]; setXp(); cur=-1; sayIt('Qani ketdik, '+player.name+'! Mini-loyiha: «Bank botini bir chorakda o‘lchash». Men tekshiraman, siz topasiz.'); startTimer(); goNext(); stage.scrollIntoView({behavior:'smooth',block:'center'}) }
-startBtn.onclick=function(){ if(!player){setMode('reg'); openModal()} else begin() };
+startBtn.onclick=function(){ if(!player){setMode('reg'); openModal()} else { startBtn.style.display='none'; beginGame() } };
+document.addEventListener('DOMContentLoaded',function(){});
+bindPad();
 })();
-
 </script>
 </body>
 </html>
