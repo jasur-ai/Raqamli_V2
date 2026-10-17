@@ -583,6 +583,26 @@ svg.gi{width:16px;height:16px;flex:0 0 auto}
 .gc-task-k{font-size:10.5px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--blue);background:var(--surf);border:1px solid var(--line2);border-radius:999px;padding:3px 9px}
 .gc-task b{font-size:14px;font-weight:800;color:var(--ink)}
 .gc-task-n{margin-left:auto;font-size:12.5px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+/* Kolleksiya */
+.gc-dex{display:flex;align-items:center;gap:10px;max-width:860px;margin:0 auto 10px;flex-wrap:wrap}
+.gc-dex-h{font-size:10.5px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--muted)}
+.gc-dex-list{display:flex;gap:6px;flex-wrap:wrap}
+.gc-slot{position:relative;width:46px;height:42px;border-radius:11px;border:1.5px dashed var(--line2);background:var(--surf);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;cursor:default;padding:0;transition:transform .2s,border-color .2s,background .2s}
+.gc-slot .cr.s1{border-radius:50%/.46}
+.gc-slot .cr.s2{border-radius:6px}
+.gc-slot .cr{display:block;width:20px;height:19px;border-radius:50% 50% 46% 46%/58% 58% 42% 42%;background:radial-gradient(circle at 34% 28%,rgba(255,255,255,.45),transparent 62%),var(--c);position:relative;filter:grayscale(1);opacity:.32;transition:filter .3s,opacity .3s}
+.gc-slot .cr:before,.gc-slot .cr:after{content:"";position:absolute;top:8px;width:2.6px;height:2.6px;border-radius:50%;background:#12203a}
+.gc-slot .cr:before{left:5.4px} .gc-slot .cr:after{right:5.4px}
+.gc-slot b{font-size:9px;font-weight:800;color:var(--muted);line-height:1}
+.gc-slot.has{border-style:solid;border-color:color-mix(in srgb,var(--c) 45%,var(--line2));background:color-mix(in srgb,var(--c) 8%,var(--surf))}
+.gc-slot.has .cr{filter:none;opacity:1}
+.gc-slot.has b{color:var(--ink)}
+.gc-slot.pop{transform:translateY(-4px) scale(1.12);box-shadow:0 6px 16px -6px rgba(47,111,219,.55)}
+@media (max-width:680px){
+  .gc-dex{gap:6px}
+  .gc-dex-h{display:none}
+  .gc-slot{width:42px;height:38px}
+}
 /* karta oynasi */
 .gmc-card-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .gmc-ic{width:34px;height:34px;border-radius:10px;display:inline-block;flex:0 0 34px}
@@ -785,7 +805,7 @@ svg.gi{width:16px;height:16px;flex:0 0 auto}
       <div class="gm-bot" id="gmBot" aria-hidden="true">
         <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="35" fill="#2F6FDB"/><path d="M50 15a35 35 0 0 1 0 70 35 35 0 0 0 0-70z" fill="#1F55B0" opacity=".35"/><ellipse cx="50" cy="32" rx="27" ry="12" fill="#FFFFFF" opacity=".16"/><circle cx="50" cy="50" r="26" fill="none" stroke="rgba(255,255,255,.32)" stroke-width="2.5"/><circle cx="46" cy="46" r="12.5" fill="none" stroke="#FFFFFF" stroke-width="5"/><path d="M55 55l9 9" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/><path d="M39 42a9 9 0 0 1 6-5" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" opacity=".9"/></svg>
       </div>
-      <div class="gm-say" id="gmSay"><b>Bayes:</b> Salom! Men — Bayes, izlovchi sherigingiz. Katakka bosing — o‘zim yo‘l topib boraman va kartani ochaman. Keyin 4 mezon bo‘yicha qaror berasiz: manba, sana, muallif, havola. Bayt — yordamchi, XATO mavjudotlari esa soxta ma’lumotni qo‘riqlaydi. Boshlash uchun avval ro‘yxatdan o‘ting.</div>
+      <div class="gm-say" id="gmSay"><b>Bayes:</b> Salom! Men — Bayes, izlovchi sherigingiz. Katakka bosing — o‘zim yo‘l topib boraman va kartani ochaman. To‘g‘ri qarordan keyin mavjudot ushlanadi. Bayt — yordamchi, XATO mavjudotlari esa soxta ma’lumotni qo‘riqlaydi. Boshlash uchun avval ro‘yxatdan o‘ting.</div>
     </div>
     <div class="gm-hud">
       <span class="gm-chip" id="gmUser" style="display:none"></span>
@@ -795,6 +815,7 @@ svg.gi{width:16px;height:16px;flex:0 0 auto}
       <span class="gm-num" id="gmTime">01:30</span>
       <span class="gm-num gm-ic" id="gmCards"></span>
       <span class="gm-num gm-ic" id="gmBat"></span>
+      <span class="gm-num gm-ic" id="gmDexChip" title="Kolleksiya — ushlangan dalil mavjudotlari"></span>
       <span class="gm-num gm-combo" id="gmCombo" style="display:none"></span>
       <button type="button" class="gm-snd" id="gmSnd" aria-label="Ovoz">🔊</button>
     </div>
@@ -804,6 +825,7 @@ svg.gi{width:16px;height:16px;flex:0 0 auto}
     <div class="gm-stage" id="gmStage" style="display:none">
       <div id="gmPlayWrap" style="display:none">
         <div class="gc-task" id="gmTask"><span class="gc-task-k">Topshiriq</span><b id="gmTaskTxt"></b><span class="gc-task-n" id="gmTaskNum"></span></div>
+        <div class="gc-dex" id="gmDexBar"><span class="gc-dex-h">Kolleksiya</span><div class="gc-dex-list" id="gmDex"></div></div>
         <div class="gmc-wrap">
           <canvas id="gmCanvas" width="720" height="480"></canvas>
           <div class="gmc-pop" id="gmPop" style="display:none"><div class="gmc-card"><div class="gmc-card-top"><span class="gmc-ic" id="gmCardIcon"></span><div><div class="gmc-card-t">Tekshiruv kartasi</div><span class="gmc-type" id="gmCardType">Hujjat</span></div></div><div class="gmc-title" id="gmCardNote"></div><div class="gmc-meta" id="gmCardMeta"></div><div class="gm-row" style="margin-top:0;gap:8px"><button type="button" class="btn p" id="gmBtnReal" style="flex:1 1 140px;justify-content:center">✓ Ishonchli dalil</button><button type="button" class="btn" id="gmBtnFake" style="flex:1 1 140px;justify-content:center">Ishonchsiz</button></div></div></div>
@@ -813,7 +835,7 @@ svg.gi{width:16px;height:16px;flex:0 0 auto}
           <button type="button" data-k="left" aria-label="Chap">◀</button><button type="button" data-k="down" aria-label="Past">▼</button><button type="button" data-k="right" aria-label="O‘ng">▶</button>
         </div>
         <p class="gmc-legend"><i class="lp" style="background:#2F9E5F"></i>batareya <i class="lp" style="background:#2F6FDB"></i>vaqt +10 s <i class="lp" style="background:#7A5AF8"></i>qalqon <i class="lp" style="background:#E08A1E"></i>magnit <i class="lp" style="background:#17B4AA"></i>Bayt — hamroh</p>
-        <p class="gmc-hint" id="gmcHint">Katakka <b>bosing</b> — Bayes o‘zi yo‘l topib boradi va kartani ochadi. XATO mavjudotlari quvlaydi — tegmang. Strelkalar/WASD ham ishlaydi. Keyingi daraja: <b>Shift + Enter</b>.</p>
+        <p class="gmc-hint" id="gmcHint">Katakka <b>bosing</b> — Bayes o‘zi boradi va kartani ochadi. To‘g‘ri qaror kolleksiyaga mavjudot qo‘shadi — 6 turni yig‘ing! XATO mavjudotlari quvlaydi. Keyingi daraja: <b>Shift + Enter</b>.</p>
       </div>
       <div id="gmFinal" style="display:none"></div>
     </div>
@@ -1238,6 +1260,20 @@ var CTYPES=[
   {k:'mail', n:'Xat',     c:'#D97706'},
   {k:'blog', n:'Blog',    c:'#DB2777'}
 ];
+var CREATURES=[
+  {k:'doc', n:'Hujjatxan', c:'#2F6FDB', shape:0},
+  {k:'rep', n:'Hisobotoy', c:'#2F9E5F', shape:1},
+  {k:'chat',n:'Chatik',    c:'#7A5AF8', shape:2},
+  {k:'web', n:'Saytjon',   c:'#0891B2', shape:0},
+  {k:'mail',n:'Xatbek',    c:'#D97706', shape:1},
+  {k:'blog',n:'Blogi',     c:'#DB2777', shape:2}
+];
+function creOf(k){ return CREATURES.filter(function(x){return x.k===k})[0]||CREATURES[0] }
+var DEX={} ; try{ DEX=JSON.parse(localStorage.getItem('rt2_dex')||'{}')||{} }catch(e){ DEX={} }
+function dexTotal(){ var n=0; CREATURES.forEach(function(c){ n+=(DEX[c.k]||0)>0?1:0 }); return n }
+function dexSum(){ var n=0; CREATURES.forEach(function(c){ n+=(DEX[c.k]||0) }); return n }
+function saveDex(){ try{ localStorage.setItem('rt2_dex',JSON.stringify(DEX)) }catch(e){} }
+
 function ic(k,d){
   var pth={
     F:'M12 20V5M6 11l6-6 6 6',
@@ -1262,7 +1298,7 @@ var G=null, cv=null, ctx=null, raf=null, lastT=0, keys={}, drag=null;
 var TOUCH=!!(window.matchMedia&&window.matchMedia('(pointer:coarse)').matches);
 var DPR=Math.min(2.5,window.devicePixelRatio||1);
 var SND=true; try{SND=localStorage.getItem('rt2_snd')!=='0'}catch(e){}
-var AC=null, FX={p:[],t:[],shake:0,ring:null};
+var AC=null, FX={p:[],t:[],shake:0,ring:null,fly:[]};
 
 function tone(f,d,type,vol,to){
   if(!SND) return;
@@ -1308,8 +1344,9 @@ function newLevel(i){
   var pups=free.slice(L.cards,L.cards+L.pups).map(function(p,k){ return {x:p[0],y:p[1],type:PUPS[(i+k)%PUPS.length].k,taken:false,ph:Math.random()*6} });
   var poolR=REAL.slice(), poolF=FAKE.slice();
   if(L.targets){ poolR=poolR.filter(function(n){return L.targets.indexOf(n.ty)>=0}); poolF=poolF.filter(function(n){return L.targets.indexOf(n.ty)>=0}) }
+  var unseen=CREATURES.filter(function(c){return !DEX[c.k]}).map(function(c){return c.k});
   function pickBal(arr,k){
-    if(!L.targets||L.targets.length<2) return shuffle(arr).slice(0,k);
+    if(!L.targets||L.targets.length<2) return shuffle(arr).sort(function(a,b){ return (unseen.indexOf(b.ty)>=0)-(unseen.indexOf(a.ty)>=0) }).slice(0,k);
     var groups={}; L.targets.forEach(function(t){groups[t]=shuffle(arr.filter(function(n){return n.ty===t}))});
     var out=[], gi=0, guard=0;
     while(out.length<k && guard++<80){
@@ -1336,8 +1373,25 @@ function newLevel(i){
      shieldT:0, magnetT:0, inv:0, intro:1.1, running:true, paused:false, lastSec:-1, tickAt:-1, _done:false,
      bayt:{x:90,y:90,ph:0,mood:0}, heroDir:1};
   var tt=$('#gmTaskTxt'); if(tt) tt.textContent=L.rule;
-  updateHud(); markNodes(); hideLevelUp();
+  updateHud(); markNodes(); hideLevelUp(); renderDex();
   sayIt((i+1)+'-daraja — «'+L.name+'». Topshiriq: '+L.rule.toLowerCase()+'. XATO mavjudotlaridan qochib, kartalarni tekshiring.');
+}
+function renderDex(popKey){
+  var el=$('#gmDex'); if(!el) return;
+  el.innerHTML=CREATURES.map(function(c){
+    var n=DEX[c.k]||0, has=n>0;
+    return '<button type="button" class="gc-slot'+(has?' has':'')+(popKey===c.k?' pop':'')+'" data-k="'+c.k+'" title="'+c.n+(has?' — '+n+' ta':' — hali ushlanmagan')+'">'+
+      '<i class="cr s'+c.shape+'" style="--c:'+c.c+'"></i><b>'+(has?n:'?')+'</b></button>';
+  }).join('');
+  var el2=$('#gmDexNum'); if(el2) el2.textContent=dexTotal()+'/6 tur';
+  var chip=$('#gmDexChip');
+  if(chip) chip.innerHTML='<svg class="gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3.6 0 6.5 2.6 6.5 6 0 4.2-4 8.4-6.5 10.5C9.5 17.4 5.5 13.2 5.5 9c0-3.4 2.9-6 6.5-6z"/><circle cx="12" cy="9" r="2.2"/></svg><span>'+dexTotal()+'/6</span>';
+  if(popKey){ setTimeout(function(){ var s2=$('.gc-slot.pop'); if(s2) s2.classList.remove('pop') },700) }
+}
+function capture(type){
+  DEX[type]=(DEX[type]||0)+1; saveDex(); renderDex(type);
+  var cre=creOf(type);
+  return cre;
 }
 function updateHud(){
   if(!G) return;
@@ -1348,6 +1402,8 @@ function updateHud(){
   var cb=$('#gmCombo');
   if(cb){ if(G.combo>=2){ cb.style.display='inline-block'; cb.textContent='×'+G.combo+' seriya'; cb.classList.toggle('hot',G.combo>=4) } else cb.style.display='none' }
   timeEl.style.display='';
+  var chip=$('#gmDexChip');
+  if(chip) chip.innerHTML='<svg class="gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3.6 0 6.5 2.6 6.5 6 0 4.2-4 8.4-6.5 10.5C9.5 17.4 5.5 13.2 5.5 9c0-3.4 2.9-6 6.5-6z"/><circle cx="12" cy="9" r="2.2"/></svg><span>'+dexTotal()+'/6</span>';
 }
 function markNodes(){nodes.forEach(function(n,i){n.classList.toggle('on',!!G&&i===G.lvl); n.classList.toggle('done',!!G&&(i<G.lvl||i===3&&false))})}
 
@@ -1523,6 +1579,12 @@ function updateChasers(dt,frozen){
 }
 function updateFX(dt){
   if(FX.ring){ FX.ring.t+=dt; if(FX.ring.t>.6) FX.ring=null }
+  for(var f=FX.fly.length-1;f>=0;f--){ var fl=FX.fly[f]; fl.t+=dt;
+    var k=Math.min(1,fl.t/.75), e=k*k*(3-2*k);
+    fl.x=fl.x0+(fl.tx-fl.x0)*e; fl.y=fl.y0+(fl.ty-fl.y0)*e-Math.sin(k*Math.PI)*40;
+    fl.s=1-.45*e;
+    if(k>=1) FX.fly.splice(f,1);
+  }
   var arr=FX.p;
   for(var q=arr.length-1;q>=0;q--){ var p=arr[q]; p.life-=dt; p.x+=p.vx*dt; p.y+=p.vy*dt; p.vy+=180*dt; p.vx*=.985; if(p.life<=0) arr.splice(q,1) }
   var tx=FX.t;
@@ -1562,12 +1624,20 @@ function decide(c,saidReal){
   $('#gmPop').style.display='none'; G.paused=false;
   var ok=(saidReal===c.note.real);
   if(ok){
+    var wasNew=!(DEX[c.type]>0);
     G.correct++; G.done++; G.combo++; G.maxCombo=Math.max(G.maxCombo,G.combo);
     var gain=addBits(c.note.real?60:50);
+    var cre=capture(c.type);
+    var cx=c.x*TILE+30, cy=c.y*TILE+30;
+    FX.fly.push({x:cx,y:cy-20,x0:cx,y0:cy-20,tx:W/2,ty:H+16,t:0,s:1,type:c.type,ph:c.ph});
     popText(G.rx,G.ry-34,'+'+gain+' BIT'+(G.combo>=3?' ×'+G.combo:''),'#2F9E5F');
     burst(G.rx,G.ry,14,'#4DA3FF'); tone(660,.08,'sine',.05); setTimeout(function(){tone(990,.1,'sine',.045)},80); buzz(15);
     G.bayt.mood=1;
-    sayIt('To‘g‘ri. '+c.note.why.charAt(0).toUpperCase()+c.note.why.slice(1)+' +'+gain+' BIT',true);
+    var msg = c.note.real
+      ? 'Ushlandi — '+cre.n+'! '+c.note.why.charAt(0).toUpperCase()+c.note.why.slice(1)+' +'+gain+' BIT'
+      : 'To‘g‘ri: soxta manba zararsizlantirildi. '+c.note.why.charAt(0).toUpperCase()+c.note.why.slice(1)+' +'+gain+' BIT';
+    if(wasNew){ setTimeout(function(){ if(G) sayIt(msg,true) },260); tone(1180,.12,'triangle',.05) }
+    else sayIt(msg,true);
   } else {
     G.wrong++; G.done++; G.combo=0; G.xp=Math.max(0,G.xp-20);
     FX.shake=.4; burst(G.rx,G.ry,12,'#D84B3F'); tone(170,.26,'sawtooth',.055,90); buzz(45);
@@ -1613,7 +1683,7 @@ function lvlUpEl(){
 function showLevelUp(bonus){
   var el=lvlUpEl(); if(!el||!G) return;
   var acc=(G.correct+G.wrong)?Math.round(G.correct/(G.correct+G.wrong)*100):0;
-  var third='<b>'+fmt(G.left)+'</b><span>qolgan vaqt</span>';
+  var third='<b>'+dexTotal()+'/6</b><span>kolleksiya</span>';
   var card=el.querySelector('.lv-card');
   card.innerHTML='<div class="lv-tag">Daraja '+(G.lvl+1)+' yakunlandi</div>'+
     '<div class="lv-ttl">'+LEVELS[G.lvl].name+' <span class="lv-ok">✓</span></div>'+
@@ -1651,6 +1721,7 @@ function showFinal(won){
   '<div class="gm-bars"><div class="gm-bar"><span>Dalil aniqligi</span><div class="t"><i style="width:'+acc+'%"></i></div><b>'+acc+'%</b></div>'+
   '<div class="gm-bar"><span>Topilgan kartalar</span><div class="t"><i style="width:'+Math.round(G.done/(LEVELS[G.lvl].cards)*100)+'%"></i></div><b>'+G.done+'</b></div>'+
   '<div class="gm-bar"><span>Batareya</span><div class="t"><i style="width:'+Math.round(Math.max(0,G.battery)/3*100)+'%"></i></div><b>'+Math.max(0,G.battery)+'/3</b></div></div>'+
+  '<p class="gm-bitnote">Kolleksiya: <b>'+dexTotal()+'/6</b> tur · jami '+dexSum()+' ta mavjudot ushlandi.</p>'+
   '<p class="gm-bitnote">BIT — ma’lumot birligi: har bir tekshirilgan dalil ma’lumot beradi.</p>'+
   '<p style="color:var(--muted);font-size:13.5px">Natija — indikativ. Klubda daraja haqiqiy mini-loyiha va peer-review bilan tasdiqlanadi.</p>'+
   '<div class="gm-row" style="justify-content:center"><button type="button" class="btn p" id="gmAgain">Qayta o‘ynash</button><a class="btn" href="#qoshil">Klubga qo‘shilish</a></div></div>';
@@ -1771,6 +1842,9 @@ function drawCards(ts){
     var fl=(Math.sin(ts/700+c.ph*2)+1)/2;
     ctx.globalAlpha=.14*fl; ctx.fillStyle='#fff';
     ctx.beginPath(); ctx.arc(x+14,cy-22,2.2,0,7); ctx.fill(); ctx.globalAlpha=1;
+    /* kartani qo'riqlovchi mavjudot — pastki o'ng burchakda */
+    var guardBob=Math.sin(ts/330+c.ph*1.7)*1.6;
+    drawCreatureShape(c.type, x+21, y+41+guardBob, .72, c.ph*1.3);
   });
 }
 function pupIcon(k,x,y,c){
@@ -1792,6 +1866,41 @@ function drawPups(ts){
     ctx.fillStyle='rgba(255,255,255,.22)'; ctx.beginPath(); ctx.arc(x-4,y-5,6,0,7); ctx.fill();
     pupIcon(u.type,x,y,'#fff');
   });
+}
+function drawCreatureShape(type, x, y, sc, ph, mini){
+  var cre=creOf(type), s=sc||1, t=ph||0;
+  ctx.save(); ctx.translate(x,y); ctx.scale(s,s);
+  /* soya */
+  ctx.fillStyle='rgba(16,34,64,.16)';
+  ctx.beginPath(); ctx.ellipse(0,10,9,3.2,0,0,7); ctx.fill();
+  /* tana */
+  var g=ctx.createLinearGradient(0,-11,0,11);
+  g.addColorStop(0, cre.c); g.addColorStop(1, shadeColor(cre.c,-26));
+  ctx.fillStyle=g;
+  if(cre.shape===1){ ctx.beginPath(); ctx.ellipse(0,0,10,9.4,0,0,7); ctx.fill() }
+  else if(cre.shape===2){ rr(-10,-9,20,18,7); ctx.fill() }
+  else { ctx.beginPath(); ctx.arc(0,0,9.6,0,7); ctx.fill() }
+  /* antenna */
+  ctx.strokeStyle=cre.c; ctx.lineWidth=1.6; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(0,-8); ctx.quadraticCurveTo(2,-13,5,-14); ctx.stroke();
+  ctx.fillStyle='#FFD166'; ctx.beginPath(); ctx.arc(5.4,-14.4,2.1,0,7); ctx.fill();
+  /* ko'zlar */
+  var blink=(Math.sin(t*2.1+ph)>0.955);
+  ctx.fillStyle='#10203a';
+  if(blink){ ctx.fillRect(-5.4,-1.4,3.4,.9); ctx.fillRect(2,-1.4,3.4,.9) }
+  else { ctx.beginPath(); ctx.arc(-3.8,-1,1.9,0,7); ctx.arc(3.8,-1,1.9,0,7); ctx.fill();
+    ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(-3.1,-1.7,.62,0,7); ctx.arc(4.5,-1.7,.62,0,7); ctx.fill() }
+  /* og'iz */
+  ctx.strokeStyle='rgba(16,32,58,.75)'; ctx.lineWidth=1.1;
+  ctx.beginPath(); ctx.arc(0,2.2,2.4,.15*Math.PI,.85*Math.PI); ctx.stroke();
+  /* yonoq */
+  ctx.fillStyle='rgba(255,255,255,.22)'; ctx.beginPath(); ctx.ellipse(-6.4,1.8,2.6,1.6,-.4,0,7); ctx.fill();
+  ctx.restore();
+}
+function shadeColor(hex,amt){
+  var h=hex.replace('#',''), n=parseInt(h,16);
+  var r=Math.max(0,Math.min(255,(n>>16)+amt)), g2=Math.max(0,Math.min(255,((n>>8)&255)+amt)), b=Math.max(0,Math.min(255,(n&255)+amt));
+  return 'rgb('+r+','+g2+','+b+')';
 }
 function drawChasers(ts){
   G.chasers.forEach(function(c){
@@ -1913,6 +2022,11 @@ function drawCompass(ts){
   ctx.restore(); ctx.globalAlpha=1;
 }
 function drawFX(){
+  FX.fly.forEach(function(f){
+    ctx.save(); ctx.globalAlpha=.95;
+    drawCreatureShape(f.type, f.x, f.y, f.s, f.ph, true);
+    ctx.restore(); ctx.globalAlpha=1;
+  });
   if(FX.ring){
     var r=FX.ring, k=r.t/.6, rad=10+k*54;
     ctx.globalAlpha=(1-k)*.55; ctx.strokeStyle=r.c; ctx.lineWidth=2.4;
@@ -2011,7 +2125,7 @@ function initSndBtn(){
   b.onclick=function(){ SND=!SND; try{localStorage.setItem('rt2_snd',SND?'1':'0')}catch(e){} paint(); if(SND) tone(880,.08,'sine',.04) };
 }
 function initUI(){
-  bindPad(); bindDrag(); initSndBtn();
+  bindPad(); bindDrag(); initSndBtn(); renderDex();
   var exBtn=$('#gmExit'); if(exBtn) exBtn.onclick=exitGame;
 }
 
