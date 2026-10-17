@@ -1429,7 +1429,7 @@ function resetPos(){
 function hurt(msg){ if(!G)return; G.battery--; FX.shake=Math.max(FX.shake,.3); sayIt(msg); updateHud(); if(G.battery<=0){ gameOver() } }
 function updateBayt(dt){
   var b=G.bayt; b.ph+=dt;
-  var offx=(G.vx? -G.vx*34 : -26), offy=(G.vy? -G.vy*34 : 17);
+  var offx=(G.vx? -G.vx*40 : -36), offy=(G.vy? -G.vy*40 : 22);
   var tx=G.rx+offx, ty=G.ry+offy+Math.sin(b.ph*2.4)*5;
   tx=Math.max(24,Math.min(W-24,tx)); ty=Math.max(24,Math.min(H-24,ty));
   b.x+=(tx-b.x)*Math.min(1,dt*5); b.y+=(ty-b.y)*Math.min(1,dt*5);
