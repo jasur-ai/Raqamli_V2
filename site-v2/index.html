@@ -467,6 +467,13 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 .gm-xp{flex:1;min-width:180px;height:12px;background:var(--surf2);border-radius:99px;overflow:hidden}
 .gm-xp i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--acc));border-radius:99px;transition:width .6s var(--ease)}
 .gm-num{font-weight:800;font-size:14px;white-space:nowrap}
+.gm-ic{display:inline-flex;align-items:center;gap:5px}
+svg.gi{width:16px;height:16px;flex:0 0 auto}
+.gm-ic svg.gi{width:14px;height:14px;color:var(--muted)}
+.gm-bat{display:inline-flex;gap:3px;align-items:center}
+.gm-bat i{width:7px;height:13px;border-radius:2px;background:var(--line2);display:inline-block}
+.gm-bat i.on{background:#2F9E5F}
+[data-theme="dark"] .gm-bat i.on{background:#4CC47B}
 .gm-nodes{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 16px}
 .gm-nodes i{flex:1;min-width:86px;text-align:center;font-style:normal;font-size:12px;font-weight:700;color:var(--muted);border:1px dashed var(--line2);border-radius:10px;padding:7px 4px}
 .gm-nodes i.on{color:#fff;background:linear-gradient(120deg,var(--blue),var(--acc));border-style:solid;border-color:transparent}
@@ -571,79 +578,16 @@ footer{padding:56px 0 40px;border-top:1px solid var(--line);margin-top:110px;fon
 }
 
 
-/* Kod paneli */
-.gc-panel{margin:14px auto 0;max-width:860px}
-.gc-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.gc-modes{display:inline-flex;background:var(--surf2);border:1px solid var(--line);border-radius:12px;padding:3px;gap:2px}
-.gc-modes button{padding:7px 14px;border-radius:9px;font-size:13px;font-weight:700;color:var(--muted);background:none;border:0;cursor:pointer;transition:background .2s,color .2s}
-.gc-modes button.on{background:var(--surf);color:var(--ink);box-shadow:0 1px 4px rgba(16,34,64,.14)}
-.gc-count{font-size:12.5px;font-weight:700;color:var(--muted)}
-.gc-pal{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:10px}
-.gc-pal .lb{white-space:nowrap}
-.gc-pal button{display:flex;align-items:center;justify-content:flex-start;gap:8px;padding:0 12px;height:44px;border-radius:12px;border:1.5px solid var(--line2);background:var(--surf);color:var(--ink);font-size:13.5px;font-weight:700;cursor:pointer;transition:transform .12s,border-color .2s,background .2s}
-.gc-pal button:hover{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 8%,var(--surf))}
-.gc-pal button:active{transform:scale(.97)}
-.gc-pal button b{font-size:15px;font-weight:800;color:var(--blue)}
-.gc-loop b{color:var(--acc)}
-.gc-pal kbd{margin-left:auto;font-family:inherit;font-size:10.5px;font-weight:800;color:var(--muted);background:var(--bg);border:1px solid var(--line2);border-radius:6px;padding:2px 6px;line-height:1}
-.gc-prog{min-height:52px;display:flex;gap:6px;align-items:center;overflow-x:auto;padding:8px;border:1.5px dashed var(--line2);border-radius:12px;background:color-mix(in srgb,var(--surf2) 60%,transparent);scrollbar-width:thin}
-.gc-empty{font-size:12.5px;color:var(--muted);padding:0 4px}
-.gc-chip{flex:0 0 auto;width:46px;height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid var(--line2);background:var(--surf);color:var(--blue);cursor:pointer;position:relative;transition:transform .15s,box-shadow .2s,background .2s}
-.gc-chip b{display:inline-flex;align-items:center;justify-content:center}
-svg.gi{width:16px;height:16px;flex:0 0 auto}
-.gc-chip svg.gi{width:18px;height:18px}
-.gc-pal b svg.gi{width:17px;height:17px;color:var(--blue)}
-.gc-loop b svg.gi{color:var(--acc)}
-.gm-ic{display:inline-flex;align-items:center;gap:5px}
-.gm-ic svg.gi{width:14px;height:14px;color:var(--muted)}
-.gm-bat{display:inline-flex;gap:3px;align-items:center}
-.gm-bat i{width:7px;height:13px;border-radius:2px;background:var(--line2);display:inline-block}
-.gm-bat i.on{background:#2F9E5F}
-[data-theme="dark"] .gm-bat i.on{background:#4CC47B}
-.gc-chip i{position:absolute;font-style:normal;font-weight:800;letter-spacing:0}
-.gc-chip i.ln{top:3px;left:5px;font-size:8.5px;color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.gc-chip i.mul{bottom:3px;right:4px;font-size:9.5px;color:#fff;background:var(--acc);border-radius:5px;padding:1px 4px;line-height:1.15}
-.gc-chip:hover{border-color:var(--blue)}
-.gc-chip.on{background:linear-gradient(95deg,var(--blue),var(--acc));color:#fff;border-color:transparent;box-shadow:0 3px 12px rgba(47,111,219,.35);transform:translateY(-2px)}
-.gc-chip.on i.ln{color:rgba(255,255,255,.8)}
-.gc-chip.on i.mul{background:#fff;color:var(--blue)}
+/* Topshiriq banneri */
 .gc-task{display:flex;align-items:center;gap:10px;flex-wrap:wrap;max-width:860px;margin:0 auto 10px;padding:10px 14px;border-radius:12px;background:linear-gradient(95deg,color-mix(in srgb,var(--blue) 12%,transparent),color-mix(in srgb,var(--acc) 10%,transparent));border:1px solid color-mix(in srgb,var(--blue) 26%,transparent)}
 .gc-task-k{font-size:10.5px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--blue);background:var(--surf);border:1px solid var(--line2);border-radius:999px;padding:3px 9px}
 .gc-task b{font-size:14px;font-weight:800;color:var(--ink)}
 .gc-task-n{margin-left:auto;font-size:12.5px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
-.gc-stat{font-size:12.5px;font-weight:700;color:var(--muted);margin:10px 2px 0;line-height:1.5}
-.gc-stat .k{font-size:10.5px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--blue);margin-right:8px}
-.gc-stat i{font-style:normal;color:var(--line2);margin:0 3px}
-.gc-stat b{color:var(--ink);font-weight:800;font-variant-numeric:tabular-nums}
-.gc-stat b.g{color:#2F9E5F}
-.gc-stat b.w{color:#D84B3F}
-.gc-stat.bad .k{color:#D84B3F}
-.gc-actions{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
-.gc-actions .btn{height:44px}
-#gcRun{flex:1 1 200px;justify-content:center}
-#gcRun.busy{background:#D84B3F !important;border-color:#D84B3F !important}
-.gc-ico{width:52px;justify-content:center;padding:0}
-.gc-actions .btn:not(.p){border:1.5px solid var(--line2);background:var(--surf);color:var(--ink);justify-content:center}
-.gc-actions .btn:not(.p):hover{border-color:var(--blue)}
-/* kod rejimida D-pad kerak emas; erkin rejimda dastur paneli yashiriladi */
-.gm.code-mode .gmc-pad{display:none !important}
-.gm.free-mode .gc-pal,.gm.free-mode .gc-prog,.gm.free-mode .gc-actions,.gm.free-mode .gc-count{display:none}
 /* karta oynasi */
 .gmc-card-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .gmc-ic{width:34px;height:34px;border-radius:10px;display:inline-block;flex:0 0 34px}
 .gmc-type{display:inline-block;margin-top:3px;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid transparent}
 .gmc-card .gmc-card-t{margin:0;font-size:15px}
-@media (max-width:680px){
-  .gc-pal{grid-template-columns:repeat(5,1fr);gap:5px}
-  .gc-pal button{height:50px;padding:0;justify-content:center;flex-direction:column;gap:3px}
-  .gc-pal .lb,.gc-pal kbd{display:none}
-  .gc-pal b svg.gi{width:20px;height:20px}
-  .gc-chip{width:42px;height:42px}
-  .gc-actions{display:grid;grid-template-columns:52px 1fr;gap:8px}
-  #gcRun{grid-column:1/-1;flex:none}
-  .gc-actions .btn{height:42px}
-}
-
 .gm-modal{position:fixed;inset:0;z-index:120;background:rgba(8,15,28,.55);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:18px}
 .gm-modal.on{display:flex}
 .gm-box{background:var(--bg);border:1px solid var(--line);border-radius:18px;max-width:400px;width:100%;padding:24px;box-shadow:var(--shadowL)}
@@ -834,14 +778,14 @@ svg.gi{width:16px;height:16px;flex:0 0 auto}
 <section id="sinov"><div class="w">
   <span class="tag rv">Sinov o‘yini</span>
   <h2 class="rv" style="--i:1">Mini-loyihani tekshirib ko‘ring</h2>
-  <p class="sub rv" style="--i:2">Robotga <b>dastur yozing</b>: buyruqlar, takrorlash (×N) va tekshiruv. Har karta — haqiqiy hujjat yoki ishonchsiz manba: qarorni o‘zingiz qabul qilasiz. 3 daraja, natijada daraja va <b>BIT</b>.</p>
+  <p class="sub rv" style="--i:2">Ziyo bilan dalil izlang: harakatlaning, kartani oching va <b>4 mezonga</b> qarab qaror bering — ishonchli dalil yoki ishonchsiz manba. 3 daraja, natijada daraja va <b>BIT</b>.</p>
   <div class="gm rv" style="--i:3">
     <button type="button" class="gm-exit" id="gmExit" aria-label="O‘yindan chiqish" title="Chiqish">✕</button>
     <div class="gm-top">
       <div class="gm-bot" id="gmBot" aria-hidden="true">
-        <svg viewBox="0 0 100 100"><rect x="22" y="26" width="56" height="46" rx="13" fill="#2F6FDB"/><rect x="29" y="33" width="42" height="32" rx="9" fill="#DCEBFF"/><circle class="eye" cx="42" cy="47" r="4.5" fill="#1F3864"/><circle class="eye" cx="58" cy="47" r="4.5" fill="#1F3864"/><rect x="43" y="57" width="14" height="4" rx="2" fill="#1F3864"/><line x1="50" y1="26" x2="50" y2="14" stroke="#2F6FDB" stroke-width="4" stroke-linecap="round"/><circle cx="50" cy="11" r="5" fill="#4DA3FF"/><rect x="14" y="42" width="7" height="16" rx="3.5" fill="#2F6FDB"/><rect x="79" y="42" width="7" height="16" rx="3.5" fill="#2F6FDB"/><rect x="35" y="74" width="30" height="7" rx="3.5" fill="#1F3864"/></svg>
+        <svg viewBox="0 0 100 100"><rect x="33" y="70" width="34" height="12" rx="5" fill="#16305A"/><rect x="40" y="72" width="8" height="8" rx="2" fill="#2F6FDB"/><circle cx="50" cy="52" r="19" fill="#F3C9A2"/><path d="M31 50c0-11 8-18 19-18s19 7 19 18c-6-5-12-7-19-7s-13 2-19 7z" fill="#233650"/><circle class="eye" cx="43" cy="53" r="3.2" fill="#1F3864"/><circle class="eye" cx="57" cy="53" r="3.2" fill="#1F3864"/><path d="M45 61c2.4 2.2 7.6 2.2 10 0" stroke="#1F3864" stroke-width="2.4" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="33" rx="30" ry="5" fill="#16305A"/><path d="M35 33V19c0-4 3-7 7-7h16c4 0 7 3 7 7v14z" fill="#16305A"/><rect x="35" y="26" width="30" height="5" fill="#2F6FDB"/><circle cx="72" cy="64" r="9" fill="rgba(47,111,219,.18)" stroke="#2F6FDB" stroke-width="4"/><line x1="78" y1="70" x2="86" y2="78" stroke="#16305A" stroke-width="5" stroke-linecap="round"/></svg>
       </div>
-      <div class="gm-say" id="gmSay"><b>Robi:</b> Salom! Men — Robi. Menga kod yozasiz: ▲ oldinga, ◀ ▶ burilish, 📥 dalil olish. Dasturni ▶ bilan ishga tushirasiz. Bayt — hamrohimiz, XATO mavjudotlari esa yo‘lni qo‘riqlaydi. Boshlash uchun avval ro‘yxatdan o‘ting.</div>
+      <div class="gm-say" id="gmSay"><b>Ziyo:</b> Salom! Men — Ziyo, dalil tekshiruvchi. Strelkalar yoki sudrash bilan yuring, kartani ochib 4 mezonga qarab qaror bering: manba, sana, muallif, havola. Bayt — yordamchim, XATO mavjudotlari esa soxta ma’lumotni qo‘riqlaydi. Boshlash uchun avval ro‘yxatdan o‘ting.</div>
     </div>
     <div class="gm-hud">
       <span class="gm-chip" id="gmUser" style="display:none"></span>
@@ -851,7 +795,6 @@ svg.gi{width:16px;height:16px;flex:0 0 auto}
       <span class="gm-num" id="gmTime">01:30</span>
       <span class="gm-num gm-ic" id="gmCards"></span>
       <span class="gm-num gm-ic" id="gmBat"></span>
-      <span class="gm-num gm-ic" id="gmProgNum" style="display:none"></span>
       <span class="gm-num gm-combo" id="gmCombo" style="display:none"></span>
       <button type="button" class="gm-snd" id="gmSnd" aria-label="Ovoz">🔊</button>
     </div>
@@ -865,36 +808,12 @@ svg.gi{width:16px;height:16px;flex:0 0 auto}
           <canvas id="gmCanvas" width="720" height="480"></canvas>
           <div class="gmc-pop" id="gmPop" style="display:none"><div class="gmc-card"><div class="gmc-card-top"><span class="gmc-ic" id="gmCardIcon"></span><div><div class="gmc-card-t">Tekshiruv kartasi</div><span class="gmc-type" id="gmCardType">Hujjat</span></div></div><div class="gmc-title" id="gmCardNote"></div><div class="gmc-meta" id="gmCardMeta"></div><div class="gm-row" style="margin-top:0;gap:8px"><button type="button" class="btn p" id="gmBtnReal" style="flex:1 1 140px;justify-content:center">✓ Ishonchli dalil</button><button type="button" class="btn" id="gmBtnFake" style="flex:1 1 140px;justify-content:center">Ishonchsiz</button></div></div></div>
         </div>
-        <div class="gc-panel" id="gcPanel">
-          <div class="gc-head">
-            <div class="gc-modes" id="gcModes">
-              <button type="button" data-m="code" class="on">Kod</button>
-              <button type="button" data-m="free">Erkin</button>
-            </div>
-            <span class="gc-count" id="gcCount">0 / 60 qator</span>
-          </div>
-          <div class="gc-pal" id="gcPal">
-            <button type="button" data-c="F" title="Oldinga (↑)" aria-label="Oldinga"><b data-i="F"></b><span class="lb">Oldinga</span><kbd>↑</kbd></button>
-            <button type="button" data-c="L" title="Chapga (←)" aria-label="Chapga"><b data-i="L"></b><span class="lb">Chapga</span><kbd>←</kbd></button>
-            <button type="button" data-c="R" title="O‘ngga (→)" aria-label="O‘ngga"><b data-i="R"></b><span class="lb">O‘ngga</span><kbd>→</kbd></button>
-            <button type="button" data-c="P" title="Dalil ol (↓)" aria-label="Dalil ol"><b data-i="P"></b><span class="lb">Dalil ol</span><kbd>↓</kbd></button>
-            <button type="button" id="gcLoop" class="gc-loop" title="Takrorlash (×)" aria-label="Takrorlash"><b data-i="X"></b><span class="lb">Takror</span><kbd>×</kbd></button>
-          </div>
-          <div class="gc-prog" id="gcProg"><span class="gc-empty">Dastur bo‘sh — buyruq qo‘shing: Oldinga, Chapga, O‘ngga, Dalil ol. Takror uchun “Takror”.</span></div>
-          <div class="gc-stat" id="gcStat">Tekshiruv: dastur yozilmagan</div>
-          <div class="gc-actions">
-            <button type="button" class="btn p" id="gcRun">▶ Ishga tushirish</button>
-            <button type="button" class="btn gc-ico" id="gcUndo" aria-label="Oxirgi buyruqni o‘chirish">↶</button>
-            <button type="button" class="btn" id="gcClear">Tozalash</button>
-          </div>
-        </div>
-        <div class="gm-row"><button type="button" class="btn p" id="gmNextLvl" style="display:none">Keyingi daraja →</button></div>
         <div class="gmc-pad" id="gmPad">
           <span></span><button type="button" data-k="up" aria-label="Yuqori">▲</button><span></span>
           <button type="button" data-k="left" aria-label="Chap">◀</button><button type="button" data-k="down" aria-label="Past">▼</button><button type="button" data-k="right" aria-label="O‘ng">▶</button>
         </div>
         <p class="gmc-legend"><i class="lp" style="background:#2F9E5F"></i>batareya <i class="lp" style="background:#2F6FDB"></i>vaqt +10 s <i class="lp" style="background:#7A5AF8"></i>qalqon <i class="lp" style="background:#E08A1E"></i>magnit <i class="lp" style="background:#17B4AA"></i>Bayt — hamroh</p>
-        <p class="gmc-hint" id="gmcHint">Kod rejimi: <b>↑</b> oldinga · <b>←</b>/<b>→</b> burilish · <b>↓</b> dalil ol · <b>Enter</b> ishga tushirish · <b>↶</b> o‘chirish.</p>
+        <p class="gmc-hint" id="gmcHint">Boshqaruv: <b>strelkalar</b> yoki <b>WASD</b>, sichqoncha yoki barmoq bilan sudrang. XATO mavjudotlari quvlaydi — tegmang. Keyingi daraja: <b>Shift + Enter</b>.</p>
       </div>
       <div id="gmFinal" style="display:none"></div>
     </div>
@@ -1244,13 +1163,13 @@ if(sessionMessage){
 </script>
 <script>
 
-/* ===== Sinov o'yini v2: ROBI — Dalil yig'uvchi (amaliy o'yin) ===== */
+/* ===== Sinov o'yini: ZIYO — dalil tekshiruvchi (amaliy o'yin) ===== */
 (function(){
 var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 var stage=$('#gmStage'), say=$('#gmSay'), bot=$('#gmBot'), startBtn=$('#gmStart'), xpEl=$('#gmXp'), barEl=$('#gmXpBar'), timeEl=$('#gmTime'), nodes=$$('#gmNodes i'), userChip=$('#gmUser');
 var player=null; try{player=JSON.parse(localStorage.getItem('rt2_player')||'null')}catch(e){}
 var TOTAL=1000;
-function sayIt(t,happy){say.innerHTML='<b>Robi:</b> '+t; if(happy){bot.classList.remove('happy'); void bot.offsetWidth; bot.classList.add('happy')}}
+function sayIt(t,happy){say.innerHTML='<b>Ziyo:</b> '+t; if(happy){bot.classList.remove('happy'); void bot.offsetWidth; bot.classList.add('happy')}}
 function refreshUser(){ if(player){userChip.style.display='inline-flex'; userChip.innerHTML='<svg class="gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c1.4-3.6 4.2-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg><span>'+player.name+'</span> <button type="button" id="gmOut">Chiqish</button>'; var o=$('#gmOut'); if(o)o.onclick=function(){player=null; localStorage.removeItem('rt2_player'); refreshUser(); sayIt('Chiqdingiz. Qayta o‘ynash uchun yana kiring.')}} else {userChip.style.display='none'; userChip.innerHTML=''} }
 refreshUser();
 
@@ -1325,12 +1244,11 @@ function ic(k,d){
     L:'M20 12H5M11 6l-6 6 6 6',
     R:'M4 12h15M13 6l6 6-6 6',
     P:'M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4M12 4v10M8 10l4 4 4-4',
-    X:'M4 9a8 8 0 0 1 13-3M20 15a8 8 0 0 1-13 3M4 4v5h5M20 20v-5h-5'
+    X:'M4 9a8 8 0 0 1 13-3M20 15a8 8 0 0 1-13 3M4 4v5h5M20 20v-5h-5',
+    D:'M7 3.5h6.5L18 8v12.5H7zM13 3.5V8h5M9.5 12h6M9.5 15.5h6'
   };
   return '<svg class="gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(d?2.4:2.1)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+(pth[k]||pth.F)+'"/></svg>';
 }
-var CMDS={F:{ic:ic('F'),n:'Oldinga',key:'↑'},L:{ic:ic('L'),n:'Chapga',key:'←'},R:{ic:ic('R'),n:'O‘ngga',key:'→'},P:{ic:ic('P'),n:'Dalil ol',key:'↓'}};
-function stepsOf(p){ var t=0; p.forEach(function(it){ t+=(it.n||1) }); return t }
 var LEVELS=[
   {name:'Ma’lumot izlash', rule:'Faqat HUJJAT va SAYT kartalari', targets:['doc','web'],
    walls:[[2,1],[3,1],[2,2],[3,2],[6,3],[9,0]], cards:4, real:2, time:90, chasers:0, pups:2, slots:60},
@@ -1340,7 +1258,7 @@ var LEVELS=[
    walls:[[2,1],[2,2],[5,3],[5,4],[5,5],[8,1],[8,2],[3,6],[9,5],[9,6],[6,0]], cards:6, real:3, time:100, chasers:2, pups:2, slots:80}
 ];
 var PUPS=[{k:'bat',c:'#2F9E5F',t:'Batareya +1'},{k:'time',c:'#2F6FDB',t:'Vaqt +10 s'},{k:'shield',c:'#7A5AF8',t:'Qalqon 6 s'},{k:'magnet',c:'#E08A1E',t:'Magnit 8 s'}];
-var G=null, cv=null, ctx=null, raf=null, lastT=0, keys={}, drag=null, MODE='code';
+var G=null, cv=null, ctx=null, raf=null, lastT=0, keys={}, drag=null;
 var TOUCH=!!(window.matchMedia&&window.matchMedia('(pointer:coarse)').matches);
 var DPR=Math.min(2.5,window.devicePixelRatio||1);
 var SND=true; try{SND=localStorage.getItem('rt2_snd')!=='0'}catch(e){}
@@ -1366,8 +1284,6 @@ function fmt(s){s=Math.max(0,Math.ceil(s)); var m=Math.floor(s/60); return (m<10
 function tileAt(px,py){return [Math.floor(px/TILE), Math.floor(py/TILE)]}
 function blockedR(px,py,r){ var pts=[[px-r,py-r],[px+r,py-r],[px-r,py+r],[px+r,py+r]]; for(var i=0;i<4;i++){var t=tileAt(pts[i][0],pts[i][1]); if(t[0]<0||t[1]<0||t[0]>=COLS||t[1]>=ROWS) return true; if(G.walls[t[0]+','+t[1]]) return true} return false }
 function center(tx,ty){ return [tx*TILE+TILE/2, ty*TILE+TILE/2] }
-function cardAt(tx,ty){ for(var i=0;i<G.cards.length;i++){var c=G.cards[i]; if(!c.taken&&c.x===tx&&c.y===ty) return c } return null }
-
 /* canvas: DPR aniq chizish */
 function fit(){
   if(!cv) return;
@@ -1413,34 +1329,25 @@ function newLevel(i){
     chasers.push({x:cx,y:cy,dir:c===0?-1:1,range:[TILE*1.2,W-TILE*1.2],speed:c===0?72:58,alert:false,ph:c*2.1,home:cy});
   }
   var bg=[]; for(var k=0;k<26;k++) bg.push({x:Math.random()*W,y:Math.random()*H,s:.5+Math.random()*.9,v:6+Math.random()*14,a:.06+Math.random()*.1,t:Math.random()<.5});
-  G={mode:MODE, lvl:i, walls:walls, tx:0, ty:0, face:1, faceVis:1,
+  G={mode:'free', lvl:i, walls:walls, tx:0, ty:0, face:1, faceVis:1,
      rx:30, ry:30, vx:0, vy:0, battery:3, left:L.time+(TOUCH?30:0), pr:TOUCH?50:40, ar:TOUCH?58:44,
      cards:spots.map(function(p,k){return {x:p[0],y:p[1],note:notes[k],type:notes[k].ty,taken:false,ox:0,oy:0,ph:k}}),
      pups:pups, chasers:chasers, bg:bg, done:0, xp:G?G.xp:0, correct:0, wrong:0, combo:0, maxCombo:0,
      shieldT:0, magnetT:0, inv:0, intro:1.1, running:true, paused:false, lastSec:-1, tickAt:-1, _done:false,
-     bayt:{x:90,y:90,ph:0,mood:0}, prog:[], preview:[], ex:{on:false,i:0,phase:'idle',t:0,dur:0,fx:0,fy:0,ff:0,tx:0,ty:0,tf:0,wait:false}};
-  if(G.mode==='free'){ G.rx=30; G.ry=30; G.tx=0; G.ty=0 }
+     bayt:{x:90,y:90,ph:0,mood:0}, heroDir:1};
   var tt=$('#gmTaskTxt'); if(tt) tt.textContent=L.rule;
-  updateHud(); markNodes(); hideLevelUp(); renderProg(); setModeUI();
-  sayIt((i+1)+'-daraja — «'+L.name+'». Topshiriq: '+L.rule.toLowerCase()+'. '+(MODE==='code'
-      ? 'Dastur yozing va ▶ bilan ishga tushiring.'
-      : 'XATO mavjudotlaridan qochib, kartalarni yig‘ing.'));
+  updateHud(); markNodes(); hideLevelUp();
+  sayIt((i+1)+'-daraja — «'+L.name+'». Topshiriq: '+L.rule.toLowerCase()+'. XATO mavjudotlaridan qochib, kartalarni tekshiring.');
 }
 function updateHud(){
   if(!G) return;
-  $('#gmCards').innerHTML=ic('P')+'<span>'+G.done+'/'+G.cards.length+'</span>';
+  $('#gmCards').innerHTML=ic('D')+'<span>'+G.done+'/'+G.cards.length+'</span>';
   var tn=$('#gmTaskNum'); if(tn) tn.textContent=G.done+' / '+G.cards.length;
   $('#gmBat').innerHTML='<span class="gm-bat">'+[0,1,2].map(function(i){return '<i class="'+(i<G.battery?'on':'off')+'"></i>'}).join('')+'</span>';
   xpEl.textContent=G.xp; barEl.style.width=Math.min(100,Math.round(G.xp/TOTAL*100))+'%';
   var cb=$('#gmCombo');
   if(cb){ if(G.combo>=2){ cb.style.display='inline-block'; cb.textContent='×'+G.combo+' seriya'; cb.classList.toggle('hot',G.combo>=4) } else cb.style.display='none' }
-  var pn=$('#gmProgNum');
-  if(pn){
-    if(G.mode==='code'){ pn.style.display='inline-flex'; pn.innerHTML=ic('X')+'<span>'+stepsOf(G.prog)+' qadam</span>' }
-    else pn.style.display='none';
-  }
-  timeEl.style.display=G.mode==='code'?'none':'';
-  var gc=$('#gcCount'); if(gc) gc.textContent=G.prog.length+' / '+LEVELS[G.lvl].slots+' qator';
+  timeEl.style.display='';
 }
 function markNodes(){nodes.forEach(function(n,i){n.classList.toggle('on',!!G&&i===G.lvl); n.classList.toggle('done',!!G&&(i<G.lvl||i===3&&false))})}
 
@@ -1458,7 +1365,7 @@ function update(dt,ts){
   if(G.inv>0) G.inv=Math.max(0,G.inv-dt);
   updateBayt(dt);
   if(!G.paused){
-    if(G.mode==='free') updateFree(dt,ts); else updateCode(dt,ts);
+    updateFree(dt,ts);
   }
   if(G&&!G._done) checkWin();
   updateFX(dt);
@@ -1504,81 +1411,6 @@ function updateFree(dt,ts){
     if(Math.abs(G.rx-ux)<(TOUCH?42:34)&&Math.abs(G.ry-uy)<(TOUCH?42:34)){ u.taken=true; applyPup(u,ux,uy) }
   }
 }
-function updateCode(dt,ts){
-  if(G.intro>0) return;
-  updateChasers(dt,true);
-  var ex=G.ex;
-  if(!ex.on) return;
-  if(ex.wait) return;
-  if(ex.phase==='turn'||ex.phase==='move'){
-    ex.t+=dt;
-    var k=Math.min(1,ex.t/ex.dur), e=k*k*(3-2*k);
-    if(ex.phase==='move'){ G.rx=ex.fx+(ex.tx-ex.fx)*e; G.ry=ex.fy+(ex.ty-ex.fy)*e }
-    else { var d=ex.tf-ex.ff; if(d>2)d-=4; if(d<-2)d+=4; G.faceVis=((ex.ff+d*e)%4+4)%4 }
-    if(k>=1){
-      if(ex.phase==='move'){ G.rx=ex.tx; G.ry=ex.ty; G.tx=ex.ntx; G.ty=ex.nty }
-      else { G.face=ex.tf; G.faceVis=ex.tf }
-      ex.phase='idle'; nextCmd();
-    }
-    return;
-  }
-  nextCmd();
-}
-function nextCmd(){
-  var ex=G.ex;
-  if(!ex.on) return;
-  if(ex.i>=G.prog.length){ endRun(); return }
-  var it=G.prog[ex.i], cmd=it.c; markProg(ex.i);
-  function step(){
-    ex.left--;
-    if(ex.left<=0){ ex.i++; ex.left=ex.i<G.prog.length?(G.prog[ex.i].n||1):0 }
-  }
-  if(cmd==='F'){
-    var d=DIRS[G.face], nx=G.tx+d[0], ny=G.ty+d[1];
-    if(nx<0||ny<0||nx>=COLS||ny>=ROWS||G.walls[nx+','+ny]){ failRun('Devor! Dasturni tuzating.'); return }
-    var p0=[G.rx,G.ry], p1=center(nx,ny);
-    ex.phase='move'; ex.t=0; ex.dur=.22; ex.fx=p0[0]; ex.fy=p0[1]; ex.tx=p1[0]; ex.ty=p1[1];
-    ex.ntx=nx; ex.nty=ny;
-    tone(420,.05,'sine',.03);
-    step();
-  } else if(cmd==='L'||cmd==='R'){
-    ex.phase='turn'; ex.t=0; ex.dur=.16; ex.ff=G.face; ex.tf=(G.face+(cmd==='R'?1:3))%4;
-    tone(520,.04,'triangle',.025);
-    step();
-  } else if(cmd==='P'){
-    var c=cardAt(G.tx,G.ty);
-    if(!c){ failRun('Bu katakda karta yo‘q — 📥 faqat karta ustida ishlaydi.'); return }
-    ex.wait=true; openCard(c);
-    ex.i++; ex.left=ex.i<G.prog.length?(G.prog[ex.i].n||1):0;
-  }
-  if(ex.on&&ex.phase==='idle'&&!ex.wait) nextCmd();
-}
-function runProgram(){
-  if(!G||G.mode!=='code'||G.paused) return;
-  if(!G.prog.length){ sayIt('Avval buyruq qo‘shing: ▲ oldinga, ◀ ▶ burilish, 📥 dalil olish.',false); tone(220,.1,'square',.04); return }
-  /* har bir dastur har doim start katagidan boshlanadi */
-  G.tx=0; G.ty=0; G.face=1; G.faceVis=1; G.rx=30; G.ry=30;
-  G.ex={on:true,i:0,left:(G.prog[0].n||1),phase:'idle',t:0,dur:0,fx:0,fy:0,ff:0,tx:0,ty:0,tf:0,wait:false};
-  G.face=G.face; G.faceVis=G.face;
-  sayIt('Dastur ishga tushdi…',true); tone(660,.06,'sine',.04);
-  renderProg(); nextCmd();
-}
-function endRun(){
-  G.ex.on=false; markProg(-1); renderProg();
-  if(Date.now()-(G.sayLock||0)<2600) return;
-  if(G.done<G.cards.length) sayIt('Dastur tugadi. Yana buyruq qo‘shing yoki yangi dastur yozing.',false);
-  else sayIt('Dastur tugadi. ARXIVga yetdingizmi? Yetmasa — davom eting.',false);
-}
-function failRun(msg){
-  G.ex.on=false; markProg(-1); FX.shake=.4; tone(150,.3,'sawtooth',.05,80); buzz(40);
-  sayIt(msg,false); renderProg();
-}
-function stopRun(){
-  if(!G) return;
-  G.ex.on=false; G.ex.phase='idle'; G.ex.wait=false; markProg(-1); renderProg();
-  $('#gmPop').style.display='none'; G.paused=false;
-  sayIt('Dastur to‘xtatildi.',false);
-}
 function applyPup(u,x,y){
   var meta=PUPS.filter(function(p){return p.k===u.type})[0]||{c:'#2F9E5F',t:''};
   if(u.type==='bat'){ G.battery=Math.min(3,G.battery+1) }
@@ -1593,13 +1425,11 @@ function applyPup(u,x,y){
 function resetPos(){
   if(!G) return;
   G.rx=30; G.ry=30; G.tx=0; G.ty=0; G.vx=0; G.vy=0; drag=null; G.inv=Math.max(G.inv,1.2);
-  G.ex={on:false,i:0,phase:'idle',t:0,dur:0,fx:0,fy:0,ff:0,tx:0,ty:0,tf:0,wait:false};
-  renderProg();
 }
 function hurt(msg){ if(!G)return; G.battery--; FX.shake=Math.max(FX.shake,.3); sayIt(msg); updateHud(); if(G.battery<=0){ gameOver() } }
 function updateBayt(dt){
   var b=G.bayt; b.ph+=dt;
-  var offx=(G.vx? -G.vx*34 : 24), offy=(G.vy? -G.vy*34 : 20);
+  var offx=(G.vx? -G.vx*34 : -26), offy=(G.vy? -G.vy*34 : 17);
   var tx=G.rx+offx, ty=G.ry+offy+Math.sin(b.ph*2.4)*5;
   tx=Math.max(24,Math.min(W-24,tx)); ty=Math.max(24,Math.min(H-24,ty));
   b.x+=(tx-b.x)*Math.min(1,dt*5); b.y+=(ty-b.y)*Math.min(1,dt*5);
@@ -1609,7 +1439,7 @@ function updateChasers(dt,frozen){
   if(frozen||!G) return;
   G.chasers.forEach(function(c){
     var dx=G.rx-c.x, dy=G.ry-c.y, d=Math.sqrt(dx*dx+dy*dy)||1;
-    var see=(G.mode==='free')&&d<235; c.alert=see;
+    var see=d<235; c.alert=see;
     var sp=c.speed*(see?1.45:.62);
     var nx=c.x, ny=c.y;
     if(see){ nx+=dx/d*sp*dt; ny+=dy/d*sp*dt }
@@ -1621,7 +1451,6 @@ function updateChasers(dt,frozen){
       if(G.shieldT>0){ c.dir*=-1; c.x+=c.dir*30; burst(c.x,c.y,10,'#A78BFA'); tone(520,.12,'triangle',.04); G.inv=.9 }
       else {
         G.inv=1.5; FX.shake=.45; burst(G.rx,G.ry,16,'#D84B3F'); tone(120,.3,'sawtooth',.06,70); buzz(40);
-        if(G.mode==='code'){ failRun('XATO tegdi! Batareya -1. Dasturni boshqacha tuzing.'); }
         hurt('XATO tegdi! Batareya -1');
         if(!G) return;
         resetPos();
@@ -1667,7 +1496,6 @@ function openCard(c){
 }
 function decide(c,saidReal){
   $('#gmPop').style.display='none'; G.paused=false;
-  if(G.ex) G.ex.wait=false;
   var ok=(saidReal===c.note.real);
   if(ok){
     G.correct++; G.done++; G.combo++; G.maxCombo=Math.max(G.maxCombo,G.combo);
@@ -1685,7 +1513,7 @@ function decide(c,saidReal){
   G.sayLock=Date.now();
   updateHud();
   if(G.done>=G.cards.length){ setTimeout(function(){ if(G&&G.done>=G.cards.length) sayIt('Hamma kartalar tayyor! Endi ARXIVga (pastki o‘ng burchak) yeting! →',true) },2900); tone(784,.1,'sine',.05) }
-  if(G.mode==='code'&&G.ex&&G.ex.on&&G.ex.phase==='idle'&&!G.ex.wait) nextCmd();
+
 }
 function addBits(base){
   var mult=G.combo>=5?2:G.combo>=3?1.5:1;
@@ -1695,11 +1523,9 @@ function addBits(base){
 /* --- daraja yakuni --- */
 function levelDone(){
   if(!G||G._done) return; G._done=true;
-  var bonus;
-  if(G.mode==='code'){ bonus=80+Math.max(0,110-stepsOf(G.prog)) }
-  else bonus=100+Math.ceil(G.left);
+  var bonus=100+Math.ceil(G.left);
   G.xp+=bonus;
-  G.paused=true; drag=null; G.ex.on=false;
+  G.paused=true; drag=null;
   burst((COLS-1)*TILE+30,(ROWS-1)*TILE+30,26,'#2F9E5F',1.15);
   tone(523,.1,'triangle',.05); setTimeout(function(){tone(659,.1,'triangle',.05)},110); setTimeout(function(){tone(784,.16,'triangle',.05)},220);
   updateHud();
@@ -1723,7 +1549,7 @@ function lvlUpEl(){
 function showLevelUp(bonus){
   var el=lvlUpEl(); if(!el||!G) return;
   var acc=(G.correct+G.wrong)?Math.round(G.correct/(G.correct+G.wrong)*100):0;
-  var third=G.mode==='code'?('<b>'+stepsOf(G.prog)+'</b><span>qadam</span>'):('<b>'+fmt(G.left)+'</b><span>vaqt</span>');
+  var third='<b>'+fmt(G.left)+'</b><span>qolgan vaqt</span>';
   var card=el.querySelector('.lv-card');
   card.innerHTML='<div class="lv-tag">Daraja '+(G.lvl+1)+' yakunlandi</div>'+
     '<div class="lv-ttl">'+LEVELS[G.lvl].name+' <span class="lv-ok">✓</span></div>'+
@@ -1744,7 +1570,7 @@ function nextLevel(){
   if(!G) return;
   var keep=G.xp;
   newLevel(G.lvl+1);
-  G.xp=keep; updateHud(); renderProg();
+  G.xp=keep; updateHud();
   cancelAnimationFrame(raf); lastT=0; raf=requestAnimationFrame(loop);
 }
 function showFinal(won){
@@ -1806,19 +1632,6 @@ function drawBoard(ts){
   var v=ctx.createRadialGradient(W/2,H/2,Math.min(W,H)*.35,W/2,H/2,Math.max(W,H)*.78);
   v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,d?'rgba(0,0,0,.38)':'rgba(31,56,100,.14)');
   ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
-  /* kod rejimida yo'l ko'rinishi */
-  if(G&&G.mode==='code'&&G.preview&&G.preview.length&&!G.ex.on) drawPreview(ts);
-}
-function drawPreview(ts){
-  ctx.save();
-  G.preview.forEach(function(p,idx){
-    var x=p.x*TILE+30, y=p.y*TILE+30;
-    var a=.34+.14*Math.sin(ts/300+idx*.4);
-    ctx.globalAlpha=a; ctx.fillStyle=p.block?'#D84B3F':'#2F6FDB';
-    ctx.beginPath(); ctx.arc(x,y,p.block?7:4.5,0,7); ctx.fill();
-    if(p.pick){ ctx.globalAlpha=Math.min(1,a+.3); ctx.strokeStyle='#2F9E5F'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(x,y,13,0,7); ctx.stroke() }
-  });
-  ctx.restore();
 }
 function drawWalls(){
   var d=isDark();
@@ -1959,10 +1772,14 @@ function drawBayt(ts){
   ctx.fillStyle='#FFD166'; ctx.beginPath(); ctx.arc(0,-15.4,2.2,0,7); ctx.fill();
   ctx.restore();
 }
-function drawRobot(ts){
-  var x=G.rx, y=G.ry, tilt=Math.max(-.12,Math.min(.12, G.vx*.10)), bob=Math.sin(ts/260)*1.4;
-  shadow(x,y+18,15,5,.2);
-  glow(x+(G.vx*8), y, 46, isDark()?'rgba(120,170,255,.35)':'rgba(255,255,255,.55)', .26);
+function drawHero(ts){
+  var x=G.rx, y=G.ry, vx=G.vx||0, vy=G.vy||0;
+  var moving=Math.abs(vx)>0.06||Math.abs(vy)>0.06;
+  var dir=(vx<-0.06)?-1:(vx>0.06?1:(G.heroDir||1)); G.heroDir=dir;
+  var bob=(moving?Math.abs(Math.sin(ts/115))*2.2:Math.sin(ts/420)*.9);
+  var lean=Math.max(-.07,Math.min(.07, vx*.05));
+  shadow(x,y+19,15,5,.22);
+  glow(x+vx*8, y, 46, isDark()?'rgba(120,170,255,.30)':'rgba(255,255,255,.5)', .24);
   if(G.inv>0){ ctx.globalAlpha=(Math.sin(ts/60)+1)/2*.6+.4 }
   if(G.shieldT>0){
     var a=.35+.25*Math.sin(ts/140);
@@ -1973,38 +1790,77 @@ function drawRobot(ts){
     ctx.strokeStyle='rgba(224,138,30,'+(.3+.2*Math.sin(ts/180))+')'; ctx.lineWidth=2; ctx.setLineDash([5,6]);
     ctx.beginPath(); ctx.arc(x,y,44,0,7); ctx.stroke(); ctx.setLineDash([]);
   }
-  /* yo'nalish ko'rsatkichi (kod rejimi) — robot atrofidagi halqa + strelka */
-  if(G.mode==='code'){
-    var ang=(G.faceVis*90-90)*Math.PI/180, rad=27;
-    ctx.save();
-    ctx.strokeStyle='rgba(47,111,219,.22)'; ctx.lineWidth=2;
-    ctx.beginPath(); ctx.arc(x,y,rad+5,0,7); ctx.stroke();
-    ctx.translate(x+Math.cos(ang)*rad, y+Math.sin(ang)*rad); ctx.rotate(ang);
-    var pulse=.75+.25*Math.sin(ts/240);
-    ctx.globalAlpha=pulse; ctx.fillStyle='#2F6FDB';
-    ctx.beginPath(); ctx.moveTo(9,0); ctx.lineTo(-4,-5.4); ctx.lineTo(-1.4,0); ctx.lineTo(-4,5.4); ctx.closePath(); ctx.fill();
-    ctx.globalAlpha=1;
-    ctx.restore();
-  }
-  ctx.save(); ctx.translate(x,y+bob); ctx.rotate(tilt); ctx.scale(1.12,1.12);
-  ctx.fillStyle='#16305A'; rr(-14,13,28,7,3.5); ctx.fill();
-  var g=ctx.createLinearGradient(0,-18,0,16); g.addColorStop(0,'#4C8CF0'); g.addColorStop(1,'#2559B8');
-  ctx.fillStyle=g; rr(-17,-16,34,32,10); ctx.fill();
-  ctx.strokeStyle='rgba(255,255,255,.5)'; ctx.lineWidth=1.2; rr(-17,-16,34,32,10); ctx.stroke();
-  ctx.fillStyle='#EAF3FF'; rr(-12,-11,24,19,6.5); ctx.fill();
-  var look = G.mode==='code'? DIRS[G.face] : [G.vx,G.vy];
-  var ex=Math.max(-2.2,Math.min(2.2,look[0]*2.4)), ey=Math.max(-1.8,Math.min(1.8,look[1]*2));
-  ctx.fillStyle='#16305A'; ctx.beginPath(); ctx.arc(-5+ex,-4+ey,2.9,0,7); ctx.arc(5+ex,-4+ey,2.9,0,7); ctx.fill();
-  ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(-4+ex,-5+ey,1,0,7); ctx.arc(6+ex,-5+ey,1,0,7); ctx.fill();
-  ctx.strokeStyle='#16305A'; ctx.lineWidth=1.5; ctx.beginPath(); ctx.arc(ex*.6,2+ey*.4,3.4,.12*Math.PI,.88*Math.PI); ctx.stroke();
-  ctx.strokeStyle='#2F6FDB'; ctx.lineWidth=2.6; ctx.beginPath(); ctx.moveTo(0,-16); ctx.lineTo(0,-23); ctx.stroke();
-  var blink=.55+.45*Math.sin(ts/230);
-  ctx.fillStyle='rgba(77,163,255,'+blink+')'; ctx.beginPath(); ctx.arc(0,-26,3.6,0,7); ctx.fill();
+  ctx.save(); ctx.translate(x,y-bob); ctx.rotate(lean); ctx.scale(dir*1.16,1.16);
+
+  /* oyoqlar */
+  var sw=moving?Math.sin(ts/95)*3:0;
+  ctx.fillStyle='#16305A';
+  rr(-7.4,11+sw*.5,5.8,8,2.8); ctx.fill();
+  rr(1.6,11-sw*.5,5.8,8,2.8); ctx.fill();
+  ctx.fillStyle='#0E2242';
+  rr(-9,17.4+sw*.5,8.2,4,2); ctx.fill();
+  rr(0.8,17.4-sw*.5,8.2,4,2); ctx.fill();
+
+  /* palto */
+  var g=ctx.createLinearGradient(0,-8,0,16);
+  g.addColorStop(0,'#3A78E4'); g.addColorStop(1,'#1E4C9E');
+  ctx.fillStyle=g;
+  ctx.beginPath();
+  ctx.moveTo(-10.5,-6); ctx.quadraticCurveTo(-13.4,6,-9.4,15);
+  ctx.lineTo(9.4,15); ctx.quadraticCurveTo(13.4,6,10.5,-6);
+  ctx.quadraticCurveTo(0,-10.5,-10.5,-6); ctx.closePath(); ctx.fill();
+  /* yoqa + galstuk */
+  ctx.fillStyle='#EAF3FF';
+  ctx.beginPath(); ctx.moveTo(-4.6,-7.4); ctx.lineTo(0,-1.2); ctx.lineTo(4.6,-7.4); ctx.closePath(); ctx.fill();
+  ctx.fillStyle='#D84B3F';
+  ctx.beginPath(); ctx.moveTo(0,-2.2); ctx.lineTo(2.3,.8); ctx.lineTo(0,8.4); ctx.lineTo(-2.3,.8); ctx.closePath(); ctx.fill();
+  /* tugmalar */
+  ctx.fillStyle='rgba(255,255,255,.55)';
+  ctx.beginPath(); ctx.arc(0,4.6,1.05,0,7); ctx.arc(0,8.2,1.05,0,7); ctx.fill();
+
+  /* bosh */
+  ctx.fillStyle='#F3C9A2';
+  ctx.beginPath(); ctx.arc(0,-14.4,9.2,0,7); ctx.fill();
+  /* soch */
+  ctx.fillStyle='#233650';
+  ctx.beginPath(); ctx.arc(0,-14.4,9.2,Math.PI*1.02,Math.PI*1.98); ctx.quadraticCurveTo(0,-19.6,-9.2,-14.4); ctx.fill();
+  /* ko'zlar */
+  var ex=Math.max(-1.5,Math.min(1.5,vx*9)), ey=Math.max(-1.2,Math.min(1.2,vy*7));
+  ctx.fillStyle='#1F3864';
+  ctx.beginPath(); ctx.arc(-3.2+ex,-14.2+ey,1.6,0,7); ctx.arc(3.2+ex,-14.2+ey,1.6,0,7); ctx.fill();
+  ctx.fillStyle='#fff';
+  ctx.beginPath(); ctx.arc(-2.8+ex,-14.7+ey,.6,0,7); ctx.arc(3.6+ex,-14.7+ey,.6,0,7); ctx.fill();
+  /* tabassum */
+  ctx.strokeStyle='#1F3864'; ctx.lineWidth=1.2; ctx.lineCap='round';
+  ctx.beginPath(); ctx.arc(ex*.4,-11.2,2.6,.15*Math.PI,.85*Math.PI); ctx.stroke();
+
+  /* shlyapa */
+  ctx.fillStyle='#16305A';
+  ctx.beginPath(); ctx.ellipse(0,-21.6,13,3.1,0,0,7); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-7,-21.8); ctx.quadraticCurveTo(-7,-29.4,0,-29.4); ctx.quadraticCurveTo(7,-29.4,7,-21.8); ctx.closePath(); ctx.fill();
+  ctx.fillStyle='#2F6FDB'; rr(-7,-24.4,14,2.6,1.2); ctx.fill();
+
+  /* chap qo'l */
+  ctx.strokeStyle='#1E4C9E'; ctx.lineWidth=4.4; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(-9,-3.4); ctx.lineTo(-12.6,2.2); ctx.stroke();
+  /* o'ng qo'l + lupa */
+  ctx.beginPath(); ctx.moveTo(8.6,-3.2); ctx.lineTo(12.4,1.6); ctx.stroke();
+  ctx.save(); ctx.translate(12.6,1.4); ctx.rotate(.5);
+  ctx.fillStyle='rgba(120,180,255,.22)'; ctx.strokeStyle='#16305A'; ctx.lineWidth=2.4;
+  ctx.beginPath(); ctx.arc(0,0,6.4,0,7); ctx.fill(); ctx.stroke();
+  ctx.strokeStyle='rgba(255,255,255,.85)'; ctx.lineWidth=1.4;
+  ctx.beginPath(); ctx.arc(-1.6,-1.8,3.1,Math.PI*1.05,Math.PI*1.55); ctx.stroke();
+  ctx.strokeStyle='#16305A'; ctx.lineWidth=3; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(4.8,4.4); ctx.lineTo(8.6,8.6); ctx.stroke();
+  ctx.restore();
+  /* glint */
+  var gl=(Math.sin(ts/620)+1)/2;
+  ctx.globalAlpha=.25+.55*gl; ctx.fillStyle='#FFFFFF';
+  ctx.beginPath(); ctx.arc(10.6,-1.4,1.1,0,7); ctx.fill(); ctx.globalAlpha=1;
+
   ctx.restore();
   ctx.globalAlpha=1;
-}
-function drawCompass(ts){
-  if(G.mode==='code') return;
+}function drawCompass(ts){
   var tx=0, ty=0;
   if(G.done<G.cards.length){
     var best=1e9;
@@ -2034,7 +1890,7 @@ function drawIntro(ts){
   ctx.font='800 30px Inter,system-ui'; ctx.fillText((G.lvl+1)+'-daraja', W/2, H/2-10);
   ctx.font='600 17px Inter,system-ui'; ctx.globalAlpha=a*.9; ctx.fillText(LEVELS[G.lvl].name, W/2, H/2+20);
   ctx.font='600 13px Inter,system-ui'; ctx.globalAlpha=a*.7;
-  ctx.fillText(G.mode==='code'?'Buyruqlarni yozing — ▶ bilan ishga tushiring':'Strelkalar bilan yuring — XATO quvlaydi', W/2, H/2+46);
+  ctx.fillText('Strelkalar bilan yuring — XATO quvlaydi', W/2, H/2+46);
   ctx.restore();
 }
 function draw(ts){
@@ -2043,7 +1899,7 @@ function draw(ts){
   var sx=0, sy=0;
   if(FX.shake>0){ var s=FX.shake*9; sx=(Math.random()-.5)*s; sy=(Math.random()-.5)*s }
   ctx.save(); ctx.translate(sx,sy);
-  drawBoard(ts); drawWalls(); drawArchive(ts); drawCards(ts); drawPups(ts); drawChasers(ts); drawBayt(ts); drawRobot(ts); drawCompass(ts); drawFX();
+  drawBoard(ts); drawWalls(); drawArchive(ts); drawCards(ts); drawPups(ts); drawChasers(ts); drawBayt(ts); drawHero(ts); drawCompass(ts); drawFX();
   if(drag){ var pr=10+4*Math.sin(ts/180); ctx.strokeStyle='rgba(47,111,219,.55)'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(drag.x,drag.y,pr,0,7); ctx.stroke();
     ctx.fillStyle='rgba(47,111,219,.18)'; ctx.beginPath(); ctx.arc(drag.x,drag.y,pr-3,0,7); ctx.fill() }
   drawIntro(ts);
@@ -2051,88 +1907,6 @@ function draw(ts){
 }
 
 /* ---------- kod paneli ---------- */
-function renderProg(){
-  var el=$('#gcProg'); if(!el) return;
-  if(!G){ el.innerHTML=''; return }
-  if(!G.prog.length){ el.innerHTML='<span class="gc-empty">Dastur bo‘sh — buyruq qo‘shing: Oldinga, Chapga, O‘ngga, Dalil ol. Takror uchun “Takror”.</span>'; }
-  else {
-    el.innerHTML=G.prog.map(function(it,i){
-      var m=CMDS[it.c], n=it.n||1;
-      return '<button type="button" class="gc-chip'+(n>1?' multi':'')+'" data-i="'+i+'" title="'+m.n+(n>1?' ×'+n:'')+' — bosib o‘chirish">'+
-        '<i class="ln">'+(i+1)+'</i><b>'+m.ic+'</b>'+(n>1?'<i class="mul">×'+n+'</i>':'')+'</button>';
-    }).join('');
-  }
-  var run=$('#gcRun'), cnt=$('#gcCount');
-  if(run){ var bz=!!(G.ex&&G.ex.on); run.classList.toggle('busy',bz); run.textContent=bz?'⏹ To‘xtatish':'▶ Ishga tushirish' }
-  if(cnt) cnt.textContent=G.prog.length+' / '+LEVELS[G.lvl].slots+' qator';
-  var st=$('#gcStat');
-  if(st){
-    var picks=G.preview.filter(function(q){return q.pick}).length;
-    var stp=stepsOf(G.prog);
-    st.className='gc-stat'+(G.pvBlocked?' bad':'');
-    st.innerHTML=G.prog.length
-      ? '<span class="k">Tekshiruv</span><b>'+stp+'</b> qadam <i>·</i> <b>'+picks+'</b> dalil <i>·</i> '+(G.pvBlocked?'<b class="w">to‘siq bor</b>':'<b class="g">to‘siq yo‘q</b>')
-      : '<span class="k">Tekshiruv</span>dastur hali yozilmagan';
-  }
-  updateHud();
-}
-function markProg(i){
-  var el=$('#gcProg'); if(!el) return;
-  Array.prototype.forEach.call(el.children,function(ch,k){ ch.classList.toggle('on',k===i) });
-}
-function computePreview(){
-  if(!G) return;
-  var out=[], x=G.tx, y=G.ty, f=G.face, blocked=false;
-  G.prog.forEach(function(it){
-    var n=it.n||1;
-    for(var k=0;k<n;k++){
-      var c=it.c;
-      if(c==='F'){ var d=DIRS[f], nx=x+d[0], ny=y+d[1];
-        if(nx<0||ny<0||nx>=COLS||ny>=ROWS||G.walls[nx+','+ny]){ out.push({x:Math.max(0,Math.min(COLS-1,nx)),y:Math.max(0,Math.min(ROWS-1,ny)),block:true}); blocked=true; break }
-        x=nx; y=ny; out.push({x:x,y:y}) }
-      else if(c==='L') f=(f+3)%4;
-      else if(c==='R') f=(f+1)%4;
-      else if(c==='P') out.push({x:x,y:y,pick:true});
-    }
-  });
-  G.preview=out; G.pvBlocked=blocked;
-}
-function addCmd(c){
-  if(!G||G.mode!=='code'||G.ex.on) return;
-  if(G.prog.length>=LEVELS[G.lvl].slots){ sayIt('Qator limiti tugadi — dasturni tozalang yoki ishga tushiring.',false); tone(200,.1,'square',.03); return }
-  G.prog.push({c:c,n:1}); computePreview(); renderProg(); tone(640,.04,'square',.025);
-}
-function loopCmd(){
-  if(!G||G.mode!=='code'||G.ex.on) return;
-  if(!G.prog.length){ sayIt('Takrorlash uchun avval buyruq qo‘shing.',false); tone(200,.08,'square',.03); return }
-  var it=G.prog[G.prog.length-1];
-  if(it.c==='P'){ sayIt('📥 ni takrorlash mumkin emas — har karta bir marta olinadi.',false); tone(200,.08,'square',.03); return }
-  it.n=(it.n||1)>=4?1:(it.n||1)+1;
-  computePreview(); renderProg(); tone(it.n>1?720:520,.05,'square',.025);
-}
-function undoCmd(){ if(!G||G.ex.on) return; G.prog.pop(); computePreview(); renderProg(); tone(320,.04,'square',.02) }
-function clearProg(){ if(!G||G.ex.on) return; G.prog=[]; computePreview(); renderProg(); tone(260,.08,'square',.025) }
-function setGameMode(m){
-  if(MODE===m) return;
-  if(G&&G.paused) return;
-  MODE=m; try{localStorage.setItem('rt2_mode',m)}catch(e){}
-  if(G){
-    if(G.ex&&G.ex.on) stopRun();
-    G.mode=m; keys={}; drag=null;
-    if(m==='free'){ G.preview=[]; G.face=G.faceVis }
-    else { G.rx=G.tx*TILE+30; G.ry=G.ty*TILE+30; computePreview() }
-  }
-  setModeUI(); renderProg(); updateHud();
-  sayIt(m==='code'?'Kod rejimi: buyruqlarni yozib, ▶ bilan ishga tushiring.':'Erkin rejim: strelkalar yoki sudrash bilan yuring.',true);
-}
-function setModeUI(){
-  var gm=$('.gm'); if(gm){ gm.classList.toggle('code-mode',MODE==='code'); gm.classList.toggle('free-mode',MODE!=='code') }
-  $$('#gcModes button').forEach(function(b){ b.classList.toggle('on',b.getAttribute('data-m')===MODE) });
-  var hint=$('#gmcHint');
-  if(hint) hint.innerHTML = MODE==='code'
-    ? 'Kod rejimi: <b>↑</b> oldinga · <b>←</b>/<b>→</b> burilish · <b>↓</b> dalil ol · <b>X</b> takror (×2–×4) · <b>Enter</b> ishga tushirish · <b>↶</b> o‘chirish.'
-    : 'Erkin rejim: strelkalar/WASD, sichqoncha yoki barmoq bilan sudrang. XATO quvlaydi — tegmang! <b>Shift + Enter</b> — keyingi daraja.';
-}
 function bindDrag(){
   var el=$('#gmCanvas'); if(!el) return;
   function loc(e){ var r=el.getBoundingClientRect(); return {x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*H/r.height} }
@@ -2153,18 +1927,8 @@ function initSndBtn(){
   b.onclick=function(){ SND=!SND; try{localStorage.setItem('rt2_snd',SND?'1':'0')}catch(e){} paint(); if(SND) tone(880,.08,'sine',.04) };
 }
 function initUI(){
-  $$('#gcPal [data-c]').forEach(function(b){ b.onclick=function(){ addCmd(b.getAttribute('data-c')) } });
-  var lp=$('#gcLoop'); if(lp) lp.onclick=loopCmd;
-  $$('#gcPal [data-i]').forEach(function(b){ b.innerHTML=ic(b.getAttribute('data-i'),1) });
-  var run=$('#gcRun'); if(run) run.onclick=function(){ if(G&&G.ex.on) stopRun(); else runProgram() };
-  var un=$('#gcUndo'); if(un) un.onclick=undoCmd;
-  var cl=$('#gcClear'); if(cl) cl.onclick=clearProg;
-  var pr=$('#gcProg'); if(pr) pr.addEventListener('click',function(e){ var ch=e.target.closest?e.target.closest('.gc-chip'):null; if(!ch) return;
-    var i=+ch.getAttribute('data-i'); if(G&&!G.ex.on&&!isNaN(i)){ G.prog.splice(i,1); computePreview(); renderProg() } });
-  $$('#gcModes button').forEach(function(b){ b.onclick=function(){ setGameMode(b.getAttribute('data-m')) } });
-  bindDrag(); initSndBtn();
+  bindPad(); bindDrag(); initSndBtn();
   var exBtn=$('#gmExit'); if(exBtn) exBtn.onclick=exitGame;
-  setModeUI();
 }
 
 /* ---------- boshqaruv ---------- */
@@ -2177,18 +1941,6 @@ document.addEventListener('keydown',function(e){
     if(fin&&fin.style.display!=='none'){ e.preventDefault(); var ag=$('#gmAgain'); if(ag) ag.click(); return }
   }
   if(!G||!G.running||G.paused) return;
-  if(G.mode==='code'){
-    if(e.key==='Enter'){ e.preventDefault(); if(G.ex.on) stopRun(); else runProgram(); return }
-    if(e.key==='Backspace'){ e.preventDefault(); undoCmd(); return }
-    if(e.key==='Escape'){ e.preventDefault(); if(G.ex.on) stopRun(); return }
-    if(e.key==='ArrowUp'){ e.preventDefault(); addCmd('F'); return }
-    if(e.key==='ArrowLeft'){ e.preventDefault(); addCmd('L'); return }
-    if(e.key==='ArrowRight'){ e.preventDefault(); addCmd('R'); return }
-    if(e.key==='ArrowDown'||e.key===' '){ e.preventDefault(); addCmd('P'); return }
-    if(e.key==='x'||e.key==='X'||e.key==='*'){ e.preventDefault(); loopCmd(); return }
-    return;
-  }
-  if(e.key==='Escape'&&G.ex.on){ stopRun(); return }
   var k=KEYMAP[e.key]; if(k){keys[k]=true; e.preventDefault()}
 });
 document.addEventListener('keyup',function(e){ var k=KEYMAP[e.key]; if(k)keys[k]=false });
@@ -2210,16 +1962,14 @@ function beginGame(){
   $('#gmPlayWrap').style.display='block'; $('#gmFinal').style.display='none';
   var gmCard=$('.gm'); if(gmCard) gmCard.classList.add('playing'); document.body.classList.add('gm-lock');
   cv=$('#gmCanvas'); ctx=cv.getContext('2d'); fit();
-  G=null; newLevel(0); G.xp=0; updateHud(); FX.p=[]; FX.t=[]; FX.shake=0; renderProg();
+  G=null; newLevel(0); G.xp=0; updateHud(); FX.p=[]; FX.t=[]; FX.shake=0;
   try{ if(AC&&AC.state==='suspended') AC.resume() }catch(e){}
   cancelAnimationFrame(raf); lastT=0; raf=requestAnimationFrame(loop);
-  sayIt('Ketdik, '+(player?player.name:'tadqiqotchi')+'! '+(MODE==='code'
-    ?'Kod rejimi: buyruqlarni yozing va «Ishga tushirish»ni bosing.'
-    :'Robini boshqaring: strelkalar yoki WASD. Kartalarni yig‘ing, ARXIVga yeting.'));
+  sayIt('Ketdik, '+(player?player.name:'tadqiqotchi')+'! Ziyoni boshqaring: strelkalar yoki WASD. Kartalarni tekshiring, ARXIVga yeting.');
   var gmEl=$('.gm'); (gmEl||stage).scrollIntoView({behavior:'smooth',block:'start'});
 }
 function exitGame(){
-  if(G){ G.running=false; G.paused=false; G.ex.on=false }
+  if(G){ G.running=false; G.paused=false }
   cancelAnimationFrame(raf); hideLevelUp(); drag=null;
   var gmCard=$('.gm'); if(gmCard) gmCard.classList.remove('playing');
   document.body.classList.remove('gm-lock');
