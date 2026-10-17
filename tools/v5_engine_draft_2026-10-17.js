@@ -1,3 +1,6 @@
+/* ESLATMA: bu — v5 dvigatelining dastlabki loyihasi (2026-10-17).
+   Yakuniy, jonli versiya: site-v2/index.html ichidagi inline skript.
+   Bu fayl faqat tarix uchun saqlanadi. */
 /* ---------- o'yin dvigateli (v5) ---------- */
 var TILE=60, COLS=12, ROWS=8, W=COLS*TILE, H=ROWS*TILE;
 var DIRS=[[0,-1],[1,0],[0,1],[-1,0]]; /* N E S W */
