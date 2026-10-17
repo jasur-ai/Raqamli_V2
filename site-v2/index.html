@@ -785,7 +785,7 @@ svg.gi{width:16px;height:16px;flex:0 0 auto}
       <div class="gm-bot" id="gmBot" aria-hidden="true">
         <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="35" fill="#2F6FDB"/><path d="M50 15a35 35 0 0 1 0 70 35 35 0 0 0 0-70z" fill="#1F55B0" opacity=".35"/><ellipse cx="50" cy="32" rx="27" ry="12" fill="#FFFFFF" opacity=".16"/><circle cx="50" cy="50" r="26" fill="none" stroke="rgba(255,255,255,.32)" stroke-width="2.5"/><circle cx="46" cy="46" r="12.5" fill="none" stroke="#FFFFFF" stroke-width="5"/><path d="M55 55l9 9" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/><path d="M39 42a9 9 0 0 1 6-5" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" opacity=".9"/></svg>
       </div>
-      <div class="gm-say" id="gmSay"><b>Bayes:</b> Salom! Men — Bayes, izlovchi sherigingiz. Meni boshqaring: kartani oching, 4 mezonga qarab qaror bering — manba, sana, muallif, havola. Bayt — yordamchi, XATO mavjudotlari esa soxta ma’lumotni qo‘riqlaydi. Boshlash uchun avval ro‘yxatdan o‘ting.</div>
+      <div class="gm-say" id="gmSay"><b>Bayes:</b> Salom! Men — Bayes, izlovchi sherigingiz. Katakka bosing — o‘zim yo‘l topib boraman va kartani ochaman. Keyin 4 mezon bo‘yicha qaror berasiz: manba, sana, muallif, havola. Bayt — yordamchi, XATO mavjudotlari esa soxta ma’lumotni qo‘riqlaydi. Boshlash uchun avval ro‘yxatdan o‘ting.</div>
     </div>
     <div class="gm-hud">
       <span class="gm-chip" id="gmUser" style="display:none"></span>
@@ -813,7 +813,7 @@ svg.gi{width:16px;height:16px;flex:0 0 auto}
           <button type="button" data-k="left" aria-label="Chap">◀</button><button type="button" data-k="down" aria-label="Past">▼</button><button type="button" data-k="right" aria-label="O‘ng">▶</button>
         </div>
         <p class="gmc-legend"><i class="lp" style="background:#2F9E5F"></i>batareya <i class="lp" style="background:#2F6FDB"></i>vaqt +10 s <i class="lp" style="background:#7A5AF8"></i>qalqon <i class="lp" style="background:#E08A1E"></i>magnit <i class="lp" style="background:#17B4AA"></i>Bayt — hamroh</p>
-        <p class="gmc-hint" id="gmcHint">Boshqaruv: <b>strelkalar</b> yoki <b>WASD</b>, sichqoncha yoki barmoq bilan sudrang. XATO mavjudotlari quvlaydi — tegmang. Keyingi daraja: <b>Shift + Enter</b>.</p>
+        <p class="gmc-hint" id="gmcHint">Katakka <b>bosing</b> — Bayes o‘zi yo‘l topib boradi va kartani ochadi. XATO mavjudotlari quvlaydi — tegmang. Strelkalar/WASD ham ishlaydi. Keyingi daraja: <b>Shift + Enter</b>.</p>
       </div>
       <div id="gmFinal" style="display:none"></div>
     </div>
@@ -1262,7 +1262,7 @@ var G=null, cv=null, ctx=null, raf=null, lastT=0, keys={}, drag=null;
 var TOUCH=!!(window.matchMedia&&window.matchMedia('(pointer:coarse)').matches);
 var DPR=Math.min(2.5,window.devicePixelRatio||1);
 var SND=true; try{SND=localStorage.getItem('rt2_snd')!=='0'}catch(e){}
-var AC=null, FX={p:[],t:[],shake:0};
+var AC=null, FX={p:[],t:[],shake:0,ring:null};
 
 function tone(f,d,type,vol,to){
   if(!SND) return;
@@ -1373,6 +1373,53 @@ function update(dt,ts){
 function checkWin(){
   if(G.done>=G.cards.length && G.tx===COLS-1 && G.ty===ROWS-1){ levelDone() }
 }
+function tileOf(px,py){ return [Math.max(0,Math.min(COLS-1,Math.round((px-30)/TILE))), Math.max(0,Math.min(ROWS-1,Math.round((py-30)/TILE)))] }
+function findPath(sx,sy,tx,ty){
+  if(sx===tx&&sy===ty) return [];
+  var key=function(x,y){return x+','+y};
+  var prev={}, seen={}; seen[key(sx,sy)]=1;
+  var q=[[sx,sy]], head=0;
+  while(head<q.length){
+    var c=q[head++], cx=c[0], cy=c[1];
+    if(cx===tx&&cy===ty) break;
+    for(var i=0;i<4;i++){
+      var nx=cx+DIRS[i][0], ny=cy+DIRS[i][1];
+      if(nx<0||ny<0||nx>=COLS||ny>=ROWS) continue;
+      if(G.walls[nx+','+ny]) continue;
+      var k=key(nx,ny); if(seen[k]) continue;
+      seen[k]=1; prev[k]=[cx,cy]; q.push([nx,ny]);
+    }
+  }
+  if(!seen[key(tx,ty)]) return null;
+  var out=[], cur=[tx,ty];
+  while(cur && !(cur[0]===sx&&cur[1]===sy)){ out.push(cur); cur=prev[key(cur[0],cur[1])] }
+  return out.reverse();
+}
+function cardAtTile(tx,ty){
+  for(var i=0;i<G.cards.length;i++){ var c=G.cards[i]; if(!c.taken && c.x===tx && c.y===ty) return c }
+  return null;
+}
+function pathRisk(path){
+  if(!path||!path.length) return 0;
+  var n=0;
+  path.forEach(function(t){
+    var cx=t[0]*TILE+30, cy=t[1]*TILE+30;
+    G.chasers.forEach(function(ch){
+      var d=Math.hypot(ch.x-cx, ch.y-cy);
+      if(d<86) n++;
+    });
+  });
+  return n;
+}
+function goTo(tx,ty){
+  if(!G||!G.running||G.paused) return;
+  var t=tileOf(G.rx,G.ry);
+  var path=findPath(t[0],t[1],tx,ty);
+  if(!path){ tone(200,.1,'square',.03); return }
+  G.walk={path:path,i:0,card:cardAtTile(tx,ty)};
+  G.hover=null;
+  tone(560,.04,'sine',.02);
+}
 function updateFree(dt,ts){
   if(G.intro>0){ updateChasers(dt,true); return }
   G.left-=dt;
@@ -1381,15 +1428,31 @@ function updateFree(dt,ts){
     if(sec<=10&&sec>0&&sec!==G.tickAt){ G.tickAt=sec; tone(880,.06,'square',.03) } }
   if(G.left<=0){ G.left=45; G.lastSec=-1; tone(140,.35,'sawtooth',.05,80); FX.shake=.4; hurt('Vaqt tugadi! Batareya -1'); if(!G) return; resetPos(); }
   var sp=190, dx=0, dy=0;
+  if(keys.left||keys.right||keys.up||keys.down){ G.walk=null }
   if(keys.left)dx-=1; if(keys.right)dx+=1; if(keys.up)dy-=1; if(keys.down)dy+=1;
-  if(drag){
-    var ddx=drag.x-G.rx, ddy=drag.y-G.ry, dd=Math.sqrt(ddx*ddx+ddy*ddy);
-    if(dd>7){ dx=ddx/dd; dy=ddy/dd; sp=Math.min(260,150+dd*1.1) }
+  /* bosilgan katakka yurish */
+  if(G.walk){
+    var w=G.walk;
+    if(w.i>=w.path.length){ G.walk=null }
+    else {
+      var nt=w.path[w.i], ncx=nt[0]*TILE+30, ncy=nt[1]*TILE+30;
+      var ddx=ncx-G.rx, ddy=ncy-G.ry, dd=Math.hypot(ddx,ddy);
+      var step=330*dt;
+      if(dd<=step){
+        G.rx=ncx; G.ry=ncy; w.i++;
+        if(w.i>=w.path.length){
+          G.walk=null;
+          var cc=w.card;
+          if(cc && !cc.taken){ cc.taken=true; cc.ox=0; cc.oy=0; FX.ring={x:cc.x*TILE+30,y:cc.y*TILE+30,t:0,c:'#4DA3FF'}; burst(cc.x*TILE+30,cc.y*TILE+30,12,'#4DA3FF'); tone(700,.07,'sine',.05); buzz(12); openCard(cc) }
+          else { tone(430,.04,'sine',.02) }
+        }
+      } else { G.rx+=ddx/dd*step; G.ry+=ddy/dd*step }
+      dx=ddx; dy=ddy; G.vx=ddx/(Math.abs(ddx)+1); G.vy=ddy/(Math.abs(ddy)+1);
+      if(Math.random()<.5) FX.p.push({x:G.rx-6+Math.random()*12,y:G.ry+16,vx:(Math.random()-.5)*20,vy:20+Math.random()*20,life:.3,max:.3,c:'rgba(47,111,219,.35)',s:2+Math.random()*2});
+    }
   }
-  if(dx&&dy){dx*=.7071; dy*=.7071}
-  G.vx=dx; G.vy=dy;
-  if(dx){var nx=G.rx+dx*sp*dt; if(!blockedR(nx,G.ry,19))G.rx=nx}
-  if(dy){var ny=G.ry+dy*sp*dt; if(!blockedR(G.rx,ny,19))G.ry=ny}
+  if(dx&&dy&&!G.walk){dx*=.7071; dy*=.7071}
+  if(!G.walk){ G.vx=dx; G.vy=dy; if(dx){var nx=G.rx+dx*sp*dt; if(!blockedR(nx,G.ry,19))G.rx=nx} if(dy){var ny=G.ry+dy*sp*dt; if(!blockedR(G.rx,ny,19))G.ry=ny} }
   G.tx=Math.max(0,Math.min(COLS-1,Math.round((G.rx-30)/TILE))); G.ty=Math.max(0,Math.min(ROWS-1,Math.round((G.ry-30)/TILE)));
   if(dx||dy){ if(Math.random()<.5) FX.p.push({x:G.rx-6+Math.random()*12,y:G.ry+16,vx:(Math.random()-.5)*20,vy:20+Math.random()*20,life:.3,max:.3,c:'rgba(47,111,219,.35)',s:2+Math.random()*2}) }
   updateChasers(dt,false);
@@ -1401,7 +1464,7 @@ function updateFree(dt,ts){
       var mx=G.rx-cx, my=G.ry-cy, md=Math.sqrt(mx*mx+my*my)||1;
       if(md<170){ c.ox+=mx/md*140*dt; c.oy+=my/md*140*dt; r=Math.max(r,74) }
     }
-    if(Math.abs(G.rx-cx)<r&&Math.abs(G.ry-cy)<r){ c.taken=true; c.ox=0; c.oy=0;
+    if(Math.abs(G.rx-cx)<r&&Math.abs(G.ry-cy)<r){ c.taken=true; c.ox=0; c.oy=0; G.walk=null;
       burst(cx,cy,12,'#4DA3FF'); tone(700,.07,'sine',.05); buzz(12); openCard(c); break }
   }
   /* bonuslar */
@@ -1424,7 +1487,7 @@ function applyPup(u,x,y){
 }
 function resetPos(){
   if(!G) return;
-  G.rx=30; G.ry=30; G.tx=0; G.ty=0; G.vx=0; G.vy=0; drag=null; G.inv=Math.max(G.inv,1.2);
+  G.rx=30; G.ry=30; G.tx=0; G.ty=0; G.vx=0; G.vy=0; drag=null; G.walk=null; G.inv=Math.max(G.inv,1.2);
 }
 function hurt(msg){ if(!G)return; G.battery--; FX.shake=Math.max(FX.shake,.3); sayIt(msg); updateHud(); if(G.battery<=0){ gameOver() } }
 function updateBayt(dt){
@@ -1459,6 +1522,7 @@ function updateChasers(dt,frozen){
   });
 }
 function updateFX(dt){
+  if(FX.ring){ FX.ring.t+=dt; if(FX.ring.t>.6) FX.ring=null }
   var arr=FX.p;
   for(var q=arr.length-1;q>=0;q--){ var p=arr[q]; p.life-=dt; p.x+=p.vx*dt; p.y+=p.vy*dt; p.vy+=180*dt; p.vx*=.985; if(p.life<=0) arr.splice(q,1) }
   var tx=FX.t;
@@ -1469,7 +1533,7 @@ function updateFX(dt){
 
 /* --- modal --- */
 function openCard(c){
-  G.paused=true; drag=null;
+  G.paused=true; drag=null; G.walk=null; G.hover=null;
   var pop=$('#gmPop'), n=c.note;
   pop.style.display='flex';
   $('#gmCardNote').textContent=n.t;
@@ -1849,10 +1913,46 @@ function drawCompass(ts){
   ctx.restore(); ctx.globalAlpha=1;
 }
 function drawFX(){
+  if(FX.ring){
+    var r=FX.ring, k=r.t/.6, rad=10+k*54;
+    ctx.globalAlpha=(1-k)*.55; ctx.strokeStyle=r.c; ctx.lineWidth=2.4;
+    ctx.beginPath(); ctx.arc(r.x,r.y,rad,0,7); ctx.stroke();
+    ctx.globalAlpha=(1-k)*.22; ctx.beginPath(); ctx.arc(r.x,r.y,rad*.65,0,7); ctx.stroke();
+    ctx.globalAlpha=1;
+  }
   FX.p.forEach(function(p){ ctx.globalAlpha=Math.max(0,p.life/p.max); ctx.fillStyle=p.c; ctx.beginPath(); ctx.arc(p.x,p.y,p.s,0,7); ctx.fill() });
   ctx.globalAlpha=1;
   FX.t.forEach(function(t){ ctx.globalAlpha=Math.min(1,t.life*1.6); ctx.fillStyle=t.c; ctx.font='800 15px Inter,system-ui'; ctx.textAlign='center'; ctx.fillText(t.t,t.x,t.y) });
   ctx.globalAlpha=1;
+}
+function drawHover(ts){
+  if(!G||!G.hover||!G.running||G.paused) return;
+  var h=G.hover; if(!h.path) return;
+  var risky=h.risk>0;
+  var col=risky?'216,75,63':'47,111,219';
+  ctx.save();
+  ctx.setLineDash([6,7]); ctx.lineDashOffset=-ts/45;
+  ctx.strokeStyle='rgba('+col+',.55)'; ctx.lineWidth=2.4; ctx.lineCap='round';
+  ctx.beginPath(); ctx.moveTo(G.rx,G.ry);
+  h.path.forEach(function(t){ ctx.lineTo(t[0]*TILE+30,t[1]*TILE+30) });
+  ctx.stroke();
+  ctx.setLineDash([]);
+  var last=h.path[h.path.length-1];
+  if(last){
+    var cx=last[0]*TILE+30, cy=last[1]*TILE+30;
+    var pu=.5+.5*Math.sin(ts/220);
+    ctx.strokeStyle='rgba('+col+','+(.45+.35*pu)+')'; ctx.lineWidth=2.6;
+    ctx.beginPath(); ctx.arc(cx,cy,24+pu*4,0,7); ctx.stroke();
+    if(h.card){
+      ctx.fillStyle=risky?'#D84B3F':'#2F6FDB';
+      ctx.font='800 10px Inter,system-ui'; ctx.textAlign='center'; ctx.textBaseline='middle';
+      var label=risky?'xavfli yo‘l':'tekshirish';
+      var tw=ctx.measureText(label).width+14;
+      rr(cx-tw/2, cy-44, tw, 17, 8.5); ctx.fill();
+      ctx.fillStyle='#fff'; ctx.fillText(label, cx, cy-35.5);
+    }
+  }
+  ctx.restore();
 }
 function drawIntro(ts){
   if(G.intro<=0) return;
@@ -1863,7 +1963,7 @@ function drawIntro(ts){
   ctx.font='800 30px Inter,system-ui'; ctx.fillText((G.lvl+1)+'-daraja', W/2, H/2-10);
   ctx.font='600 17px Inter,system-ui'; ctx.globalAlpha=a*.9; ctx.fillText(LEVELS[G.lvl].name, W/2, H/2+20);
   ctx.font='600 13px Inter,system-ui'; ctx.globalAlpha=a*.7;
-  ctx.fillText('Strelkalar bilan yuring — XATO quvlaydi', W/2, H/2+46);
+  ctx.fillText('Katakka bosing — Bayes o‘zi boradi', W/2, H/2+46);
   ctx.restore();
 }
 function draw(ts){
@@ -1873,8 +1973,7 @@ function draw(ts){
   if(FX.shake>0){ var s=FX.shake*9; sx=(Math.random()-.5)*s; sy=(Math.random()-.5)*s }
   ctx.save(); ctx.translate(sx,sy);
   drawBoard(ts); drawWalls(); drawArchive(ts); drawCards(ts); drawPups(ts); drawChasers(ts); drawBayt(ts); drawHero(ts); drawCompass(ts); drawFX();
-  if(drag){ var pr=10+4*Math.sin(ts/180); ctx.strokeStyle='rgba(47,111,219,.55)'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(drag.x,drag.y,pr,0,7); ctx.stroke();
-    ctx.fillStyle='rgba(47,111,219,.18)'; ctx.beginPath(); ctx.arc(drag.x,drag.y,pr-3,0,7); ctx.fill() }
+  drawHover(ts);
   drawIntro(ts);
   ctx.restore();
 }
@@ -1883,9 +1982,21 @@ function draw(ts){
 function bindDrag(){
   var el=$('#gmCanvas'); if(!el) return;
   function loc(e){ var r=el.getBoundingClientRect(); return {x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*H/r.height} }
-  el.addEventListener('pointerdown',function(e){ if(!G||!G.running||G.paused||G.mode!=='free') return; drag=loc(e); try{el.setPointerCapture(e.pointerId)}catch(err){} e.preventDefault() },{passive:false});
-  el.addEventListener('pointermove',function(e){ if(!drag) return; drag=loc(e); e.preventDefault() },{passive:false});
-  ['pointerup','pointercancel','pointerleave'].forEach(function(t){ el.addEventListener(t,function(){ drag=null }) });
+  function tileAt(e){ var q=loc(e); return tileOf(q.x,q.y) }
+  el.addEventListener('pointerdown',function(e){
+    if(!G||!G.running||G.paused) return;
+    var t=tileAt(e); e.preventDefault();
+    goTo(t[0],t[1]);
+  },{passive:false});
+  el.addEventListener('pointermove',function(e){
+    if(!G||!G.running||G.paused) return;
+    var t=tileAt(e), card=cardAtTile(t[0],t[1]);
+    var here=tileOf(G.rx,G.ry);
+    var path=findPath(here[0],here[1],t[0],t[1]);
+    G.hover={t:t,card:card,path:path,risk:pathRisk(path)};
+    el.style.cursor=card?'pointer':'default';
+  },{passive:true});
+  el.addEventListener('pointerleave',function(){ if(G) G.hover=null; el.style.cursor='default' });
   el.addEventListener('contextmenu',function(e){ e.preventDefault() });
 }
 function initSndBtn(){
@@ -1938,7 +2049,7 @@ function beginGame(){
   G=null; newLevel(0); G.xp=0; updateHud(); FX.p=[]; FX.t=[]; FX.shake=0;
   try{ if(AC&&AC.state==='suspended') AC.resume() }catch(e){}
   cancelAnimationFrame(raf); lastT=0; raf=requestAnimationFrame(loop);
-  sayIt('Ketdik, '+(player?player.name:'tadqiqotchi')+'! Bayesni boshqaring: strelkalar yoki WASD. Kartalarni tekshiring, ARXIVga yeting.');
+  sayIt('Ketdik, '+(player?player.name:'tadqiqotchi')+'! Katakka bosing — Bayes o‘zi boradi. Kartani tekshiring, ARXIVga yeting.');
   var gmEl=$('.gm'); (gmEl||stage).scrollIntoView({behavior:'smooth',block:'start'});
 }
 function exitGame(){
