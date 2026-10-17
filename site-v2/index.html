@@ -783,9 +783,9 @@ svg.gi{width:16px;height:16px;flex:0 0 auto}
     <button type="button" class="gm-exit" id="gmExit" aria-label="O‘yindan chiqish" title="Chiqish">✕</button>
     <div class="gm-top">
       <div class="gm-bot" id="gmBot" aria-hidden="true">
-        <svg viewBox="0 0 100 100"><rect x="33" y="70" width="34" height="12" rx="5" fill="#16305A"/><rect x="40" y="72" width="8" height="8" rx="2" fill="#2F6FDB"/><circle cx="50" cy="52" r="19" fill="#F3C9A2"/><path d="M31 50c0-11 8-18 19-18s19 7 19 18c-6-5-12-7-19-7s-13 2-19 7z" fill="#233650"/><circle class="eye" cx="43" cy="53" r="3.2" fill="#1F3864"/><circle class="eye" cx="57" cy="53" r="3.2" fill="#1F3864"/><path d="M45 61c2.4 2.2 7.6 2.2 10 0" stroke="#1F3864" stroke-width="2.4" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="33" rx="30" ry="5" fill="#16305A"/><path d="M35 33V19c0-4 3-7 7-7h16c4 0 7 3 7 7v14z" fill="#16305A"/><rect x="35" y="26" width="30" height="5" fill="#2F6FDB"/><circle cx="72" cy="64" r="9" fill="rgba(47,111,219,.18)" stroke="#2F6FDB" stroke-width="4"/><line x1="78" y1="70" x2="86" y2="78" stroke="#16305A" stroke-width="5" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="35" fill="#2F6FDB"/><path d="M50 15a35 35 0 0 1 0 70 35 35 0 0 0 0-70z" fill="#1F55B0" opacity=".35"/><ellipse cx="50" cy="32" rx="27" ry="12" fill="#FFFFFF" opacity=".16"/><circle cx="50" cy="50" r="26" fill="none" stroke="rgba(255,255,255,.32)" stroke-width="2.5"/><circle cx="46" cy="46" r="12.5" fill="none" stroke="#FFFFFF" stroke-width="5"/><path d="M55 55l9 9" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/><path d="M39 42a9 9 0 0 1 6-5" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" opacity=".9"/></svg>
       </div>
-      <div class="gm-say" id="gmSay"><b>Ziyo:</b> Salom! Men — Ziyo, dalil tekshiruvchi. Strelkalar yoki sudrash bilan yuring, kartani ochib 4 mezonga qarab qaror bering: manba, sana, muallif, havola. Bayt — yordamchim, XATO mavjudotlari esa soxta ma’lumotni qo‘riqlaydi. Boshlash uchun avval ro‘yxatdan o‘ting.</div>
+      <div class="gm-say" id="gmSay"><b>Bayes:</b> Salom! Men — Bayes, izlovchi sherigingiz. Meni boshqaring: kartani oching, 4 mezonga qarab qaror bering — manba, sana, muallif, havola. Bayt — yordamchi, XATO mavjudotlari esa soxta ma’lumotni qo‘riqlaydi. Boshlash uchun avval ro‘yxatdan o‘ting.</div>
     </div>
     <div class="gm-hud">
       <span class="gm-chip" id="gmUser" style="display:none"></span>
@@ -1163,13 +1163,13 @@ if(sessionMessage){
 </script>
 <script>
 
-/* ===== Sinov o'yini: ZIYO — dalil tekshiruvchi (amaliy o'yin) ===== */
+/* ===== Sinov o'yini: BAYES — izlovchi (amaliy o'yin) ===== */
 (function(){
 var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 var stage=$('#gmStage'), say=$('#gmSay'), bot=$('#gmBot'), startBtn=$('#gmStart'), xpEl=$('#gmXp'), barEl=$('#gmXpBar'), timeEl=$('#gmTime'), nodes=$$('#gmNodes i'), userChip=$('#gmUser');
 var player=null; try{player=JSON.parse(localStorage.getItem('rt2_player')||'null')}catch(e){}
 var TOTAL=1000;
-function sayIt(t,happy){say.innerHTML='<b>Ziyo:</b> '+t; if(happy){bot.classList.remove('happy'); void bot.offsetWidth; bot.classList.add('happy')}}
+function sayIt(t,happy){say.innerHTML='<b>Bayes:</b> '+t; if(happy){bot.classList.remove('happy'); void bot.offsetWidth; bot.classList.add('happy')}}
 function refreshUser(){ if(player){userChip.style.display='inline-flex'; userChip.innerHTML='<svg class="gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c1.4-3.6 4.2-5.4 7.5-5.4s6.1 1.8 7.5 5.4"/></svg><span>'+player.name+'</span> <button type="button" id="gmOut">Chiqish</button>'; var o=$('#gmOut'); if(o)o.onclick=function(){player=null; localStorage.removeItem('rt2_player'); refreshUser(); sayIt('Chiqdingiz. Qayta o‘ynash uchun yana kiring.')}} else {userChip.style.display='none'; userChip.innerHTML=''} }
 refreshUser();
 
@@ -1775,11 +1775,10 @@ function drawBayt(ts){
 function drawHero(ts){
   var x=G.rx, y=G.ry, vx=G.vx||0, vy=G.vy||0;
   var moving=Math.abs(vx)>0.06||Math.abs(vy)>0.06;
-  var dir=(vx<-0.06)?-1:(vx>0.06?1:(G.heroDir||1)); G.heroDir=dir;
-  var bob=(moving?Math.abs(Math.sin(ts/115))*2.2:Math.sin(ts/420)*.9);
-  var lean=Math.max(-.07,Math.min(.07, vx*.05));
-  shadow(x,y+19,15,5,.22);
-  glow(x+vx*8, y, 46, isDark()?'rgba(120,170,255,.30)':'rgba(255,255,255,.5)', .24);
+  var bob=moving?Math.abs(Math.sin(ts/105))*2.4:Math.sin(ts/520)*1.2;
+  var tilt=Math.max(-.12,Math.min(.12, vx*.09));
+  shadow(x,y+20,15,5,.22);
+  glow(x+vx*6, y-bob, 46, isDark()?'rgba(120,170,255,.30)':'rgba(255,255,255,.55)', .22);
   if(G.inv>0){ ctx.globalAlpha=(Math.sin(ts/60)+1)/2*.6+.4 }
   if(G.shieldT>0){
     var a=.35+.25*Math.sin(ts/140);
@@ -1790,77 +1789,51 @@ function drawHero(ts){
     ctx.strokeStyle='rgba(224,138,30,'+(.3+.2*Math.sin(ts/180))+')'; ctx.lineWidth=2; ctx.setLineDash([5,6]);
     ctx.beginPath(); ctx.arc(x,y,44,0,7); ctx.stroke(); ctx.setLineDash([]);
   }
-  ctx.save(); ctx.translate(x,y-bob); ctx.rotate(lean); ctx.scale(dir*1.16,1.16);
+  /* skanerlash halqasi — "tekshiruv" motivi */
+  var k=(ts%2400)/2400;
+  ctx.globalAlpha=(1-k)*.30; ctx.strokeStyle='#2F6FDB'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.arc(x,y-bob,20+k*24,0,7); ctx.stroke();
+  ctx.globalAlpha=1;
 
-  /* oyoqlar */
-  var sw=moving?Math.sin(ts/95)*3:0;
-  ctx.fillStyle='#16305A';
-  rr(-7.4,11+sw*.5,5.8,8,2.8); ctx.fill();
-  rr(1.6,11-sw*.5,5.8,8,2.8); ctx.fill();
-  ctx.fillStyle='#0E2242';
-  rr(-9,17.4+sw*.5,8.2,4,2); ctx.fill();
-  rr(0.8,17.4-sw*.5,8.2,4,2); ctx.fill();
+  ctx.save(); ctx.translate(x,y-bob); ctx.rotate(tilt);
 
-  /* palto */
-  var g=ctx.createLinearGradient(0,-8,0,16);
-  g.addColorStop(0,'#3A78E4'); g.addColorStop(1,'#1E4C9E');
-  ctx.fillStyle=g;
-  ctx.beginPath();
-  ctx.moveTo(-10.5,-6); ctx.quadraticCurveTo(-13.4,6,-9.4,15);
-  ctx.lineTo(9.4,15); ctx.quadraticCurveTo(13.4,6,10.5,-6);
-  ctx.quadraticCurveTo(0,-10.5,-10.5,-6); ctx.closePath(); ctx.fill();
-  /* yoqa + galstuk */
-  ctx.fillStyle='#EAF3FF';
-  ctx.beginPath(); ctx.moveTo(-4.6,-7.4); ctx.lineTo(0,-1.2); ctx.lineTo(4.6,-7.4); ctx.closePath(); ctx.fill();
-  ctx.fillStyle='#D84B3F';
-  ctx.beginPath(); ctx.moveTo(0,-2.2); ctx.lineTo(2.3,.8); ctx.lineTo(0,8.4); ctx.lineTo(-2.3,.8); ctx.closePath(); ctx.fill();
-  /* tugmalar */
-  ctx.fillStyle='rgba(255,255,255,.55)';
-  ctx.beginPath(); ctx.arc(0,4.6,1.05,0,7); ctx.arc(0,8.2,1.05,0,7); ctx.fill();
+  /* tashqi halqa */
+  var pr=22+Math.sin(ts/420)*1.4;
+  ctx.strokeStyle=isDark()?'rgba(140,180,255,.22)':'rgba(47,111,219,.18)'; ctx.lineWidth=1.6;
+  ctx.beginPath(); ctx.arc(0,0,pr,0,7); ctx.stroke();
 
-  /* bosh */
-  ctx.fillStyle='#F3C9A2';
-  ctx.beginPath(); ctx.arc(0,-14.4,9.2,0,7); ctx.fill();
-  /* soch */
-  ctx.fillStyle='#233650';
-  ctx.beginPath(); ctx.arc(0,-14.4,9.2,Math.PI*1.02,Math.PI*1.98); ctx.quadraticCurveTo(0,-19.6,-9.2,-14.4); ctx.fill();
-  /* ko'zlar */
-  var ex=Math.max(-1.5,Math.min(1.5,vx*9)), ey=Math.max(-1.2,Math.min(1.2,vy*7));
-  ctx.fillStyle='#1F3864';
-  ctx.beginPath(); ctx.arc(-3.2+ex,-14.2+ey,1.6,0,7); ctx.arc(3.2+ex,-14.2+ey,1.6,0,7); ctx.fill();
-  ctx.fillStyle='#fff';
-  ctx.beginPath(); ctx.arc(-2.8+ex,-14.7+ey,.6,0,7); ctx.arc(3.6+ex,-14.7+ey,.6,0,7); ctx.fill();
-  /* tabassum */
-  ctx.strokeStyle='#1F3864'; ctx.lineWidth=1.2; ctx.lineCap='round';
-  ctx.beginPath(); ctx.arc(ex*.4,-11.2,2.6,.15*Math.PI,.85*Math.PI); ctx.stroke();
-
-  /* shlyapa */
-  ctx.fillStyle='#16305A';
-  ctx.beginPath(); ctx.ellipse(0,-21.6,13,3.1,0,0,7); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(-7,-21.8); ctx.quadraticCurveTo(-7,-29.4,0,-29.4); ctx.quadraticCurveTo(7,-29.4,7,-21.8); ctx.closePath(); ctx.fill();
-  ctx.fillStyle='#2F6FDB'; rr(-7,-24.4,14,2.6,1.2); ctx.fill();
-
-  /* chap qo'l */
-  ctx.strokeStyle='#1E4C9E'; ctx.lineWidth=4.4; ctx.lineCap='round';
-  ctx.beginPath(); ctx.moveTo(-9,-3.4); ctx.lineTo(-12.6,2.2); ctx.stroke();
-  /* o'ng qo'l + lupa */
-  ctx.beginPath(); ctx.moveTo(8.6,-3.2); ctx.lineTo(12.4,1.6); ctx.stroke();
-  ctx.save(); ctx.translate(12.6,1.4); ctx.rotate(.5);
-  ctx.fillStyle='rgba(120,180,255,.22)'; ctx.strokeStyle='#16305A'; ctx.lineWidth=2.4;
-  ctx.beginPath(); ctx.arc(0,0,6.4,0,7); ctx.fill(); ctx.stroke();
-  ctx.strokeStyle='rgba(255,255,255,.85)'; ctx.lineWidth=1.4;
-  ctx.beginPath(); ctx.arc(-1.6,-1.8,3.1,Math.PI*1.05,Math.PI*1.55); ctx.stroke();
-  ctx.strokeStyle='#16305A'; ctx.lineWidth=3; ctx.lineCap='round';
-  ctx.beginPath(); ctx.moveTo(4.8,4.4); ctx.lineTo(8.6,8.6); ctx.stroke();
+  /* jeton */
+  var g=ctx.createLinearGradient(0,-19,0,19);
+  if(isDark()){ g.addColorStop(0,'#5C9AF5'); g.addColorStop(1,'#1B4C9C') }
+  else { g.addColorStop(0,'#4C8CF0'); g.addColorStop(1,'#1F55B0') }
+  ctx.fillStyle=g; ctx.beginPath(); ctx.arc(0,0,19,0,7); ctx.fill();
+  /* yuqori yorug'lik */
+  ctx.save(); ctx.beginPath(); ctx.arc(0,0,19,0,7); ctx.clip();
+  ctx.fillStyle='rgba(255,255,255,.16)'; ctx.beginPath(); ctx.ellipse(0,-11,16,8,0,0,7); ctx.fill();
   ctx.restore();
-  /* glint */
-  var gl=(Math.sin(ts/620)+1)/2;
-  ctx.globalAlpha=.25+.55*gl; ctx.fillStyle='#FFFFFF';
-  ctx.beginPath(); ctx.arc(10.6,-1.4,1.1,0,7); ctx.fill(); ctx.globalAlpha=1;
+  /* ichki halqa */
+  ctx.strokeStyle='rgba(255,255,255,.32)'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.arc(0,0,14.6,0,7); ctx.stroke();
+
+  /* lupa */
+  ctx.strokeStyle='rgba(255,255,255,.95)'; ctx.lineWidth=2.7; ctx.lineCap='round';
+  ctx.beginPath(); ctx.arc(-1.4,-1.6,6.8,0,7); ctx.stroke();
+  ctx.lineWidth=3.2;
+  ctx.beginPath(); ctx.moveTo(3.6,3.8); ctx.lineTo(8.6,8.8); ctx.stroke();
+  /* shisha yorqinligi */
+  ctx.strokeStyle='rgba(255,255,255,.85)'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.arc(-1.4,-1.6,4.2,Math.PI*1.06,Math.PI*1.5); ctx.stroke();
+
+  /* uchqun */
+  var sa=ts/1500, sx=Math.cos(sa)*23, sy=Math.sin(sa)*9-16;
+  ctx.globalAlpha=.45+.35*Math.sin(ts/380);
+  ctx.fillStyle='#FFFFFF'; ctx.beginPath(); ctx.arc(sx,sy,1.5,0,7); ctx.fill();
+  ctx.globalAlpha=1;
 
   ctx.restore();
   ctx.globalAlpha=1;
-}function drawCompass(ts){
+}
+function drawCompass(ts){
   var tx=0, ty=0;
   if(G.done<G.cards.length){
     var best=1e9;
@@ -1965,7 +1938,7 @@ function beginGame(){
   G=null; newLevel(0); G.xp=0; updateHud(); FX.p=[]; FX.t=[]; FX.shake=0;
   try{ if(AC&&AC.state==='suspended') AC.resume() }catch(e){}
   cancelAnimationFrame(raf); lastT=0; raf=requestAnimationFrame(loop);
-  sayIt('Ketdik, '+(player?player.name:'tadqiqotchi')+'! Ziyoni boshqaring: strelkalar yoki WASD. Kartalarni tekshiring, ARXIVga yeting.');
+  sayIt('Ketdik, '+(player?player.name:'tadqiqotchi')+'! Bayesni boshqaring: strelkalar yoki WASD. Kartalarni tekshiring, ARXIVga yeting.');
   var gmEl=$('.gm'); (gmEl||stage).scrollIntoView({behavior:'smooth',block:'start'});
 }
 function exitGame(){
