@@ -1987,9 +1987,16 @@ function addCmd(c){
 function undoCmd(){ if(!G||G.ex.on) return; G.prog.pop(); computePreview(); renderProg(); tone(320,.04,'square',.02) }
 function clearProg(){ if(!G||G.ex.on) return; G.prog=[]; computePreview(); renderProg(); tone(260,.08,'square',.025) }
 function setGameMode(m){
+  if(MODE===m) return;
+  if(G&&G.paused) return;
   MODE=m; try{localStorage.setItem('rt2_mode',m)}catch(e){}
-  if(G){ var keep=G.xp; newLevel(G.lvl); G.xp=keep; updateHud(); renderProg() }
-  setModeUI();
+  if(G){
+    if(G.ex&&G.ex.on) stopRun();
+    G.mode=m; keys={}; drag=null;
+    if(m==='free'){ G.preview=[]; G.face=G.faceVis }
+    else { G.rx=G.tx*TILE+30; G.ry=G.ty*TILE+30; computePreview() }
+  }
+  setModeUI(); renderProg(); updateHud();
   sayIt(m==='code'?'Kod rejimi: buyruqlarni yozib, ▶ bilan ishga tushiring.':'Erkin rejim: strelkalar yoki sudrash bilan yuring.',true);
 }
 function setModeUI(){
