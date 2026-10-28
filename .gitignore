@@ -1,6 +1,14 @@
 # V2 repo — maxfiy narsalar hech qachon kirmaydi
+# DO NOT PUSH — local-only secrets and provider credentials below
 _private_vault_v2/
 credentials*.env
 *.env
+.env*
+.wrangler/
+secrets/
+*.token
+*.secret
+*.pem
+*.key
 .DS_Store
 __pycache__/
